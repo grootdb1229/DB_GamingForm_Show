@@ -39,6 +39,7 @@ namespace Gaming_Forum
         {
             NFrmRegistration reg = new NFrmRegistration();
             reg.Show(this);
+            //hjkhjkkhkjjkh
         }
 
         private void button4_Click(object sender, EventArgs e)
