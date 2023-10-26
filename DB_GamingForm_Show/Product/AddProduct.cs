@@ -99,8 +99,8 @@ namespace 其中專題
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {
-            DB_GamingFormEntities db = new DB_GamingFormEntities();
+        {//"
+              DB_GamingFormEntities db = new DB_GamingFormEntities();
             using (TransactionScope ts = new TransactionScope())
             {
 
