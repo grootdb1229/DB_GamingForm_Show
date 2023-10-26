@@ -99,7 +99,7 @@ namespace 其中專題
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {//"46546555
+        {//"46546555//1234444555
               DB_GamingFormEntities db = new DB_GamingFormEntities();
             using (TransactionScope ts = new TransactionScope())
             {
