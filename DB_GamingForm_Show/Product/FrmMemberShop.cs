@@ -39,7 +39,7 @@ namespace Shopping
                 IsFirm = false;
             }
         }
-
+        //llll
         public FrmMemberShop()
         {
             InitializeComponent();
