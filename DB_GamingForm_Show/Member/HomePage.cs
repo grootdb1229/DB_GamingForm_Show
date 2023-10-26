@@ -32,6 +32,7 @@ namespace Gaming_Forum
         private void button5_Click(object sender, EventArgs e)
         {
             //test
+            //test2
             FirmFrmRegistration Freg = new FirmFrmRegistration();
             Freg.Show(this);
         }
