@@ -13,7 +13,7 @@ using Gaming_Forum;
 using Image = DB_GamingForm_Show.Image;
 
 namespace Groot
-{
+{//
     public partial class FrmMakeResume : Form
     {
         DB_GamingFormEntities db = new DB_GamingFormEntities();
