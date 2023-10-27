@@ -17,8 +17,5 @@ namespace DB_GamingForm_Show
         public int ID { get; set; }
         public int CertificateID { get; set; }
         public int JobID { get; set; }
-    
-        public virtual Certificate Certificate { get; set; }
-        public virtual Job_Opportunity Job_Opportunities { get; set; }
     }
 }

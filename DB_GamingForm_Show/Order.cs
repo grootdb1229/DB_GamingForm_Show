@@ -35,7 +35,6 @@ namespace DB_GamingForm_Show
         public string Note { get; set; }
         public int StatusID { get; set; }
     
-        public virtual Firm Firm { get; set; }
         public virtual Member Member { get; set; }
         public virtual Payment Payment { get; set; }
         public virtual RegionDistrict RegionDistrict { get; set; }

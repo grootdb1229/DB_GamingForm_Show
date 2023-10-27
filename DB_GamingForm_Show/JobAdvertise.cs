@@ -19,6 +19,5 @@ namespace DB_GamingForm_Show
         public int AdvertiseID { get; set; }
     
         public virtual Advertise Advertise { get; set; }
-        public virtual Job_Opportunity Job_Opportunities { get; set; }
     }
 }

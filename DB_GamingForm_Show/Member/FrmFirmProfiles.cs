@@ -69,12 +69,12 @@ namespace Gaming_Forum
             this.textBox7.Text = FP7.ToList().First().ToString();
             this.textBox7.ReadOnly = true;
 
-            var FP8 = from firm in _Firms.AsEnumerable()
-                      select firm.Image.Image1;
-            byte[] bytes = (byte[])FP8.ToList().First();
-            System.IO.MemoryStream ms = new System.IO.MemoryStream(bytes);
-            this.pictureBox1.Image = System.Drawing.Image.FromStream(ms);
-            this.button3.Enabled = false;
+            //var FP8 = from firm in _Firms.AsEnumerable()
+            //          select firm.Image.Image1;
+            //byte[] bytes = (byte[])FP8.ToList().First();
+            //System.IO.MemoryStream ms = new System.IO.MemoryStream(bytes);
+            //this.pictureBox1.Image = System.Drawing.Image.FromStream(ms);
+            //this.button3.Enabled = false;
         }
 
         private void button1_Click(object sender, EventArgs e)

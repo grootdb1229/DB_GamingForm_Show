@@ -17,15 +17,12 @@ namespace DB_GamingForm_Show
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Region()
         {
-            this.Job_Opportunities = new HashSet<Job_Opportunity>();
             this.RegionDistricts = new HashSet<RegionDistrict>();
         }
     
         public int RegionID { get; set; }
         public string City { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Job_Opportunity> Job_Opportunities { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RegionDistrict> RegionDistricts { get; set; }
     }

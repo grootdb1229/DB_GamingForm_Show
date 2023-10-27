@@ -43,21 +43,21 @@ namespace DB_GamingForm_Show.Job
 
         public void DataInsert()
         {   
-            Random rnd = new Random();
-            var data = from n in this.entities.Job_Opportunities.AsEnumerable()
-                       select new
-                       {    
+            //Random rnd = new Random();
+            //var data = from n in this.entities.Job_Opportunities.AsEnumerable()
+            //           select new
+            //           {    
                            
-                           n.Firm.FirmName,
-                           n.Region.City,
-                           n.RequiredNum,
-                           ModifiedDate = n.ModifiedDate.ToString("d"),
-                           n.Salary,
-                           n.JobExp,
-                           n.JobContent,
-                           Status = n.Status.Name,
-                           EducationRequirements = n.Education.Name
-                       };
+            //               n.Firm.FirmName,
+            //               n.Region.City,
+            //               n.RequiredNum,
+            //               ModifiedDate = n.ModifiedDate.ToString("d"),
+            //               n.Salary,
+            //               n.JobExp,
+            //               n.JobContent,
+            //               Status = n.Status.Name,
+            //               EducationRequirements = n.Education.Name
+            //           };
 
             //this.entities.Job_Opportunities.Add(
             //    new Job_Opportunity 

@@ -14,19 +14,7 @@ namespace DB_GamingForm_Show
     
     public partial class Education
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Education()
-        {
-            this.Job_Opportunities = new HashSet<Job_Opportunity>();
-            this.Resumes = new HashSet<Resume>();
-        }
-    
         public int EDID { get; set; }
         public string Name { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Job_Opportunity> Job_Opportunities { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Resume> Resumes { get; set; }
     }
 }

@@ -14,13 +14,6 @@ namespace DB_GamingForm_Show
     
     public partial class Firm
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Firm()
-        {
-            this.Job_Opportunities = new HashSet<Job_Opportunity>();
-            this.Orders = new HashSet<Order>();
-        }
-    
         public int FirmID { get; set; }
         public string FirmName { get; set; }
         public string Email { get; set; }
@@ -32,12 +25,5 @@ namespace DB_GamingForm_Show
         public string Contact { get; set; }
         public Nullable<int> StatusID { get; set; }
         public Nullable<int> ImageID { get; set; }
-    
-        public virtual Image Image { get; set; }
-        public virtual Status Status { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Job_Opportunity> Job_Opportunities { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order> Orders { get; set; }
     }
 }

@@ -33,14 +33,14 @@ namespace DB_GamingForm_Show
         public virtual DbSet<ArticleAction> ArticleActions { get; set; }
         public virtual DbSet<Blog> Blogs { get; set; }
         public virtual DbSet<Certificate> Certificates { get; set; }
+        public virtual DbSet<Depute> Deputes { get; set; }
+        public virtual DbSet<DeputeRecord> DeputeRecords { get; set; }
+        public virtual DbSet<DeputeSkill> DeputeSkills { get; set; }
         public virtual DbSet<Education> Educations { get; set; }
         public virtual DbSet<Firm> Firms { get; set; }
         public virtual DbSet<Image> Images { get; set; }
-        public virtual DbSet<Job_Opportunity> Job_Opportunities { get; set; }
         public virtual DbSet<JobAdvertise> JobAdvertises { get; set; }
         public virtual DbSet<JobCertificate> JobCertificates { get; set; }
-        public virtual DbSet<JobResume> JobResumes { get; set; }
-        public virtual DbSet<JobSkill> JobSkills { get; set; }
         public virtual DbSet<Member> Members { get; set; }
         public virtual DbSet<MemberStatu> MemberStatus { get; set; }
         public virtual DbSet<MemberTag> MemberTags { get; set; }

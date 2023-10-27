@@ -12,13 +12,13 @@ namespace DB_GamingForm_Show
     using System;
     using System.Collections.Generic;
     
-    public partial class JobSkill
+    public partial class DeputeSkill
     {
         public int ID { get; set; }
+        public int DeputeID { get; set; }
         public int SkillID { get; set; }
-        public int JobID { get; set; }
     
-        public virtual Job_Opportunity Job_Opportunities { get; set; }
+        public virtual Depute Depute { get; set; }
         public virtual Skill Skill { get; set; }
     }
 }

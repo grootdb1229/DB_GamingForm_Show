@@ -17,8 +17,5 @@ namespace DB_GamingForm_Show
         public int ID { get; set; }
         public int ResumeID { get; set; }
         public int SkillID { get; set; }
-    
-        public virtual Resume Resume { get; set; }
-        public virtual Skill Skill { get; set; }
     }
 }
