@@ -14,19 +14,7 @@ namespace DB_GamingForm_Show
     
     public partial class Certificate
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Certificate()
-        {
-            this.JobCertificates = new HashSet<JobCertificate>();
-            this.ResumeCertificates = new HashSet<ResumeCertificate>();
-        }
-    
         public int CertificateID { get; set; }
         public string Name { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<JobCertificate> JobCertificates { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ResumeCertificate> ResumeCertificates { get; set; }
     }
 }

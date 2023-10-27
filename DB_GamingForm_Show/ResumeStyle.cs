@@ -14,16 +14,7 @@ namespace DB_GamingForm_Show
     
     public partial class ResumeStyle
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ResumeStyle()
-        {
-            this.Resumes = new HashSet<Resume>();
-        }
-    
         public int FormID { get; set; }
         public string Name { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Resume> Resumes { get; set; }
     }
 }

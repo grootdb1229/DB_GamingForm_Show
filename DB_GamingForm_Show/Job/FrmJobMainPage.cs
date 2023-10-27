@@ -1,5 +1,5 @@
 ﻿using Gaming_Forum;
-using Groot;
+//using Groot;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -41,18 +41,18 @@ namespace DB_GamingForm_Show
         List<Result> list = new List<Result>();
         public class Result
         {
-            public string Firm { get; set; }
-            public string Region { get; set; }
-            public int RequireNum { get; set; }
+            public string DeputeID { get; set; }
+            public string ProvideMember { get; set; }
+            public int StartDate { get; set; }
 
             public string ModerfiedDate { get; set; }
 
-            public string Salary { get; set; }
-            public string JobExp { get; set; }
+            public string DeputeContent { get; set; }
 
-            public string JobContent { get; set; }
+            public string Salary { get; set; }
 
             public string Status { get; set; }
+            public string SkillRequirements { get; set; }
 
             public string EducationRequirements { get; set; }
 
@@ -140,19 +140,17 @@ namespace DB_GamingForm_Show
         {
             this.button1.Enabled = true;
             this.bindingSource1.Clear();
-            var data = from n in this.entities.Job_Opportunities.AsEnumerable()
-                       orderby n.ModifiedDate descending
+            var data = from n in this.entities.Deputes.AsEnumerable()
+                       orderby n.StartDate descending
                        select new
                        {
-                           n.Firm.FirmName,
-                           n.Region.City,
-                           n.RequiredNum,
-                           ModifiedDate = n.ModifiedDate.ToString("d"),
+                           n.DeputeID,
+                           n.Member.MemberID,
+                           SrartDate = n.StartDate.ToString("d"),
+                           n.Modifiedate,
+                           n.DeputeContent,
                            n.Salary,
-                           n.JobExp,
-                           n.JobContent,
-                           Status = n.Status.Name,
-                           EducationRequirements = n.Education.Name
+                           Status = n.Status.Name
                        };
             this.bindingSource1.DataSource = data.ToList();
             this.dataGridView1.DataSource = this.bindingSource1;
@@ -184,20 +182,17 @@ namespace DB_GamingForm_Show
         private void checkedListBox1_ItemCheck(object sender, ItemCheckEventArgs e)
         {
             list.Clear();
-            var data = from n in this.entities.Job_Opportunities.AsEnumerable()
-                       where n.JobContent.Contains(this.checkedListBox1.Text)
-                       orderby n.ModifiedDate descending
+            var data = from n in this.entities.Deputes.AsEnumerable()
+                       where n.DeputeContent.Contains(this.checkedListBox1.Text)
+                       orderby n.StartDate descending
                        select new
                        {
-                           n.Firm.FirmName,
-                           n.Region.City,
-                           n.RequiredNum,
-                           ModifiedDate = n.ModifiedDate.ToString("d"),
-                           n.Salary,
-                           n.JobExp,
-                           n.JobContent,
-                           Status = n.Status.Name,
-                           EducationRequirements = n.Education.Name
+                           n.DeputeID,
+                           n.Member.MemberID,
+                           SrartDate = n.StartDate.ToString("d"),
+                           n.Modifiedate,
+                           n.DeputeContent,
+                           Status = n.Status.Name
                        };
             if (flag)
             {
@@ -250,20 +245,17 @@ namespace DB_GamingForm_Show
                 this.entities.SerachRecords.Add
                                 (new SerachRecord { Name = source, CreateDays = (DateTime.Now.Date), IsMember = true });
                 this.entities.SaveChanges();
-                var data = from n in this.entities.Job_Opportunities.AsEnumerable()
-                           where n.JobContent.ToLower().Contains(source.ToLower())
-                           orderby n.ModifiedDate descending
+                var data = from n in this.entities.Deputes.AsEnumerable()
+                           where n.DeputeContent.ToLower().Contains(source.ToLower())
+                           orderby n.StartDate descending
                            select new
                            {
-                               n.Firm.FirmName,
-                               n.Region.City,
-                               n.RequiredNum,
-                               ModifiedDate = n.ModifiedDate.ToString("d"),
-                               n.Salary,
-                               n.JobExp,
-                               n.JobContent,
-                               Status = n.Status.Name,
-                               EducationRequirements = n.Education.Name
+                               n.DeputeID,
+                               n.Member.MemberID,
+                               SrartDate = n.StartDate.ToString("d"),
+                               n.Modifiedate,
+                               n.DeputeContent,
+                               Status = n.Status.Name
                            };
                 this.bindingSource1.Clear();
                 this.bindingSource1.DataSource = data.ToList();
@@ -335,8 +327,8 @@ namespace DB_GamingForm_Show
             else
             {
                 var value = from n in list.AsEnumerable()
-                            where n.JobContent.ToLower().Contains(this.comboBox2.Text.ToLower())
-                            orderby n.ModerfiedDate
+                            where n.DeputeContent.ToLower().Contains(this.comboBox2.Text.ToLower())
+                            orderby n.StartDate
                             select n;
                 this.bindingSource1.Clear();
                 this.bindingSource1.DataSource = value.ToList();
@@ -367,8 +359,8 @@ namespace DB_GamingForm_Show
         private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
         {
             var value = from n in list.AsEnumerable()
-                        where n.JobContent.ToLower().Contains(this.comboBox4.Text.ToLower())
-                        orderby n.ModerfiedDate descending
+                        where n.DeputeContent.ToLower().Contains(this.comboBox4.Text.ToLower())
+                        orderby n.StartDate descending
                         select n;
             this.bindingSource1.Clear();
             this.bindingSource1.DataSource = value.ToList();
@@ -379,25 +371,25 @@ namespace DB_GamingForm_Show
 
         private void comboBox5_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //Todo 沒有Region
+            //if (this.comboBox5.SelectedIndex == 0)
+            //{
+            //    Clear();
+            //    LoadData();
+            //}
+            //else
+            //{
+            //    var value = from n in list.AsEnumerable()
+            //                where n.Region == this.comboBox5.Text
+            //                orderby n.ModerfiedDate descending
+            //                select n;
 
-            if (this.comboBox5.SelectedIndex == 0)
-            {
-                Clear();
-                LoadData();
-            }
-            else
-            {
-                var value = from n in list.AsEnumerable()
-                            where n.Region == this.comboBox5.Text
-                            orderby n.ModerfiedDate descending
-                            select n;
-
-                this.bindingSource1.Clear();
-                this.bindingSource1.DataSource = value.ToList();
-                this.dataGridView1.DataSource = this.bindingSource1;
-                sourcecount = value.Count();
-                ListLoad(sourcecount);
-            }
+            //    this.bindingSource1.Clear();
+            //    this.bindingSource1.DataSource = value.ToList();
+            //    this.dataGridView1.DataSource = this.bindingSource1;
+            //    sourcecount = value.Count();
+            //    ListLoad(sourcecount);
+            //}
             //this.label12.Text = $"10/{this.dataGridView1.RowCount}筆";
         }
 
@@ -465,15 +457,13 @@ namespace DB_GamingForm_Show
             {
                 list.Add(new Result
                 {
-                    Firm = (string)this.dataGridView1.Rows[i].Cells[0].Value,
-                    Region = (string)this.dataGridView1.Rows[i].Cells[1].Value,
-                    RequireNum = (int)this.dataGridView1.Rows[i].Cells[2].Value,
+                    DeputeID = (string)this.dataGridView1.Rows[i].Cells[0].Value,
+                    ProvideMember = (string)this.dataGridView1.Rows[i].Cells[1].Value,
+                    StartDate = (int)this.dataGridView1.Rows[i].Cells[2].Value,
                     ModerfiedDate = (string)this.dataGridView1.Rows[i].Cells[3].Value,
-                    Salary = (string)this.dataGridView1.Rows[i].Cells[4].Value,
-                    JobExp = (string)this.dataGridView1.Rows[i].Cells[5].Value,
-                    JobContent = (string)this.dataGridView1.Rows[i].Cells[6].Value,
-                    Status = (string)this.dataGridView1.Rows[i].Cells[7].Value,
-                    EducationRequirements = (string)this.dataGridView1.Rows[i].Cells[8].Value,
+                    DeputeContent = (string)this.dataGridView1.Rows[i].Cells[4].Value,
+                    Salary= (string)this.dataGridView1.Rows[i].Cells[5].Value,
+                    Status = (string)this.dataGridView1.Rows[i].Cells[6].Value,
 
                 });
             }
@@ -502,41 +492,7 @@ namespace DB_GamingForm_Show
 
         }
 
-        private void ListLoadBak()
-        {
-            if (list.Count == 0 && count != 1)
-            {
-                MessageBox.Show("No Match");
-                LoadData();
-
-            }
-            else
-            {
-                list.Clear();
-                for (int i = 0; i < this.dataGridView1.RowCount; i++)
-                {
-                    list.Add(new Result
-                    {
-                        Firm = (string)this.dataGridView1.Rows[i].Cells[0].Value,
-                        Region = (string)this.dataGridView1.Rows[i].Cells[1].Value,
-                        RequireNum = (int)this.dataGridView1.Rows[i].Cells[2].Value,
-                        ModerfiedDate = (string)this.dataGridView1.Rows[i].Cells[3].Value,
-                        Salary = (string)this.dataGridView1.Rows[i].Cells[4].Value,
-                        JobExp = (string)this.dataGridView1.Rows[i].Cells[5].Value,
-                        JobContent = (string)this.dataGridView1.Rows[i].Cells[6].Value,
-                        Status = (string)this.dataGridView1.Rows[i].Cells[7].Value,
-                        EducationRequirements = (string)this.dataGridView1.Rows[i].Cells[8].Value,
-
-                    });
-                }
-                this.bindingSource1.Clear();
-                this.bindingSource1.DataSource = list.ToList();
-                this.dataGridView1.DataSource = this.bindingSource1;
-                this.label12.Text = $"10/{this.dataGridView1.RowCount}筆";
-            }
-
-
-        }
+        
 
 
 
@@ -547,8 +503,8 @@ namespace DB_GamingForm_Show
         {
             if (Gaming_Forum.ClassUtility.MemberID != 0)
             {
-                FrmMakeResume re = new FrmMakeResume();
-                re.Show();
+                //FrmMakeResume re = new FrmMakeResume();
+                //re.Show();
             }
             else
             {
@@ -631,15 +587,7 @@ namespace DB_GamingForm_Show
             string f5 = this.comboBox5.Text;
             string f6 = this.comboBox6.Text;
             string f7 = this.comboBox7.Text;
-            var value2 = this.entities.Job_Opportunities.AsEnumerable()
-                .Where(n => n.Education.Name == f1 &&
-                        n.JobCertificates.All(c => c.Certificate.Name == f2) &&
-                        n.JobSkills.All(s => s.Skill.Name == f3 && s.Skill.SkillClass.Name == f4) &&
-                        n.Region.City == f5 &&
-                        int.Parse(n.Salary) >= int.Parse(f6) &&
-                        n.Status.Name == f7
-                        ).Select(n => n);
-            this.dataGridView1.DataSource = value2.ToList();
+            
 
 
 

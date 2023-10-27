@@ -17,8 +17,7 @@ namespace DB_GamingForm_Show
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Skill()
         {
-            this.JobSkills = new HashSet<JobSkill>();
-            this.ResumeSkills = new HashSet<ResumeSkill>();
+            this.DeputeSkills = new HashSet<DeputeSkill>();
         }
     
         public int SkillID { get; set; }
@@ -26,9 +25,7 @@ namespace DB_GamingForm_Show
         public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<JobSkill> JobSkills { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ResumeSkill> ResumeSkills { get; set; }
+        public virtual ICollection<DeputeSkill> DeputeSkills { get; set; }
         public virtual SkillClass SkillClass { get; set; }
     }
 }

@@ -197,8 +197,8 @@ namespace Gaming_Forum
             else if (Flag1 == true && Flag2 == false)
             {
                 MessageBox.Show("親愛的廠商您好,正帶您前往人才搜尋平台");
-                FrmResumeMainPage FRP = new FrmResumeMainPage();
-                FRP.Show();
+                //FrmResumeMainPage FRP = new FrmResumeMainPage();
+                //FRP.Show();
             }
 
             else if (Flag1 == false && Flag2 == true)

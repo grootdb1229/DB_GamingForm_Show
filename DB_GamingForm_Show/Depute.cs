@@ -12,25 +12,28 @@ namespace DB_GamingForm_Show
     using System;
     using System.Collections.Generic;
     
-    public partial class Image
+    public partial class Depute
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Image()
+        public Depute()
         {
-            this.Blogs = new HashSet<Blog>();
-            this.Members = new HashSet<Member>();
-            this.Products = new HashSet<Product>();
+            this.DeputeRecords = new HashSet<DeputeRecord>();
+            this.DeputeSkills = new HashSet<DeputeSkill>();
         }
     
-        public int ImageID { get; set; }
-        public string Name { get; set; }
-        public byte[] Image1 { get; set; }
+        public int DeputeID { get; set; }
+        public int ProviderID { get; set; }
+        public System.DateTime StartDate { get; set; }
+        public Nullable<System.DateTime> Modifiedate { get; set; }
+        public string DeputeContent { get; set; }
+        public int Salary { get; set; }
+        public int StatusID { get; set; }
     
+        public virtual Member Member { get; set; }
+        public virtual Status Status { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Blog> Blogs { get; set; }
+        public virtual ICollection<DeputeRecord> DeputeRecords { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Member> Members { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual ICollection<DeputeSkill> DeputeSkills { get; set; }
     }
 }
