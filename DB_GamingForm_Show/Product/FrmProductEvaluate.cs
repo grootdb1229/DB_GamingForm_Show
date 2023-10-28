@@ -56,16 +56,7 @@ namespace WindowsFormsApp1
             this.db.ProductEvaluates.Add(eVAValue);
             this.db.SaveChanges();
             textBox1.Text= "";
-
-            //問老師
-            //dataGridView1.DataSource = null;
-            //var DataLoad = from aa in db.ProductEvaluates
-            //               where aa.ProductID == InSelectID
-            //               select new { 會員 = aa.Product.Member.Name, 評論 = aa.EvaContent };
-            //this.dataGridView1.DataSource = DataLoad.ToList();
             RefreshData();
-
-
         }
 
         private void RefreshData()
@@ -143,6 +134,11 @@ namespace WindowsFormsApp1
                 dataGridView1.Enabled = true;
             };
 
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
 
         }
     }

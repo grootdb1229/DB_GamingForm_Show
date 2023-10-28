@@ -158,6 +158,12 @@
     <Compile Include="Job\FrmDeputeMainPage.designer.cs">
       <DependentUpon>FrmDeputeMainPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Job\FrmSendDepute.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Job\FrmSendDepute.Designer.cs">
+      <DependentUpon>FrmSendDepute.cs</DependentUpon>
+    </Compile>
     <Compile Include="Member.cs">
       <DependentUpon>GMModel.tt</DependentUpon>
     </Compile>
@@ -250,6 +256,7 @@
     <Compile Include="Product\AddProduct.designer.cs">
       <DependentUpon>AddProduct.cs</DependentUpon>
     </Compile>
+    <Compile Include="Product\CAddProduct.cs" />
     <Compile Include="Product\COrder.cs" />
     <Compile Include="Product\COrderProduct.cs" />
     <Compile Include="Product\CProduct.cs" />

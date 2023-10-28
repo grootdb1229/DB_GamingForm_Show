@@ -148,8 +148,9 @@ namespace DB_GamingForm_Show
                            SrartDate = n.StartDate.ToString("d"),
                            Modifiedate = n.Modifiedate.ToString("d"),
                            n.DeputeContent,
-                           n.Salary,
-                           Status = n.Status.Name
+                           //todo bian1028 找不到salary
+                           //n.salary,
+                           //status = n.status.name
                        };
             this.bindingSource1.DataSource = data.ToList();
             this.dataGridView1.DataSource = this.bindingSource1;
@@ -449,6 +450,7 @@ namespace DB_GamingForm_Show
 
         private void ListLoad(int sourcecount)
         {
+            
             count += 1;
             page = 0;
             list.Clear();
@@ -487,7 +489,7 @@ namespace DB_GamingForm_Show
                 this.label12.Text = $"{list.Count} /{list.Count}筆";
                 this.button3.Enabled = false;
             }
-            
+
 
         }
 

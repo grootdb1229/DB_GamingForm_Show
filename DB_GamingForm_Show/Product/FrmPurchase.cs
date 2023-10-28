@@ -156,7 +156,7 @@ namespace Shopping
                           select new { p.Name };
             comboBox1.DataSource = SubTags.ToList();
             comboBox1.DisplayMember = "Name";
-
+    
           
 
         }
