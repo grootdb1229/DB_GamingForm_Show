@@ -19,14 +19,15 @@ namespace DB_GamingForm_Show
         {
             this.Articles = new HashSet<Article>();
             this.ArticleActions = new HashSet<ArticleAction>();
+            this.Deputes = new HashSet<Depute>();
+            this.DeputeRecords = new HashSet<DeputeRecord>();
             this.MemberStatus = new HashSet<MemberStatu>();
             this.MemberTags = new HashSet<MemberTag>();
             this.Orders = new HashSet<Order>();
             this.Products = new HashSet<Product>();
             this.ProductEvaluates = new HashSet<ProductEvaluate>();
-            this.Resumes = new HashSet<Resume>();
-            this.WishLists = new HashSet<WishList>();
             this.Replies = new HashSet<Reply>();
+            this.WishLists = new HashSet<WishList>();
         }
     
         public int MemberID { get; set; }
@@ -43,6 +44,10 @@ namespace DB_GamingForm_Show
         public virtual ICollection<Article> Articles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ArticleAction> ArticleActions { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Depute> Deputes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DeputeRecord> DeputeRecords { get; set; }
         public virtual Image Image { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MemberStatu> MemberStatus { get; set; }
@@ -55,10 +60,8 @@ namespace DB_GamingForm_Show
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductEvaluate> ProductEvaluates { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Resume> Resumes { get; set; }
+        public virtual ICollection<Reply> Replies { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<WishList> WishLists { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Reply> Replies { get; set; }
     }
 }

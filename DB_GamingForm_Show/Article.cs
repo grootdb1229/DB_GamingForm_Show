@@ -17,6 +17,7 @@ namespace DB_GamingForm_Show
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Article()
         {
+            this.Article1 = new HashSet<Article>();
             this.ArticleActions = new HashSet<ArticleAction>();
             this.Replies = new HashSet<Reply>();
         }
@@ -27,7 +28,11 @@ namespace DB_GamingForm_Show
         public string ArticleContent { get; set; }
         public System.DateTime ModifiedDate { get; set; }
         public int MemberID { get; set; }
+        public Nullable<int> ReplyArticleID { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Article> Article1 { get; set; }
+        public virtual Article Article2 { get; set; }
         public virtual Member Member { get; set; }
         public virtual SubBlog SubBlog { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

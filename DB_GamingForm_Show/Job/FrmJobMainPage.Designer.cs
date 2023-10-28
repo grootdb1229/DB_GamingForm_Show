@@ -60,7 +60,9 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.button6 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -69,8 +71,6 @@
             this.label15 = new System.Windows.Forms.Label();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.bindingSource2 = new System.Windows.Forms.BindingSource(this.components);
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tpHomePage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -210,7 +210,7 @@
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(318, 72);
             this.label11.TabIndex = 1;
-            this.label11.Text = "Groot找工作";
+            this.label11.Text = "Groot委託";
             // 
             // label10
             // 
@@ -444,6 +444,16 @@
             this.comboBox1.TabIndex = 0;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(341, 21);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(75, 32);
+            this.button6.TabIndex = 3;
+            this.button6.Text = "上一筆";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(260, 21);
@@ -453,6 +463,16 @@
             this.button3.Text = "上一頁";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(565, 20);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(75, 32);
+            this.button7.TabIndex = 3;
+            this.button7.Text = "下一筆";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // button1
             // 
@@ -507,26 +527,6 @@
             this.label15.Size = new System.Drawing.Size(192, 19);
             this.label15.TabIndex = 1;
             this.label15.Text = "及時回復(跳出視窗)";
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(341, 21);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 32);
-            this.button6.TabIndex = 3;
-            this.button6.Text = "上一筆";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
-            // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(565, 20);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(75, 32);
-            this.button7.TabIndex = 3;
-            this.button7.Text = "下一筆";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // FrmJobMainPage
             // 

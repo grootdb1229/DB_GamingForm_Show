@@ -101,36 +101,20 @@
       <DependentUpon>GMModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Class\MyMethod.cs" />
+    <Compile Include="Depute.cs">
+      <DependentUpon>GMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DeputeRecord.cs">
+      <DependentUpon>GMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DeputeSkill.cs">
+      <DependentUpon>GMModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Education.cs">
       <DependentUpon>GMModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Firm.cs">
       <DependentUpon>GMModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Job\3-2. FrmMakeResume.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Job\3-2. FrmMakeResume.designer.cs">
-      <DependentUpon>3-2. FrmMakeResume.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Job\4-2. FrmMakeJobRequire.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Job\4-2. FrmMakeJobRequire.designer.cs">
-      <DependentUpon>4-2. FrmMakeJobRequire.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Job\ClsJob.cs" />
-    <Compile Include="Job\FrmJobMainPage.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Job\FrmJobMainPage.Designer.cs">
-      <DependentUpon>FrmJobMainPage.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Job\FrmResumeMainPage.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Job\FrmResumeMainPage.Designer.cs">
-      <DependentUpon>FrmResumeMainPage.cs</DependentUpon>
     </Compile>
     <Compile Include="GMModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -147,6 +131,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GMModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="GMModel1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GMModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Image.cs">
       <DependentUpon>GMModel.tt</DependentUpon>
     </Compile>
@@ -156,14 +145,18 @@
     <Compile Include="JobCertificate.cs">
       <DependentUpon>GMModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="JobResume.cs">
-      <DependentUpon>GMModel.tt</DependentUpon>
+    <Compile Include="Job\4-2. FrmDeputes.cs">
+      <SubType>Form</SubType>
     </Compile>
-    <Compile Include="JobSkill.cs">
-      <DependentUpon>GMModel.tt</DependentUpon>
+    <Compile Include="Job\4-2. FrmDeputes.designer.cs">
+      <DependentUpon>4-2. FrmDeputes.cs</DependentUpon>
     </Compile>
-    <Compile Include="Job_Opportunity.cs">
-      <DependentUpon>GMModel.tt</DependentUpon>
+    <Compile Include="Job\ClsJob.cs" />
+    <Compile Include="Job\FrmJobMainPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Job\FrmJobMainPage.designer.cs">
+      <DependentUpon>FrmJobMainPage.cs</DependentUpon>
     </Compile>
     <Compile Include="Member.cs">
       <DependentUpon>GMModel.tt</DependentUpon>
@@ -363,17 +356,11 @@
     <EmbeddedResource Include="Blog\NewART.resx">
       <DependentUpon>NewART.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Job\3-2. FrmMakeResume.resx">
-      <DependentUpon>3-2. FrmMakeResume.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Job\4-2. FrmMakeJobRequire.resx">
-      <DependentUpon>4-2. FrmMakeJobRequire.cs</DependentUpon>
+    <EmbeddedResource Include="Job\4-2. FrmDeputes.resx">
+      <DependentUpon>4-2. FrmDeputes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Job\FrmJobMainPage.resx">
       <DependentUpon>FrmJobMainPage.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Job\FrmResumeMainPage.resx">
-      <DependentUpon>FrmResumeMainPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Member\FirmFrmRegistration.resx">
       <DependentUpon>FirmFrmRegistration.cs</DependentUpon>
@@ -432,7 +419,7 @@
     </Compile>
     <EntityDeploy Include="GMModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>GMModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>GMModel1.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <None Include="GMModel.edmx.diagram">
       <DependentUpon>GMModel.edmx</DependentUpon>
@@ -455,6 +442,11 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\images.jfif" />
+    <None Include="Resources\d1ce2a7a5e56eb423e02efb9466cea4f_preview_mid.jpg" />
+    <None Include="Resources\p1982532a717553240-ss.jpg" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="GMModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>GMModel.Context.cs</LastGenOutput>
@@ -465,10 +457,6 @@
       <DependentUpon>GMModel.edmx</DependentUpon>
       <LastGenOutput>GMModel.cs</LastGenOutput>
     </Content>
-    <None Include="Resources\images.jfif" />
-    <None Include="Resources\d1ce2a7a5e56eb423e02efb9466cea4f_preview_mid.jpg" />
-    <None Include="Resources\p1982532a717553240-ss.jpg" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

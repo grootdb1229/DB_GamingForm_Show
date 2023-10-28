@@ -12,15 +12,15 @@ namespace DB_GamingForm_Show
     using System;
     using System.Collections.Generic;
     
-    public partial class JobResume
+    public partial class DeputeRecord
     {
         public int ID { get; set; }
-        public int JobID { get; set; }
-        public int ResumeID { get; set; }
+        public int DeputeID { get; set; }
+        public int MemberID { get; set; }
         public int ApplyStatusID { get; set; }
     
-        public virtual Job_Opportunity Job_Opportunities { get; set; }
-        public virtual Resume Resume { get; set; }
+        public virtual Depute Depute { get; set; }
+        public virtual Member Member { get; set; }
         public virtual Status Status { get; set; }
     }
 }

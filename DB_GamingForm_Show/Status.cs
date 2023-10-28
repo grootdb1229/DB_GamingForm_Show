@@ -18,13 +18,11 @@ namespace DB_GamingForm_Show
         public Status()
         {
             this.Advertises = new HashSet<Advertise>();
-            this.Firms = new HashSet<Firm>();
-            this.Job_Opportunities = new HashSet<Job_Opportunity>();
-            this.JobResumes = new HashSet<JobResume>();
+            this.Deputes = new HashSet<Depute>();
+            this.DeputeRecords = new HashSet<DeputeRecord>();
             this.MemberStatus = new HashSet<MemberStatu>();
             this.Orders = new HashSet<Order>();
             this.Products = new HashSet<Product>();
-            this.Resumes = new HashSet<Resume>();
         }
     
         public int StatusID { get; set; }
@@ -33,18 +31,14 @@ namespace DB_GamingForm_Show
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Advertise> Advertises { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Firm> Firms { get; set; }
+        public virtual ICollection<Depute> Deputes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Job_Opportunity> Job_Opportunities { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<JobResume> JobResumes { get; set; }
+        public virtual ICollection<DeputeRecord> DeputeRecords { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MemberStatu> MemberStatus { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Orders { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Product> Products { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Resume> Resumes { get; set; }
     }
 }

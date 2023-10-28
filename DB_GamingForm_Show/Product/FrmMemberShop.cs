@@ -39,14 +39,32 @@ namespace Shopping
                 IsFirm = false;
             }
         }
-        //llll
         public FrmMemberShop()
         {
             InitializeComponent();
             this.tabControl1.SelectedIndex = 0;
             MemberFirm();
             LoadData();
+            ConfirmOrder();
+        }
 
+        private void ConfirmOrder()
+        {
+            var q = from p in this.db.OrderProducts.AsEnumerable()
+                    where p.Product.MemberID == ID && p.Order.StatusID == 13
+                    select p;
+
+            var q2 = from p in this.db.OrderProducts.AsEnumerable()
+                    where p.Product.MemberID == ID && p.Order.StatusID == 14
+                    select p;
+            if (q.Any())
+            {
+                if (q2.Any())
+                {
+                    MessageBox.Show($"您有{q.Count()}筆新訂單\n{q2.Count()}筆未出貨訂單");
+                }
+                MessageBox.Show($"您有{q.Count()}筆新訂單");
+            }
         }
 
         public void LoadData()
@@ -322,10 +340,10 @@ namespace Shopping
         private void button3_Click(object sender, EventArgs e)
         {
             FrmUpdateProduct f = new FrmUpdateProduct();
-            f.textBox5.Text = this.dataGridView3.CurrentRow.Cells[1].Value.ToString();
-            f.textBox1.Text = this.dataGridView3.CurrentRow.Cells[2].Value.ToString();
-            f.textBox2.Text = this.dataGridView3.CurrentRow.Cells[3].Value.ToString();
-            f.textBox3.Text = this.dataGridView3.CurrentRow.Cells[5].Value.ToString();
+            f.textBox5.Text = this.dataGridView3.CurrentRow.Cells["ProductID"].Value.ToString();
+            f.textBox1.Text = this.dataGridView3.CurrentRow.Cells["ProductName"].Value.ToString();
+            f.textBox2.Text = this.dataGridView3.CurrentRow.Cells["UnitPrice"].Value.ToString();
+            f.textBox3.Text = this.dataGridView3.CurrentRow.Cells["UnitStock"].Value.ToString();
             f.Show();
         }
 
