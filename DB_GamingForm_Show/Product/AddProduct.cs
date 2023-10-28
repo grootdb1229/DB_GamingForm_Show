@@ -180,7 +180,13 @@ namespace 其中專題
                             db.ProductTags.Add(pTag);
                             db.SaveChanges();
                         }
-
+                        //連續上架前必須將旗幟重新關閉，下次上架才能正常的判斷是否有遺漏未填的資訊。
+                        CAddProduct.flag1 = false;
+                        CAddProduct.flag2 = false;     
+                        CAddProduct.flag3 = false;
+                        CAddProduct.flag4 = false;               
+                        CAddProduct.flag5 = false;
+                        CAddProduct.flag6 = false;
                         ts.Complete();
                         MessageBox.Show("上架成功");
                         ClearEveryContorl();
@@ -217,6 +223,7 @@ namespace 其中專題
             string SelectTag = comboBox1.SelectedValue.ToString();
             var aa = new string(SelectTag.Where(char.IsDigit).ToArray());
             int parthSelectItem = int.Parse(aa);
+
 
 
             DB_GamingFormEntities db = new DB_GamingFormEntities();
