@@ -27,6 +27,7 @@ namespace DB_GamingForm_Show
         public System.DateTime Modifiedate { get; set; }
         public string DeputeContent { get; set; }
         public int StatusID { get; set; }
+        public int Salary { get; set; }
     
         public virtual Member Member { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

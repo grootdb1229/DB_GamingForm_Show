@@ -89,6 +89,7 @@
           <Property Name="StartDate" Type="datetime" Nullable="false" />
           <Property Name="Modifiedate" Type="datetime" Nullable="false" />
           <Property Name="DeputeContent" Type="nvarchar(max)" />
+          <Property Name="Salary" Type="int" Nullable="false" />
           <Property Name="StatusID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="DeputeRecord">
@@ -1601,6 +1602,7 @@
           <NavigationProperty Name="DeputeRecords" Relationship="DB_GamingFormModel.FK_DeputeRecord_Depute" FromRole="Depute" ToRole="DeputeRecord" />
           <NavigationProperty Name="DeputeSkills" Relationship="DB_GamingFormModel.FK_DeputeSkill_Depute" FromRole="Depute" ToRole="DeputeSkill" />
           <NavigationProperty Name="Status" Relationship="DB_GamingFormModel.FK_Depute_Status" FromRole="Depute" ToRole="Status" />
+          <Property Name="Salary" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="DeputeRecord">
           <Key>
@@ -2687,6 +2689,7 @@
           <EntitySetMapping Name="Deputes">
             <EntityTypeMapping TypeName="DB_GamingFormModel.Depute">
               <MappingFragment StoreEntitySet="Depute">
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
                 <ScalarProperty Name="StatusID" ColumnName="StatusID" />
                 <ScalarProperty Name="DeputeContent" ColumnName="DeputeContent" />
                 <ScalarProperty Name="Modifiedate" ColumnName="Modifiedate" />

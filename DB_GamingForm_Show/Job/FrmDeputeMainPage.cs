@@ -22,9 +22,9 @@ namespace DB_GamingForm_Show
             
             InitializeComponent();
             this.button3.Enabled = false;
-            ComboLoad();
+            //ComboLoad();
             LoadData();
-            HotSearch();
+            //HotSearch();
             
 
 
@@ -148,9 +148,8 @@ namespace DB_GamingForm_Show
                            SrartDate = n.StartDate.ToString("d"),
                            Modifiedate = n.Modifiedate.ToString("d"),
                            n.DeputeContent,
-                           //todo bian1028 找不到salary
-                           //n.salary,
-                           //status = n.status.name
+                           n.Salary,
+                           status = n.Status.Name
                        };
             this.bindingSource1.DataSource = data.ToList();
             this.dataGridView1.DataSource = this.bindingSource1;
@@ -504,7 +503,7 @@ namespace DB_GamingForm_Show
         {
             if (Gaming_Forum.ClassUtility.MemberID != 0)
             {
-                FrmMakeJobRequire re = new FrmMakeJobRequire();
+                FrmDepute re = new FrmDepute();
                 re.Show();
             }
             else
