@@ -33,11 +33,11 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.刪除ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.修改ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -108,6 +108,16 @@
             this.textBox1.Size = new System.Drawing.Size(670, 98);
             this.textBox1.TabIndex = 0;
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(0, 2);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(126, 46);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "修改";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(0, 44);
@@ -140,15 +150,6 @@
             this.修改ToolStripMenuItem.Size = new System.Drawing.Size(98, 22);
             this.修改ToolStripMenuItem.Text = "修改";
             this.修改ToolStripMenuItem.Click += new System.EventHandler(this.修改ToolStripMenuItem_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(0, 2);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(126, 46);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "修改";
-            this.button2.UseVisualStyleBackColor = true;
             // 
             // FrmProductEvaluate
             // 
