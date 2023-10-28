@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DB_GamingFormModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DB_GamingFormModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Action">
           <Key>
             <PropertyRef Name="ActionID" />
@@ -89,7 +89,6 @@
           <Property Name="StartDate" Type="datetime" Nullable="false" />
           <Property Name="Modifiedate" Type="datetime" />
           <Property Name="DeputeContent" Type="nvarchar(max)" />
-          <Property Name="Salary" Type="int" Nullable="false" />
           <Property Name="StatusID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="DeputeRecord">
@@ -1251,28 +1250,267 @@
             <End Role="WishList" EntitySet="WishList" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DB_GamingFormModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DB_GamingFormEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Actions" EntityType="DB_GamingFormModel.Action" />
+          <EntitySet Name="Admins" EntityType="DB_GamingFormModel.Admin" />
+          <EntitySet Name="AdminRanks" EntityType="DB_GamingFormModel.AdminRank" />
+          <EntitySet Name="Advertises" EntityType="DB_GamingFormModel.Advertise" />
+          <EntitySet Name="Articles" EntityType="DB_GamingFormModel.Article" />
+          <EntitySet Name="ArticleActions" EntityType="DB_GamingFormModel.ArticleAction" />
+          <EntitySet Name="Blogs" EntityType="DB_GamingFormModel.Blog" />
+          <EntitySet Name="Certificates" EntityType="DB_GamingFormModel.Certificate" />
+          <EntitySet Name="Deputes" EntityType="DB_GamingFormModel.Depute" />
+          <EntitySet Name="DeputeRecords" EntityType="DB_GamingFormModel.DeputeRecord" />
+          <EntitySet Name="DeputeSkills" EntityType="DB_GamingFormModel.DeputeSkill" />
+          <EntitySet Name="Educations" EntityType="DB_GamingFormModel.Education" />
+          <EntitySet Name="Firms" EntityType="DB_GamingFormModel.Firm" />
+          <EntitySet Name="Images" EntityType="DB_GamingFormModel.Image" />
+          <EntitySet Name="JobAdvertises" EntityType="DB_GamingFormModel.JobAdvertise" />
+          <EntitySet Name="JobCertificates" EntityType="DB_GamingFormModel.JobCertificate" />
+          <EntitySet Name="Members" EntityType="DB_GamingFormModel.Member" />
+          <EntitySet Name="MemberStatus" EntityType="DB_GamingFormModel.MemberStatu" />
+          <EntitySet Name="MemberTags" EntityType="DB_GamingFormModel.MemberTag" />
+          <EntitySet Name="Orders" EntityType="DB_GamingFormModel.Order" />
+          <EntitySet Name="OrderProducts" EntityType="DB_GamingFormModel.OrderProduct" />
+          <EntitySet Name="Payments" EntityType="DB_GamingFormModel.Payment" />
+          <EntitySet Name="Products" EntityType="DB_GamingFormModel.Product" />
+          <EntitySet Name="ProductAdvertises" EntityType="DB_GamingFormModel.ProductAdvertise" />
+          <EntitySet Name="ProductEvaluates" EntityType="DB_GamingFormModel.ProductEvaluate" />
+          <EntitySet Name="ProductTags" EntityType="DB_GamingFormModel.ProductTag" />
+          <EntitySet Name="Regions" EntityType="DB_GamingFormModel.Region" />
+          <EntitySet Name="RegionDistricts" EntityType="DB_GamingFormModel.RegionDistrict" />
+          <EntitySet Name="Replies" EntityType="DB_GamingFormModel.Reply" />
+          <EntitySet Name="ReplyActions" EntityType="DB_GamingFormModel.ReplyAction" />
+          <EntitySet Name="ReplyImages" EntityType="DB_GamingFormModel.ReplyImage" />
+          <EntitySet Name="Resumes" EntityType="DB_GamingFormModel.Resume" />
+          <EntitySet Name="ResumeCertificates" EntityType="DB_GamingFormModel.ResumeCertificate" />
+          <EntitySet Name="ResumeSkills" EntityType="DB_GamingFormModel.ResumeSkill" />
+          <EntitySet Name="ResumeStyles" EntityType="DB_GamingFormModel.ResumeStyle" />
+          <EntitySet Name="SerachRecords" EntityType="DB_GamingFormModel.SerachRecord" />
+          <EntitySet Name="ShipMethods" EntityType="DB_GamingFormModel.ShipMethod" />
+          <EntitySet Name="Skills" EntityType="DB_GamingFormModel.Skill" />
+          <EntitySet Name="SkillClasses" EntityType="DB_GamingFormModel.SkillClass" />
+          <EntitySet Name="Status" EntityType="DB_GamingFormModel.Status" />
+          <EntitySet Name="SubBlogs" EntityType="DB_GamingFormModel.SubBlog" />
+          <EntitySet Name="SubBolgCategories" EntityType="DB_GamingFormModel.SubBolgCategory" />
+          <EntitySet Name="SubTags" EntityType="DB_GamingFormModel.SubTag" />
+          <EntitySet Name="sysdiagrams" EntityType="DB_GamingFormModel.sysdiagram" />
+          <EntitySet Name="Tags" EntityType="DB_GamingFormModel.Tag" />
+          <EntitySet Name="WishLists" EntityType="DB_GamingFormModel.WishList" />
+          <AssociationSet Name="FK_ArticleAction_Action" Association="DB_GamingFormModel.FK_ArticleAction_Action">
+            <End Role="Action" EntitySet="Actions" />
+            <End Role="ArticleAction" EntitySet="ArticleActions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Admin_AdminRank" Association="DB_GamingFormModel.FK_Admin_AdminRank">
+            <End Role="AdminRank" EntitySet="AdminRanks" />
+            <End Role="Admin" EntitySet="Admins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AD_Status" Association="DB_GamingFormModel.FK_AD_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Advertise" EntitySet="Advertises" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JobAdvertise_AD" Association="DB_GamingFormModel.FK_JobAdvertise_AD">
+            <End Role="Advertise" EntitySet="Advertises" />
+            <End Role="JobAdvertise" EntitySet="JobAdvertises" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductAdvertise_AD" Association="DB_GamingFormModel.FK_ProductAdvertise_AD">
+            <End Role="Advertise" EntitySet="Advertises" />
+            <End Role="ProductAdvertise" EntitySet="ProductAdvertises" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Article_Article" Association="DB_GamingFormModel.FK_Article_Article">
+            <End Role="Article" EntitySet="Articles" />
+            <End Role="Article1" EntitySet="Articles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Article_Member" Association="DB_GamingFormModel.FK_Article_Member">
+            <End Role="Member" EntitySet="Members" />
+            <End Role="Article" EntitySet="Articles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Article_SubBlog" Association="DB_GamingFormModel.FK_Article_SubBlog">
+            <End Role="SubBlog" EntitySet="SubBlogs" />
+            <End Role="Article" EntitySet="Articles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ArticleAction_Article" Association="DB_GamingFormModel.FK_ArticleAction_Article">
+            <End Role="Article" EntitySet="Articles" />
+            <End Role="ArticleAction" EntitySet="ArticleActions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reply_Article" Association="DB_GamingFormModel.FK_Reply_Article">
+            <End Role="Article" EntitySet="Articles" />
+            <End Role="Reply" EntitySet="Replies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ArticleAction_Member" Association="DB_GamingFormModel.FK_ArticleAction_Member">
+            <End Role="Member" EntitySet="Members" />
+            <End Role="ArticleAction" EntitySet="ArticleActions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Blog_Image" Association="DB_GamingFormModel.FK_Blog_Image">
+            <End Role="Image" EntitySet="Images" />
+            <End Role="Blog" EntitySet="Blogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Blog_SubTag" Association="DB_GamingFormModel.FK_Blog_SubTag">
+            <End Role="SubTag" EntitySet="SubTags" />
+            <End Role="Blog" EntitySet="Blogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubBlog_Blog" Association="DB_GamingFormModel.FK_SubBlog_Blog">
+            <End Role="Blog" EntitySet="Blogs" />
+            <End Role="SubBlog" EntitySet="SubBlogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Depute_Member" Association="DB_GamingFormModel.FK_Depute_Member">
+            <End Role="Member" EntitySet="Members" />
+            <End Role="Depute" EntitySet="Deputes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DeputeRecord_Depute" Association="DB_GamingFormModel.FK_DeputeRecord_Depute">
+            <End Role="Depute" EntitySet="Deputes" />
+            <End Role="DeputeRecord" EntitySet="DeputeRecords" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DeputeSkill_Depute" Association="DB_GamingFormModel.FK_DeputeSkill_Depute">
+            <End Role="Depute" EntitySet="Deputes" />
+            <End Role="DeputeSkill" EntitySet="DeputeSkills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DeputeRecord_Member" Association="DB_GamingFormModel.FK_DeputeRecord_Member">
+            <End Role="Member" EntitySet="Members" />
+            <End Role="DeputeRecord" EntitySet="DeputeRecords" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DeputeRecord_Status" Association="DB_GamingFormModel.FK_DeputeRecord_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="DeputeRecord" EntitySet="DeputeRecords" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DeputeSkill_Skill" Association="DB_GamingFormModel.FK_DeputeSkill_Skill">
+            <End Role="Skill" EntitySet="Skills" />
+            <End Role="DeputeSkill" EntitySet="DeputeSkills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Member_Image" Association="DB_GamingFormModel.FK_Member_Image">
+            <End Role="Image" EntitySet="Images" />
+            <End Role="Member" EntitySet="Members" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Image" Association="DB_GamingFormModel.FK_Product_Image">
+            <End Role="Image" EntitySet="Images" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MemberStatus_Member" Association="DB_GamingFormModel.FK_MemberStatus_Member">
+            <End Role="Member" EntitySet="Members" />
+            <End Role="MemberStatu" EntitySet="MemberStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MemberTag_Member" Association="DB_GamingFormModel.FK_MemberTag_Member">
+            <End Role="Member" EntitySet="Members" />
+            <End Role="MemberTag" EntitySet="MemberTags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Member" Association="DB_GamingFormModel.FK_Order_Member">
+            <End Role="Member" EntitySet="Members" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Member" Association="DB_GamingFormModel.FK_Product_Member">
+            <End Role="Member" EntitySet="Members" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductEvaluate_Member" Association="DB_GamingFormModel.FK_ProductEvaluate_Member">
+            <End Role="Member" EntitySet="Members" />
+            <End Role="ProductEvaluate" EntitySet="ProductEvaluates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reply_Member" Association="DB_GamingFormModel.FK_Reply_Member">
+            <End Role="Member" EntitySet="Members" />
+            <End Role="Reply" EntitySet="Replies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WishList_Member" Association="DB_GamingFormModel.FK_WishList_Member">
+            <End Role="Member" EntitySet="Members" />
+            <End Role="WishList" EntitySet="WishLists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MemberStatus_Status" Association="DB_GamingFormModel.FK_MemberStatus_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="MemberStatu" EntitySet="MemberStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MemberTag_SubTag" Association="DB_GamingFormModel.FK_MemberTag_SubTag">
+            <End Role="SubTag" EntitySet="SubTags" />
+            <End Role="MemberTag" EntitySet="MemberTags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MemberTag_Tag" Association="DB_GamingFormModel.FK_MemberTag_Tag">
+            <End Role="Tag" EntitySet="Tags" />
+            <End Role="MemberTag" EntitySet="MemberTags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Payment" Association="DB_GamingFormModel.FK_Order_Payment">
+            <End Role="Payment" EntitySet="Payments" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_RegionDistrict" Association="DB_GamingFormModel.FK_Order_RegionDistrict">
+            <End Role="RegionDistrict" EntitySet="RegionDistricts" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_ShipMethod" Association="DB_GamingFormModel.FK_Order_ShipMethod">
+            <End Role="ShipMethod" EntitySet="ShipMethods" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Status" Association="DB_GamingFormModel.FK_Order_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderProduct_Order" Association="DB_GamingFormModel.FK_OrderProduct_Order">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="OrderProduct" EntitySet="OrderProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderProduct_Product" Association="DB_GamingFormModel.FK_OrderProduct_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="OrderProduct" EntitySet="OrderProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Status" Association="DB_GamingFormModel.FK_Product_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductAction_Product" Association="DB_GamingFormModel.FK_ProductAction_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="ProductTag" EntitySet="ProductTags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductAdvertise_Product" Association="DB_GamingFormModel.FK_ProductAdvertise_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="ProductAdvertise" EntitySet="ProductAdvertises" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductEvaluate_Product" Association="DB_GamingFormModel.FK_ProductEvaluate_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="ProductEvaluate" EntitySet="ProductEvaluates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WishList_Product" Association="DB_GamingFormModel.FK_WishList_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="WishList" EntitySet="WishLists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductAction_SubTag" Association="DB_GamingFormModel.FK_ProductAction_SubTag">
+            <End Role="SubTag" EntitySet="SubTags" />
+            <End Role="ProductTag" EntitySet="ProductTags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegionDistrict_Region" Association="DB_GamingFormModel.FK_RegionDistrict_Region">
+            <End Role="Region" EntitySet="Regions" />
+            <End Role="RegionDistrict" EntitySet="RegionDistricts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Skill_SkillClass" Association="DB_GamingFormModel.FK_Skill_SkillClass">
+            <End Role="SkillClass" EntitySet="SkillClasses" />
+            <End Role="Skill" EntitySet="Skills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubTag_Tag" Association="DB_GamingFormModel.FK_SubTag_Tag">
+            <End Role="Tag" EntitySet="Tags" />
+            <End Role="SubTag" EntitySet="SubTags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Depute_Status" Association="DB_GamingFormModel.FK_Depute_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Depute" EntitySet="Deputes" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="Action">
           <Key>
             <PropertyRef Name="ActionID" />
           </Key>
           <Property Name="ActionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ActionType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="ArticleActions" Relationship="Self.FK_ArticleAction_Action" FromRole="Action" ToRole="ArticleAction" />
+          <NavigationProperty Name="ArticleActions" Relationship="DB_GamingFormModel.FK_ArticleAction_Action" FromRole="Action" ToRole="ArticleAction" />
         </EntityType>
         <EntityType Name="Admin">
           <Key>
             <PropertyRef Name="AdminID" />
           </Key>
           <Property Name="AdminID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="AdminAccount" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="AdminPassword" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AdminAccount" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AdminPassword" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="true" />
           <Property Name="RankID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="AdminRank" Relationship="Self.FK_Admin_AdminRank" FromRole="Admin" ToRole="AdminRank" />
+          <NavigationProperty Name="AdminRank" Relationship="DB_GamingFormModel.FK_Admin_AdminRank" FromRole="Admin" ToRole="AdminRank" />
         </EntityType>
         <EntityType Name="AdminRank">
           <Key>
@@ -1284,21 +1522,21 @@
           <Property Name="RK_Blog" Type="Boolean" Nullable="false" />
           <Property Name="RK_Firm" Type="Boolean" Nullable="false" />
           <Property Name="RK_Order" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Admins" Relationship="Self.FK_Admin_AdminRank" FromRole="AdminRank" ToRole="Admin" />
+          <NavigationProperty Name="Admins" Relationship="DB_GamingFormModel.FK_Admin_AdminRank" FromRole="AdminRank" ToRole="Admin" />
         </EntityType>
         <EntityType Name="Advertise">
           <Key>
             <PropertyRef Name="AdvertiseID" />
           </Key>
           <Property Name="AdvertiseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="AdContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AdContent" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="StatusID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Status" Relationship="Self.FK_AD_Status" FromRole="Advertise" ToRole="Status" />
-          <NavigationProperty Name="JobAdvertises" Relationship="Self.FK_JobAdvertise_AD" FromRole="Advertise" ToRole="JobAdvertise" />
-          <NavigationProperty Name="ProductAdvertises" Relationship="Self.FK_ProductAdvertise_AD" FromRole="Advertise" ToRole="ProductAdvertise" />
+          <NavigationProperty Name="Status" Relationship="DB_GamingFormModel.FK_AD_Status" FromRole="Advertise" ToRole="Status" />
+          <NavigationProperty Name="JobAdvertises" Relationship="DB_GamingFormModel.FK_JobAdvertise_AD" FromRole="Advertise" ToRole="JobAdvertise" />
+          <NavigationProperty Name="ProductAdvertises" Relationship="DB_GamingFormModel.FK_ProductAdvertise_AD" FromRole="Advertise" ToRole="ProductAdvertise" />
         </EntityType>
         <EntityType Name="Article">
           <Key>
@@ -1306,17 +1544,17 @@
           </Key>
           <Property Name="ArticleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SubBlogID" Type="Int32" Nullable="false" />
-          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ArticleContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ArticleContent" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="MemberID" Type="Int32" Nullable="false" />
           <Property Name="ReplyArticleID" Type="Int32" />
-          <NavigationProperty Name="Article1" Relationship="Self.FK_Article_Article" FromRole="Article" ToRole="Article1" />
-          <NavigationProperty Name="Article2" Relationship="Self.FK_Article_Article" FromRole="Article1" ToRole="Article" />
-          <NavigationProperty Name="Member" Relationship="Self.FK_Article_Member" FromRole="Article" ToRole="Member" />
-          <NavigationProperty Name="SubBlog" Relationship="Self.FK_Article_SubBlog" FromRole="Article" ToRole="SubBlog" />
-          <NavigationProperty Name="ArticleActions" Relationship="Self.FK_ArticleAction_Article" FromRole="Article" ToRole="ArticleAction" />
-          <NavigationProperty Name="Replies" Relationship="Self.FK_Reply_Article" FromRole="Article" ToRole="Reply" />
+          <NavigationProperty Name="Article1" Relationship="DB_GamingFormModel.FK_Article_Article" FromRole="Article" ToRole="Article1" />
+          <NavigationProperty Name="Article2" Relationship="DB_GamingFormModel.FK_Article_Article" FromRole="Article1" ToRole="Article" />
+          <NavigationProperty Name="Member" Relationship="DB_GamingFormModel.FK_Article_Member" FromRole="Article" ToRole="Member" />
+          <NavigationProperty Name="SubBlog" Relationship="DB_GamingFormModel.FK_Article_SubBlog" FromRole="Article" ToRole="SubBlog" />
+          <NavigationProperty Name="ArticleActions" Relationship="DB_GamingFormModel.FK_ArticleAction_Article" FromRole="Article" ToRole="ArticleAction" />
+          <NavigationProperty Name="Replies" Relationship="DB_GamingFormModel.FK_Reply_Article" FromRole="Article" ToRole="Reply" />
         </EntityType>
         <EntityType Name="ArticleAction">
           <Key>
@@ -1326,21 +1564,21 @@
           <Property Name="ArticleID" Type="Int32" Nullable="false" />
           <Property Name="MemberID" Type="Int32" Nullable="false" />
           <Property Name="ActionID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Action" Relationship="Self.FK_ArticleAction_Action" FromRole="ArticleAction" ToRole="Action" />
-          <NavigationProperty Name="Article" Relationship="Self.FK_ArticleAction_Article" FromRole="ArticleAction" ToRole="Article" />
-          <NavigationProperty Name="Member" Relationship="Self.FK_ArticleAction_Member" FromRole="ArticleAction" ToRole="Member" />
+          <NavigationProperty Name="Action" Relationship="DB_GamingFormModel.FK_ArticleAction_Action" FromRole="ArticleAction" ToRole="Action" />
+          <NavigationProperty Name="Article" Relationship="DB_GamingFormModel.FK_ArticleAction_Article" FromRole="ArticleAction" ToRole="Article" />
+          <NavigationProperty Name="Member" Relationship="DB_GamingFormModel.FK_ArticleAction_Member" FromRole="ArticleAction" ToRole="Member" />
         </EntityType>
         <EntityType Name="Blog">
           <Key>
             <PropertyRef Name="BlogID" />
           </Key>
           <Property Name="BlogID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="SubTagID" Type="Int32" Nullable="false" />
           <Property Name="ImageID" Type="Int32" />
-          <NavigationProperty Name="Image" Relationship="Self.FK_Blog_Image" FromRole="Blog" ToRole="Image" />
-          <NavigationProperty Name="SubTag" Relationship="Self.FK_Blog_SubTag" FromRole="Blog" ToRole="SubTag" />
-          <NavigationProperty Name="SubBlogs" Relationship="Self.FK_SubBlog_Blog" FromRole="Blog" ToRole="SubBlog" />
+          <NavigationProperty Name="Image" Relationship="DB_GamingFormModel.FK_Blog_Image" FromRole="Blog" ToRole="Image" />
+          <NavigationProperty Name="SubTag" Relationship="DB_GamingFormModel.FK_Blog_SubTag" FromRole="Blog" ToRole="SubTag" />
+          <NavigationProperty Name="SubBlogs" Relationship="DB_GamingFormModel.FK_SubBlog_Blog" FromRole="Blog" ToRole="SubBlog" />
         </EntityType>
         <EntityType Name="Certificate">
           <Key>
@@ -1358,12 +1596,11 @@
           <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Modifiedate" Type="DateTime" Precision="3" />
           <Property Name="DeputeContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Salary" Type="Int32" Nullable="false" />
           <Property Name="StatusID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Member" Relationship="Self.FK_Depute_Member" FromRole="Depute" ToRole="Member" />
-          <NavigationProperty Name="Status" Relationship="Self.FK_Depute_Status" FromRole="Depute" ToRole="Status" />
-          <NavigationProperty Name="DeputeRecords" Relationship="Self.FK_DeputeRecord_Depute" FromRole="Depute" ToRole="DeputeRecord" />
-          <NavigationProperty Name="DeputeSkills" Relationship="Self.FK_DeputeSkill_Depute" FromRole="Depute" ToRole="DeputeSkill" />
+          <NavigationProperty Name="Member" Relationship="DB_GamingFormModel.FK_Depute_Member" FromRole="Depute" ToRole="Member" />
+          <NavigationProperty Name="DeputeRecords" Relationship="DB_GamingFormModel.FK_DeputeRecord_Depute" FromRole="Depute" ToRole="DeputeRecord" />
+          <NavigationProperty Name="DeputeSkills" Relationship="DB_GamingFormModel.FK_DeputeSkill_Depute" FromRole="Depute" ToRole="DeputeSkill" />
+          <NavigationProperty Name="Status" Relationship="DB_GamingFormModel.FK_Depute_Status" FromRole="Depute" ToRole="Status" />
         </EntityType>
         <EntityType Name="DeputeRecord">
           <Key>
@@ -1373,9 +1610,9 @@
           <Property Name="DeputeID" Type="Int32" Nullable="false" />
           <Property Name="MemberID" Type="Int32" Nullable="false" />
           <Property Name="ApplyStatusID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Depute" Relationship="Self.FK_DeputeRecord_Depute" FromRole="DeputeRecord" ToRole="Depute" />
-          <NavigationProperty Name="Member" Relationship="Self.FK_DeputeRecord_Member" FromRole="DeputeRecord" ToRole="Member" />
-          <NavigationProperty Name="Status" Relationship="Self.FK_DeputeRecord_Status" FromRole="DeputeRecord" ToRole="Status" />
+          <NavigationProperty Name="Depute" Relationship="DB_GamingFormModel.FK_DeputeRecord_Depute" FromRole="DeputeRecord" ToRole="Depute" />
+          <NavigationProperty Name="Member" Relationship="DB_GamingFormModel.FK_DeputeRecord_Member" FromRole="DeputeRecord" ToRole="Member" />
+          <NavigationProperty Name="Status" Relationship="DB_GamingFormModel.FK_DeputeRecord_Status" FromRole="DeputeRecord" ToRole="Status" />
         </EntityType>
         <EntityType Name="DeputeSkill">
           <Key>
@@ -1384,29 +1621,29 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DeputeID" Type="Int32" Nullable="false" />
           <Property Name="SkillID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Depute" Relationship="Self.FK_DeputeSkill_Depute" FromRole="DeputeSkill" ToRole="Depute" />
-          <NavigationProperty Name="Skill" Relationship="Self.FK_DeputeSkill_Skill" FromRole="DeputeSkill" ToRole="Skill" />
+          <NavigationProperty Name="Depute" Relationship="DB_GamingFormModel.FK_DeputeSkill_Depute" FromRole="DeputeSkill" ToRole="Depute" />
+          <NavigationProperty Name="Skill" Relationship="DB_GamingFormModel.FK_DeputeSkill_Skill" FromRole="DeputeSkill" ToRole="Skill" />
         </EntityType>
         <EntityType Name="Education">
           <Key>
             <PropertyRef Name="EDID" />
           </Key>
           <Property Name="EDID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Firm">
           <Key>
             <PropertyRef Name="FirmID" />
           </Key>
           <Property Name="FirmID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirmName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FirmName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="TaxID" Type="Int32" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="FirmAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="FirmScale" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FirmAddress" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirmScale" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="FirmIntro" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Contact" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Contact" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="StatusID" Type="Int32" />
           <Property Name="ImageID" Type="Int32" />
         </EntityType>
@@ -1416,10 +1653,10 @@
           </Key>
           <Property Name="ImageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Image1" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
-          <NavigationProperty Name="Blogs" Relationship="Self.FK_Blog_Image" FromRole="Image" ToRole="Blog" />
-          <NavigationProperty Name="Members" Relationship="Self.FK_Member_Image" FromRole="Image" ToRole="Member" />
-          <NavigationProperty Name="Products" Relationship="Self.FK_Product_Image" FromRole="Image" ToRole="Product" />
+          <Property Name="Image1" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Blogs" Relationship="DB_GamingFormModel.FK_Blog_Image" FromRole="Image" ToRole="Blog" />
+          <NavigationProperty Name="Members" Relationship="DB_GamingFormModel.FK_Member_Image" FromRole="Image" ToRole="Member" />
+          <NavigationProperty Name="Products" Relationship="DB_GamingFormModel.FK_Product_Image" FromRole="Image" ToRole="Product" />
         </EntityType>
         <EntityType Name="JobAdvertise">
           <Key>
@@ -1428,7 +1665,7 @@
           <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="JobID" Type="Int32" Nullable="false" />
           <Property Name="AdvertiseID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Advertise" Relationship="Self.FK_JobAdvertise_AD" FromRole="JobAdvertise" ToRole="Advertise" />
+          <NavigationProperty Name="Advertise" Relationship="DB_GamingFormModel.FK_JobAdvertise_AD" FromRole="JobAdvertise" ToRole="Advertise" />
         </EntityType>
         <EntityType Name="JobCertificate">
           <Key>
@@ -1443,26 +1680,26 @@
             <PropertyRef Name="MemberID" />
           </Key>
           <Property Name="MemberID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Phone" Type="String" MaxLength="24" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="24" FixedLength="false" Unicode="true" />
           <Property Name="Birth" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ImageID" Type="Int32" Nullable="false" />
           <Property Name="Mycomment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="BonusPoint" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Articles" Relationship="Self.FK_Article_Member" FromRole="Member" ToRole="Article" />
-          <NavigationProperty Name="ArticleActions" Relationship="Self.FK_ArticleAction_Member" FromRole="Member" ToRole="ArticleAction" />
-          <NavigationProperty Name="Deputes" Relationship="Self.FK_Depute_Member" FromRole="Member" ToRole="Depute" />
-          <NavigationProperty Name="DeputeRecords" Relationship="Self.FK_DeputeRecord_Member" FromRole="Member" ToRole="DeputeRecord" />
-          <NavigationProperty Name="Image" Relationship="Self.FK_Member_Image" FromRole="Member" ToRole="Image" />
-          <NavigationProperty Name="MemberStatus" Relationship="Self.FK_MemberStatus_Member" FromRole="Member" ToRole="MemberStatus" />
-          <NavigationProperty Name="MemberTags" Relationship="Self.FK_MemberTag_Member" FromRole="Member" ToRole="MemberTag" />
-          <NavigationProperty Name="Orders" Relationship="Self.FK_Order_Member" FromRole="Member" ToRole="Order" />
-          <NavigationProperty Name="Products" Relationship="Self.FK_Product_Member" FromRole="Member" ToRole="Product" />
-          <NavigationProperty Name="ProductEvaluates" Relationship="Self.FK_ProductEvaluate_Member" FromRole="Member" ToRole="ProductEvaluate" />
-          <NavigationProperty Name="Replies" Relationship="Self.FK_Reply_Member" FromRole="Member" ToRole="Reply" />
-          <NavigationProperty Name="WishLists" Relationship="Self.FK_WishList_Member" FromRole="Member" ToRole="WishList" />
+          <NavigationProperty Name="Articles" Relationship="DB_GamingFormModel.FK_Article_Member" FromRole="Member" ToRole="Article" />
+          <NavigationProperty Name="ArticleActions" Relationship="DB_GamingFormModel.FK_ArticleAction_Member" FromRole="Member" ToRole="ArticleAction" />
+          <NavigationProperty Name="Deputes" Relationship="DB_GamingFormModel.FK_Depute_Member" FromRole="Member" ToRole="Depute" />
+          <NavigationProperty Name="DeputeRecords" Relationship="DB_GamingFormModel.FK_DeputeRecord_Member" FromRole="Member" ToRole="DeputeRecord" />
+          <NavigationProperty Name="Image" Relationship="DB_GamingFormModel.FK_Member_Image" FromRole="Member" ToRole="Image" />
+          <NavigationProperty Name="MemberStatus" Relationship="DB_GamingFormModel.FK_MemberStatus_Member" FromRole="Member" ToRole="MemberStatu" />
+          <NavigationProperty Name="MemberTags" Relationship="DB_GamingFormModel.FK_MemberTag_Member" FromRole="Member" ToRole="MemberTag" />
+          <NavigationProperty Name="Orders" Relationship="DB_GamingFormModel.FK_Order_Member" FromRole="Member" ToRole="Order" />
+          <NavigationProperty Name="Products" Relationship="DB_GamingFormModel.FK_Product_Member" FromRole="Member" ToRole="Product" />
+          <NavigationProperty Name="ProductEvaluates" Relationship="DB_GamingFormModel.FK_ProductEvaluate_Member" FromRole="Member" ToRole="ProductEvaluate" />
+          <NavigationProperty Name="Replies" Relationship="DB_GamingFormModel.FK_Reply_Member" FromRole="Member" ToRole="Reply" />
+          <NavigationProperty Name="WishLists" Relationship="DB_GamingFormModel.FK_WishList_Member" FromRole="Member" ToRole="WishList" />
         </EntityType>
         <EntityType Name="MemberStatu">
           <Key>
@@ -1471,8 +1708,8 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MemeberID" Type="Int32" Nullable="false" />
           <Property Name="StatusID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Member" Relationship="Self.FK_MemberStatus_Member" FromRole="MemberStatus" ToRole="Member" />
-          <NavigationProperty Name="Status" Relationship="Self.FK_MemberStatus_Status" FromRole="MemberStatus" ToRole="Status" />
+          <NavigationProperty Name="Member" Relationship="DB_GamingFormModel.FK_MemberStatus_Member" FromRole="MemberStatu" ToRole="Member" />
+          <NavigationProperty Name="Status" Relationship="DB_GamingFormModel.FK_MemberStatus_Status" FromRole="MemberStatu" ToRole="Status" />
         </EntityType>
         <EntityType Name="MemberTag">
           <Key>
@@ -1482,9 +1719,9 @@
           <Property Name="MemberID" Type="Int32" Nullable="false" />
           <Property Name="TagID" Type="Int32" />
           <Property Name="SubTagID" Type="Int32" />
-          <NavigationProperty Name="Member" Relationship="Self.FK_MemberTag_Member" FromRole="MemberTag" ToRole="Member" />
-          <NavigationProperty Name="SubTag" Relationship="Self.FK_MemberTag_SubTag" FromRole="MemberTag" ToRole="SubTag" />
-          <NavigationProperty Name="Tag" Relationship="Self.FK_MemberTag_Tag" FromRole="MemberTag" ToRole="Tag" />
+          <NavigationProperty Name="Member" Relationship="DB_GamingFormModel.FK_MemberTag_Member" FromRole="MemberTag" ToRole="Member" />
+          <NavigationProperty Name="SubTag" Relationship="DB_GamingFormModel.FK_MemberTag_SubTag" FromRole="MemberTag" ToRole="SubTag" />
+          <NavigationProperty Name="Tag" Relationship="DB_GamingFormModel.FK_MemberTag_Tag" FromRole="MemberTag" ToRole="Tag" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -1493,7 +1730,7 @@
           <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MemberID" Type="Int32" />
           <Property Name="FirmID" Type="Int32" />
-          <Property Name="ShipName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ShipName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="PaymentDate" Type="DateTime" Precision="0" />
           <Property Name="ShippingDate" Type="DateTime" Precision="0" />
@@ -1504,12 +1741,12 @@
           <Property Name="ShipAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Note" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="StatusID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Member" Relationship="Self.FK_Order_Member" FromRole="Order" ToRole="Member" />
-          <NavigationProperty Name="Payment" Relationship="Self.FK_Order_Payment" FromRole="Order" ToRole="Payment" />
-          <NavigationProperty Name="RegionDistrict" Relationship="Self.FK_Order_RegionDistrict" FromRole="Order" ToRole="RegionDistrict" />
-          <NavigationProperty Name="ShipMethod" Relationship="Self.FK_Order_ShipMethod" FromRole="Order" ToRole="ShipMethod" />
-          <NavigationProperty Name="Status" Relationship="Self.FK_Order_Status" FromRole="Order" ToRole="Status" />
-          <NavigationProperty Name="OrderProducts" Relationship="Self.FK_OrderProduct_Order" FromRole="Order" ToRole="OrderProduct" />
+          <NavigationProperty Name="Member" Relationship="DB_GamingFormModel.FK_Order_Member" FromRole="Order" ToRole="Member" />
+          <NavigationProperty Name="Payment" Relationship="DB_GamingFormModel.FK_Order_Payment" FromRole="Order" ToRole="Payment" />
+          <NavigationProperty Name="RegionDistrict" Relationship="DB_GamingFormModel.FK_Order_RegionDistrict" FromRole="Order" ToRole="RegionDistrict" />
+          <NavigationProperty Name="ShipMethod" Relationship="DB_GamingFormModel.FK_Order_ShipMethod" FromRole="Order" ToRole="ShipMethod" />
+          <NavigationProperty Name="Status" Relationship="DB_GamingFormModel.FK_Order_Status" FromRole="Order" ToRole="Status" />
+          <NavigationProperty Name="OrderProducts" Relationship="DB_GamingFormModel.FK_OrderProduct_Order" FromRole="Order" ToRole="OrderProduct" />
         </EntityType>
         <EntityType Name="OrderProduct">
           <Key>
@@ -1518,27 +1755,27 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="OrderID" Type="Int32" Nullable="false" />
           <Property Name="ProductID" Type="Int32" Nullable="false" />
-          <Property Name="UnitPrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="UnitPrice" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <Property Name="Quantinty" Type="Int32" Nullable="false" />
           <Property Name="Disconut" Type="Single" Nullable="false" />
-          <NavigationProperty Name="Order" Relationship="Self.FK_OrderProduct_Order" FromRole="OrderProduct" ToRole="Order" />
-          <NavigationProperty Name="Product" Relationship="Self.FK_OrderProduct_Product" FromRole="OrderProduct" ToRole="Product" />
+          <NavigationProperty Name="Order" Relationship="DB_GamingFormModel.FK_OrderProduct_Order" FromRole="OrderProduct" ToRole="Order" />
+          <NavigationProperty Name="Product" Relationship="DB_GamingFormModel.FK_OrderProduct_Product" FromRole="OrderProduct" ToRole="Product" />
         </EntityType>
         <EntityType Name="Payment">
           <Key>
             <PropertyRef Name="PaymentID" />
           </Key>
           <Property Name="PaymentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Orders" Relationship="Self.FK_Order_Payment" FromRole="Payment" ToRole="Order" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Orders" Relationship="DB_GamingFormModel.FK_Order_Payment" FromRole="Payment" ToRole="Order" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
             <PropertyRef Name="ProductID" />
           </Key>
           <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="ProductName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <Property Name="AvailableDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="ProductContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="UnitStock" Type="Int32" Nullable="false" />
@@ -1546,14 +1783,14 @@
           <Property Name="MemberID" Type="Int32" />
           <Property Name="FirmID" Type="Int32" />
           <Property Name="ImageID" Type="Int32" />
-          <NavigationProperty Name="Image" Relationship="Self.FK_Product_Image" FromRole="Product" ToRole="Image" />
-          <NavigationProperty Name="Member" Relationship="Self.FK_Product_Member" FromRole="Product" ToRole="Member" />
-          <NavigationProperty Name="OrderProducts" Relationship="Self.FK_OrderProduct_Product" FromRole="Product" ToRole="OrderProduct" />
-          <NavigationProperty Name="Status" Relationship="Self.FK_Product_Status" FromRole="Product" ToRole="Status" />
-          <NavigationProperty Name="ProductTags" Relationship="Self.FK_ProductAction_Product" FromRole="Product" ToRole="ProductTag" />
-          <NavigationProperty Name="ProductAdvertises" Relationship="Self.FK_ProductAdvertise_Product" FromRole="Product" ToRole="ProductAdvertise" />
-          <NavigationProperty Name="ProductEvaluates" Relationship="Self.FK_ProductEvaluate_Product" FromRole="Product" ToRole="ProductEvaluate" />
-          <NavigationProperty Name="WishLists" Relationship="Self.FK_WishList_Product" FromRole="Product" ToRole="WishList" />
+          <NavigationProperty Name="Image" Relationship="DB_GamingFormModel.FK_Product_Image" FromRole="Product" ToRole="Image" />
+          <NavigationProperty Name="Member" Relationship="DB_GamingFormModel.FK_Product_Member" FromRole="Product" ToRole="Member" />
+          <NavigationProperty Name="OrderProducts" Relationship="DB_GamingFormModel.FK_OrderProduct_Product" FromRole="Product" ToRole="OrderProduct" />
+          <NavigationProperty Name="Status" Relationship="DB_GamingFormModel.FK_Product_Status" FromRole="Product" ToRole="Status" />
+          <NavigationProperty Name="ProductTags" Relationship="DB_GamingFormModel.FK_ProductAction_Product" FromRole="Product" ToRole="ProductTag" />
+          <NavigationProperty Name="ProductAdvertises" Relationship="DB_GamingFormModel.FK_ProductAdvertise_Product" FromRole="Product" ToRole="ProductAdvertise" />
+          <NavigationProperty Name="ProductEvaluates" Relationship="DB_GamingFormModel.FK_ProductEvaluate_Product" FromRole="Product" ToRole="ProductEvaluate" />
+          <NavigationProperty Name="WishLists" Relationship="DB_GamingFormModel.FK_WishList_Product" FromRole="Product" ToRole="WishList" />
         </EntityType>
         <EntityType Name="ProductAdvertise">
           <Key>
@@ -1562,8 +1799,8 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ProductID" Type="Int32" Nullable="false" />
           <Property Name="AdvertiseID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Advertise" Relationship="Self.FK_ProductAdvertise_AD" FromRole="ProductAdvertise" ToRole="Advertise" />
-          <NavigationProperty Name="Product" Relationship="Self.FK_ProductAdvertise_Product" FromRole="ProductAdvertise" ToRole="Product" />
+          <NavigationProperty Name="Advertise" Relationship="DB_GamingFormModel.FK_ProductAdvertise_AD" FromRole="ProductAdvertise" ToRole="Advertise" />
+          <NavigationProperty Name="Product" Relationship="DB_GamingFormModel.FK_ProductAdvertise_Product" FromRole="ProductAdvertise" ToRole="Product" />
         </EntityType>
         <EntityType Name="ProductEvaluate">
           <Key>
@@ -1574,8 +1811,8 @@
           <Property Name="MemberID" Type="Int32" Nullable="false" />
           <Property Name="EvaLevel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="EvaContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Member" Relationship="Self.FK_ProductEvaluate_Member" FromRole="ProductEvaluate" ToRole="Member" />
-          <NavigationProperty Name="Product" Relationship="Self.FK_ProductEvaluate_Product" FromRole="ProductEvaluate" ToRole="Product" />
+          <NavigationProperty Name="Member" Relationship="DB_GamingFormModel.FK_ProductEvaluate_Member" FromRole="ProductEvaluate" ToRole="Member" />
+          <NavigationProperty Name="Product" Relationship="DB_GamingFormModel.FK_ProductEvaluate_Product" FromRole="ProductEvaluate" ToRole="Product" />
         </EntityType>
         <EntityType Name="ProductTag">
           <Key>
@@ -1584,16 +1821,16 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ProductID" Type="Int32" Nullable="false" />
           <Property Name="SubTagID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Product" Relationship="Self.FK_ProductAction_Product" FromRole="ProductTag" ToRole="Product" />
-          <NavigationProperty Name="SubTag" Relationship="Self.FK_ProductAction_SubTag" FromRole="ProductTag" ToRole="SubTag" />
+          <NavigationProperty Name="Product" Relationship="DB_GamingFormModel.FK_ProductAction_Product" FromRole="ProductTag" ToRole="Product" />
+          <NavigationProperty Name="SubTag" Relationship="DB_GamingFormModel.FK_ProductAction_SubTag" FromRole="ProductTag" ToRole="SubTag" />
         </EntityType>
         <EntityType Name="Region">
           <Key>
             <PropertyRef Name="RegionID" />
           </Key>
           <Property Name="RegionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="RegionDistricts" Relationship="Self.FK_RegionDistrict_Region" FromRole="Region" ToRole="RegionDistrict" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="RegionDistricts" Relationship="DB_GamingFormModel.FK_RegionDistrict_Region" FromRole="Region" ToRole="RegionDistrict" />
         </EntityType>
         <EntityType Name="RegionDistrict">
           <Key>
@@ -1601,9 +1838,9 @@
           </Key>
           <Property Name="Zipcode" Type="Int32" Nullable="false" />
           <Property Name="RegionID" Type="Int32" Nullable="false" />
-          <Property Name="District" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Orders" Relationship="Self.FK_Order_RegionDistrict" FromRole="RegionDistrict" ToRole="Order" />
-          <NavigationProperty Name="Region" Relationship="Self.FK_RegionDistrict_Region" FromRole="RegionDistrict" ToRole="Region" />
+          <Property Name="District" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Orders" Relationship="DB_GamingFormModel.FK_Order_RegionDistrict" FromRole="RegionDistrict" ToRole="Order" />
+          <NavigationProperty Name="Region" Relationship="DB_GamingFormModel.FK_RegionDistrict_Region" FromRole="RegionDistrict" ToRole="Region" />
         </EntityType>
         <EntityType Name="Reply">
           <Key>
@@ -1611,11 +1848,11 @@
           </Key>
           <Property Name="ReplyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ArticleID" Type="Int32" Nullable="false" />
-          <Property Name="ReplyContents" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ReplyContents" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="MemberID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Article" Relationship="Self.FK_Reply_Article" FromRole="Reply" ToRole="Article" />
-          <NavigationProperty Name="Member" Relationship="Self.FK_Reply_Member" FromRole="Reply" ToRole="Member" />
+          <NavigationProperty Name="Article" Relationship="DB_GamingFormModel.FK_Reply_Article" FromRole="Reply" ToRole="Article" />
+          <NavigationProperty Name="Member" Relationship="DB_GamingFormModel.FK_Reply_Member" FromRole="Reply" ToRole="Member" />
         </EntityType>
         <EntityType Name="ReplyAction">
           <Key>
@@ -1640,9 +1877,9 @@
           </Key>
           <Property Name="ResumeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MemberID" Type="Int32" Nullable="false" />
-          <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="IdentityID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FullName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdentityID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ResumeContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="WorkExp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="FormID" Type="Int32" Nullable="false" />
@@ -1671,14 +1908,14 @@
             <PropertyRef Name="FormID" />
           </Key>
           <Property Name="FormID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="SerachRecord">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreateDays" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IsMember" Type="Boolean" Nullable="false" />
         </EntityType>
@@ -1688,7 +1925,7 @@
           </Key>
           <Property Name="ShipID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Orders" Relationship="Self.FK_Order_ShipMethod" FromRole="ShipMethod" ToRole="Order" />
+          <NavigationProperty Name="Orders" Relationship="DB_GamingFormModel.FK_Order_ShipMethod" FromRole="ShipMethod" ToRole="Order" />
         </EntityType>
         <EntityType Name="Skill">
           <Key>
@@ -1696,49 +1933,49 @@
           </Key>
           <Property Name="SkillID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SkillClassID" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="DeputeSkills" Relationship="Self.FK_DeputeSkill_Skill" FromRole="Skill" ToRole="DeputeSkill" />
-          <NavigationProperty Name="SkillClass" Relationship="Self.FK_Skill_SkillClass" FromRole="Skill" ToRole="SkillClass" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DeputeSkills" Relationship="DB_GamingFormModel.FK_DeputeSkill_Skill" FromRole="Skill" ToRole="DeputeSkill" />
+          <NavigationProperty Name="SkillClass" Relationship="DB_GamingFormModel.FK_Skill_SkillClass" FromRole="Skill" ToRole="SkillClass" />
         </EntityType>
         <EntityType Name="SkillClass">
           <Key>
             <PropertyRef Name="SkillClassID" />
           </Key>
           <Property Name="SkillClassID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Skills" Relationship="Self.FK_Skill_SkillClass" FromRole="SkillClass" ToRole="Skill" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Skills" Relationship="DB_GamingFormModel.FK_Skill_SkillClass" FromRole="SkillClass" ToRole="Skill" />
         </EntityType>
         <EntityType Name="Status">
           <Key>
             <PropertyRef Name="StatusID" />
           </Key>
           <Property Name="StatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Advertises" Relationship="Self.FK_AD_Status" FromRole="Status" ToRole="Advertise" />
-          <NavigationProperty Name="Deputes" Relationship="Self.FK_Depute_Status" FromRole="Status" ToRole="Depute" />
-          <NavigationProperty Name="DeputeRecords" Relationship="Self.FK_DeputeRecord_Status" FromRole="Status" ToRole="DeputeRecord" />
-          <NavigationProperty Name="MemberStatus" Relationship="Self.FK_MemberStatus_Status" FromRole="Status" ToRole="MemberStatus" />
-          <NavigationProperty Name="Orders" Relationship="Self.FK_Order_Status" FromRole="Status" ToRole="Order" />
-          <NavigationProperty Name="Products" Relationship="Self.FK_Product_Status" FromRole="Status" ToRole="Product" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Advertises" Relationship="DB_GamingFormModel.FK_AD_Status" FromRole="Status" ToRole="Advertise" />
+          <NavigationProperty Name="DeputeRecords" Relationship="DB_GamingFormModel.FK_DeputeRecord_Status" FromRole="Status" ToRole="DeputeRecord" />
+          <NavigationProperty Name="MemberStatus" Relationship="DB_GamingFormModel.FK_MemberStatus_Status" FromRole="Status" ToRole="MemberStatu" />
+          <NavigationProperty Name="Orders" Relationship="DB_GamingFormModel.FK_Order_Status" FromRole="Status" ToRole="Order" />
+          <NavigationProperty Name="Products" Relationship="DB_GamingFormModel.FK_Product_Status" FromRole="Status" ToRole="Product" />
+          <NavigationProperty Name="Deputes" Relationship="DB_GamingFormModel.FK_Depute_Status" FromRole="Status" ToRole="Depute" />
         </EntityType>
         <EntityType Name="SubBlog">
           <Key>
             <PropertyRef Name="SubBlogID" />
           </Key>
           <Property Name="SubBlogID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="BlogID" Type="Int32" Nullable="false" />
           <Property Name="ParentBlogID" Type="Int32" />
           <Property Name="IsMemberBlog" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Articles" Relationship="Self.FK_Article_SubBlog" FromRole="SubBlog" ToRole="Article" />
-          <NavigationProperty Name="Blog" Relationship="Self.FK_SubBlog_Blog" FromRole="SubBlog" ToRole="Blog" />
+          <NavigationProperty Name="Articles" Relationship="DB_GamingFormModel.FK_Article_SubBlog" FromRole="SubBlog" ToRole="Article" />
+          <NavigationProperty Name="Blog" Relationship="DB_GamingFormModel.FK_SubBlog_Blog" FromRole="SubBlog" ToRole="Blog" />
         </EntityType>
         <EntityType Name="SubBolgCategory">
           <Key>
             <PropertyRef Name="CategoryID" />
           </Key>
           <Property Name="CategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="SubBlogID" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="SubTag">
@@ -1746,18 +1983,18 @@
             <PropertyRef Name="SubTagID" />
           </Key>
           <Property Name="SubTagID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="TagID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Blogs" Relationship="Self.FK_Blog_SubTag" FromRole="SubTag" ToRole="Blog" />
-          <NavigationProperty Name="MemberTags" Relationship="Self.FK_MemberTag_SubTag" FromRole="SubTag" ToRole="MemberTag" />
-          <NavigationProperty Name="ProductTags" Relationship="Self.FK_ProductAction_SubTag" FromRole="SubTag" ToRole="ProductTag" />
-          <NavigationProperty Name="Tag" Relationship="Self.FK_SubTag_Tag" FromRole="SubTag" ToRole="Tag" />
+          <NavigationProperty Name="Blogs" Relationship="DB_GamingFormModel.FK_Blog_SubTag" FromRole="SubTag" ToRole="Blog" />
+          <NavigationProperty Name="MemberTags" Relationship="DB_GamingFormModel.FK_MemberTag_SubTag" FromRole="SubTag" ToRole="MemberTag" />
+          <NavigationProperty Name="ProductTags" Relationship="DB_GamingFormModel.FK_ProductAction_SubTag" FromRole="SubTag" ToRole="ProductTag" />
+          <NavigationProperty Name="Tag" Relationship="DB_GamingFormModel.FK_SubTag_Tag" FromRole="SubTag" ToRole="Tag" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
             <PropertyRef Name="diagram_id" />
           </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="principal_id" Type="Int32" Nullable="false" />
           <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="version" Type="Int32" />
@@ -1768,9 +2005,9 @@
             <PropertyRef Name="TagID" />
           </Key>
           <Property Name="TagID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="MemberTags" Relationship="Self.FK_MemberTag_Tag" FromRole="Tag" ToRole="MemberTag" />
-          <NavigationProperty Name="SubTags" Relationship="Self.FK_SubTag_Tag" FromRole="Tag" ToRole="SubTag" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MemberTags" Relationship="DB_GamingFormModel.FK_MemberTag_Tag" FromRole="Tag" ToRole="MemberTag" />
+          <NavigationProperty Name="SubTags" Relationship="DB_GamingFormModel.FK_SubTag_Tag" FromRole="Tag" ToRole="SubTag" />
         </EntityType>
         <EntityType Name="WishList">
           <Key>
@@ -1779,12 +2016,12 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MemberID" Type="Int32" Nullable="false" />
           <Property Name="ProductID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Member" Relationship="Self.FK_WishList_Member" FromRole="WishList" ToRole="Member" />
-          <NavigationProperty Name="Product" Relationship="Self.FK_WishList_Product" FromRole="WishList" ToRole="Product" />
+          <NavigationProperty Name="Member" Relationship="DB_GamingFormModel.FK_WishList_Member" FromRole="WishList" ToRole="Member" />
+          <NavigationProperty Name="Product" Relationship="DB_GamingFormModel.FK_WishList_Product" FromRole="WishList" ToRole="Product" />
         </EntityType>
         <Association Name="FK_ArticleAction_Action">
-          <End Role="Action" Type="Self.Action" Multiplicity="1" />
-          <End Role="ArticleAction" Type="Self.ArticleAction" Multiplicity="*" />
+          <End Type="DB_GamingFormModel.Action" Role="Action" Multiplicity="1" />
+          <End Type="DB_GamingFormModel.ArticleAction" Role="ArticleAction" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Action">
               <PropertyRef Name="ActionID" />
@@ -1795,8 +2032,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Admin_AdminRank">
-          <End Role="AdminRank" Type="Self.AdminRank" Multiplicity="1" />
-          <End Role="Admin" Type="Self.Admin" Multiplicity="*" />
+          <End Type="DB_GamingFormModel.AdminRank" Role="AdminRank" Multiplicity="1" />
+          <End Type="DB_GamingFormModel.Admin" Role="Admin" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AdminRank">
               <PropertyRef Name="RankID" />
@@ -1807,8 +2044,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_AD_Status">
-          <End Role="Status" Type="Self.Status" Multiplicity="1" />
-          <End Role="Advertise" Type="Self.Advertise" Multiplicity="*" />
+          <End Type="DB_GamingFormModel.Status" Role="Status" Multiplicity="1" />
+          <End Type="DB_GamingFormModel.Advertise" Role="Advertise" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Status">
               <PropertyRef Name="StatusID" />
@@ -1819,8 +2056,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_JobAdvertise_AD">
-          <End Role="Advertise" Type="Self.Advertise" Multiplicity="1" />
-          <End Role="JobAdvertise" Type="Self.JobAdvertise" Multiplicity="*" />
+          <End Type="DB_GamingFormModel.Advertise" Role="Advertise" Multiplicity="1" />
+          <End Type="DB_GamingFormModel.JobAdvertise" Role="JobAdvertise" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Advertise">
               <PropertyRef Name="AdvertiseID" />
@@ -1831,8 +2068,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ProductAdvertise_AD">
-          <End Role="Advertise" Type="Self.Advertise" Multiplicity="1" />
-          <End Role="ProductAdvertise" Type="Self.ProductAdvertise" Multiplicity="*" />
+          <End Type="DB_GamingFormModel.Advertise" Role="Advertise" Multiplicity="1" />
+          <End Type="DB_GamingFormModel.ProductAdvertise" Role="ProductAdvertise" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Advertise">
               <PropertyRef Name="AdvertiseID" />
@@ -1843,8 +2080,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Article_Article">
-          <End Role="Article" Type="Self.Article" Multiplicity="0..1" />
-          <End Role="Article1" Type="Self.Article" Multiplicity="*" />
+          <End Type="DB_GamingFormModel.Article" Role="Article" Multiplicity="0..1" />
+          <End Type="DB_GamingFormModel.Article" Role="Article1" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Article">
               <PropertyRef Name="ArticleID" />
@@ -1855,8 +2092,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Article_Member">
-          <End Role="Member" Type="Self.Member" Multiplicity="1" />
-          <End Role="Article" Type="Self.Article" Multiplicity="*" />
+          <End Type="DB_GamingFormModel.Member" Role="Member" Multiplicity="1" />
+          <End Type="DB_GamingFormModel.Article" Role="Article" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Member">
               <PropertyRef Name="MemberID" />
@@ -1867,8 +2104,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Article_SubBlog">
-          <End Role="SubBlog" Type="Self.SubBlog" Multiplicity="1" />
-          <End Role="Article" Type="Self.Article" Multiplicity="*" />
+          <End Type="DB_GamingFormModel.SubBlog" Role="SubBlog" Multiplicity="1" />
+          <End Type="DB_GamingFormModel.Article" Role="Article" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SubBlog">
               <PropertyRef Name="SubBlogID" />
@@ -1879,8 +2116,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ArticleAction_Article">
-          <End Role="Article" Type="Self.Article" Multiplicity="1" />
-          <End Role="ArticleAction" Type="Self.ArticleAction" Multiplicity="*" />
+          <End Type="DB_GamingFormModel.Article" Role="Article" Multiplicity="1" />
+          <End Type="DB_GamingFormModel.ArticleAction" Role="ArticleAction" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Article">
               <PropertyRef Name="ArticleID" />
@@ -1891,8 +2128,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Reply_Article">
-          <End Role="Article" Type="Self.Article" Multiplicity="1" />
-          <End Role="Reply" Type="Self.Reply" Multiplicity="*" />
+          <End Type="DB_GamingFormModel.Article" Role="Article" Multiplicity="1" />
+          <End Type="DB_GamingFormModel.Reply" Role="Reply" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Article">
               <PropertyRef Name="ArticleID" />
@@ -1903,8 +2140,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ArticleAction_Member">
-          <End Role="Member" Type="Self.Member" Multiplicity="1" />
-          <End Role="ArticleAction" Type="Self.ArticleAction" Multiplicity="*" />
+          <End Type="DB_GamingFormModel.Member" Role="Member" Multiplicity="1" />
+          <End Type="DB_GamingFormModel.ArticleAction" Role="ArticleAction" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Member">
               <PropertyRef Name="MemberID" />
@@ -1915,8 +2152,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Blog_Image">
-          <End Role="Image" Type="Self.Image" Multiplicity="0..1" />
-          <End Role="Blog" Type="Self.Blog" Multiplicity="*" />
+          <End Type="DB_GamingFormModel.Image" Role="Image" Multiplicity="0..1" />
+          <End Type="DB_GamingFormModel.Blog" Role="Blog" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Image">
               <PropertyRef Name="ImageID" />
@@ -1927,8 +2164,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Blog_SubTag">
-          <End Role="SubTag" Type="Self.SubTag" Multiplicity="1" />
-          <End Role="Blog" Type="Self.Blog" Multiplicity="*" />
+          <End Type="DB_GamingFormModel.SubTag" Role="SubTag" Multiplicity="1" />
+          <End Type="DB_GamingFormModel.Blog" Role="Blog" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SubTag">
               <PropertyRef Name="SubTagID" />
@@ -1939,8 +2176,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SubBlog_Blog">
-          <End Role="Blog" Type="Self.Blog" Multiplicity="1" />
-          <End Role="SubBlog" Type="Self.SubBlog" Multiplicity="*" />
+          <End Type="DB_GamingFormModel.Blog" Role="Blog" Multiplicity="1" />
+          <End Type="DB_GamingFormModel.SubBlog" Role="SubBlog" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Blog">
               <PropertyRef Name="BlogID" />
@@ -1951,8 +2188,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Depute_Member">
-          <End Role="Member" Type="Self.Member" Multiplicity="1" />
-          <End Role="Depute" Type="Self.Depute" Multiplicity="*" />
+          <End Type="DB_GamingFormModel.Member" Role="Member" Multiplicity="1" />
+          <End Type="DB_GamingFormModel.Depute" Role="Depute" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Member">
               <PropertyRef Name="MemberID" />
@@ -1962,21 +2199,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Depute_Status">
-          <End Role="Status" Type="Self.Status" Multiplicity="1" />
-          <End Role="Depute" Type="Self.Depute" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Status">
-              <PropertyRef Name="StatusID" />
-            </Principal>
-            <Dependent Role="Depute">
-              <PropertyRef Name="StatusID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_DeputeRecord_Depute">
-          <End Role="Depute" Type="Self.Depute" Multiplicity="1" />
-          <End Role="DeputeRecord" Type="Self.DeputeRecord" Multiplicity="*" />
+          <End Type="DB_GamingFormModel.Depute" Role="Depute" Multiplicity="1" />
+          <End Type="DB_GamingFormModel.DeputeRecord" Role="DeputeRecord" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Depute">
               <PropertyRef Name="DeputeID" />
@@ -1987,8 +2212,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_DeputeSkill_Depute">
-          <End Role="Depute" Type="Self.Depute" Multiplicity="1" />
-          <End Role="DeputeSkill" Type="Self.DeputeSkill" Multiplicity="*" />
+          <End Type="DB_GamingFormModel.Depute" Role="Depute" Multiplicity="1" />
+          <End Type="DB_GamingFormModel.DeputeSkill" Role="DeputeSkill" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Depute">
               <PropertyRef Name="DeputeID" />
@@ -1999,8 +2224,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_DeputeRecord_Member">
-          <End Role="Member" Type="Self.Member" Multiplicity="1" />
-          <End Role="DeputeRecord" Type="Self.DeputeRecord" Multiplicity="*" />
+          <End Type="DB_GamingFormModel.Member" Role="Member" Multiplicity="1" />
+          <End Type="DB_GamingFormModel.DeputeRecord" Role="DeputeRecord" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Member">
               <PropertyRef Name="MemberID" />
@@ -2011,8 +2236,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_DeputeRecord_Status">
-          <End Role="Status" Type="Self.Status" Multiplicity="1" />
-          <End Role="DeputeRecord" Type="Self.DeputeRecord" Multiplicity="*" />
+          <End Type="DB_GamingFormModel.Status" Role="Status" Multiplicity="1" />
+          <End Type="DB_GamingFormModel.DeputeRecord" Role="DeputeRecord" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Status">
               <PropertyRef Name="StatusID" />
@@ -2023,8 +2248,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_DeputeSkill_Skill">
-          <End Role="Skill" Type="Self.Skill" Multiplicity="1" />
-          <End Role="DeputeSkill" Type="Self.DeputeSkill" Multiplicity="*" />
+          <End Type="DB_GamingFormModel.Skill" Role="Skill" Multiplicity="1" />
+          <End Type="DB_GamingFormModel.DeputeSkill" Role="DeputeSkill" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Skill">
               <PropertyRef Name="SkillID" />
@@ -2035,8 +2260,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Member_Image">
-          <End Role="Image" Type="Self.Image" Multiplicity="1" />
-          <End Role="Member" Type="Self.Member" Multiplicity="*" />
+          <End Type="DB_GamingFormModel.Image" Role="Image" Multiplicity="1" />
+          <End Type="DB_GamingFormModel.Member" Role="Member" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Image">
               <PropertyRef Name="ImageID" />
@@ -2047,8 +2272,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Product_Image">
-          <End Role="Image" Type="Self.Image" Multiplicity="0..1" />
-          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <End Type="DB_GamingFormModel.Image" Role="Image" Multiplicity="0..1" />
+          <End Type="DB_GamingFormModel.Product" Role="Product" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Image">
               <PropertyRef Name="ImageID" />
@@ -2059,20 +2284,20 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_MemberStatus_Member">
-          <End Role="Member" Type="Self.Member" Multiplicity="1" />
-          <End Role="MemberStatus" Type="Self.MemberStatu" Multiplicity="*" />
+          <End Type="DB_GamingFormModel.Member" Role="Member" Multiplicity="1" />
+          <End Type="DB_GamingFormModel.MemberStatu" Role="MemberStatu" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Member">
               <PropertyRef Name="MemberID" />
             </Principal>
-            <Dependent Role="MemberStatus">
+            <Dependent Role="MemberStatu">
               <PropertyRef Name="MemeberID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_MemberTag_Member">
-          <End Role="Member" Type="Self.Member" Multiplicity="1" />
-          <End Role="MemberTag" Type="Self.MemberTag" Multiplicity="*" />
+          <End Type="DB_GamingFormModel.Member" Role="Member" Multiplicity="1" />
+          <End Type="DB_GamingFormModel.MemberTag" Role="MemberTag" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Member">
               <PropertyRef Name="MemberID" />
@@ -2083,8 +2308,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Order_Member">
-          <End Role="Member" Type="Self.Member" Multiplicity="0..1" />
-          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <End Type="DB_GamingFormModel.Member" Role="Member" Multiplicity="0..1" />
+          <End Type="DB_GamingFormModel.Order" Role="Order" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Member">
               <PropertyRef Name="MemberID" />
@@ -2095,8 +2320,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Product_Member">
-          <End Role="Member" Type="Self.Member" Multiplicity="0..1" />
-          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <End Type="DB_GamingFormModel.Member" Role="Member" Multiplicity="0..1" />
+          <End Type="DB_GamingFormModel.Product" Role="Product" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Member">
               <PropertyRef Name="MemberID" />
@@ -2107,8 +2332,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ProductEvaluate_Member">
-          <End Role="Member" Type="Self.Member" Multiplicity="1" />
-          <End Role="ProductEvaluate" Type="Self.ProductEvaluate" Multiplicity="*" />
+          <End Type="DB_GamingFormModel.Member" Role="Member" Multiplicity="1" />
+          <End Type="DB_GamingFormModel.ProductEvaluate" Role="ProductEvaluate" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Member">
               <PropertyRef Name="MemberID" />
@@ -2119,8 +2344,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Reply_Member">
-          <End Role="Member" Type="Self.Member" Multiplicity="1" />
-          <End Role="Reply" Type="Self.Reply" Multiplicity="*" />
+          <End Type="DB_GamingFormModel.Member" Role="Member" Multiplicity="1" />
+          <End Type="DB_GamingFormModel.Reply" Role="Reply" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Member">
               <PropertyRef Name="MemberID" />
@@ -2131,8 +2356,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_WishList_Member">
-          <End Role="Member" Type="Self.Member" Multiplicity="1" />
-          <End Role="WishList" Type="Self.WishList" Multiplicity="*" />
+          <End Type="DB_GamingFormModel.Member" Role="Member" Multiplicity="1" />
+          <End Type="DB_GamingFormModel.WishList" Role="WishList" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Member">
               <PropertyRef Name="MemberID" />
@@ -2143,20 +2368,20 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_MemberStatus_Status">
-          <End Role="Status" Type="Self.Status" Multiplicity="1" />
-          <End Role="MemberStatus" Type="Self.MemberStatu" Multiplicity="*" />
+          <End Type="DB_GamingFormModel.Status" Role="Status" Multiplicity="1" />
+          <End Type="DB_GamingFormModel.MemberStatu" Role="MemberStatu" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Status">
               <PropertyRef Name="StatusID" />
             </Principal>
-            <Dependent Role="MemberStatus">
+            <Dependent Role="MemberStatu">
               <PropertyRef Name="StatusID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_MemberTag_SubTag">
-          <End Role="SubTag" Type="Self.SubTag" Multiplicity="0..1" />
-          <End Role="MemberTag" Type="Self.MemberTag" Multiplicity="*" />
+          <End Type="DB_GamingFormModel.SubTag" Role="SubTag" Multiplicity="0..1" />
+          <End Type="DB_GamingFormModel.MemberTag" Role="MemberTag" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SubTag">
               <PropertyRef Name="SubTagID" />
@@ -2167,8 +2392,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_MemberTag_Tag">
-          <End Role="Tag" Type="Self.Tag" Multiplicity="0..1" />
-          <End Role="MemberTag" Type="Self.MemberTag" Multiplicity="*" />
+          <End Type="DB_GamingFormModel.Tag" Role="Tag" Multiplicity="0..1" />
+          <End Type="DB_GamingFormModel.MemberTag" Role="MemberTag" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Tag">
               <PropertyRef Name="TagID" />
@@ -2179,8 +2404,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Order_Payment">
-          <End Role="Payment" Type="Self.Payment" Multiplicity="1" />
-          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <End Type="DB_GamingFormModel.Payment" Role="Payment" Multiplicity="1" />
+          <End Type="DB_GamingFormModel.Order" Role="Order" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Payment">
               <PropertyRef Name="PaymentID" />
@@ -2191,8 +2416,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Order_RegionDistrict">
-          <End Role="RegionDistrict" Type="Self.RegionDistrict" Multiplicity="0..1" />
-          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <End Type="DB_GamingFormModel.RegionDistrict" Role="RegionDistrict" Multiplicity="0..1" />
+          <End Type="DB_GamingFormModel.Order" Role="Order" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="RegionDistrict">
               <PropertyRef Name="Zipcode" />
@@ -2203,8 +2428,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Order_ShipMethod">
-          <End Role="ShipMethod" Type="Self.ShipMethod" Multiplicity="1" />
-          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <End Type="DB_GamingFormModel.ShipMethod" Role="ShipMethod" Multiplicity="1" />
+          <End Type="DB_GamingFormModel.Order" Role="Order" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ShipMethod">
               <PropertyRef Name="ShipID" />
@@ -2215,8 +2440,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Order_Status">
-          <End Role="Status" Type="Self.Status" Multiplicity="1" />
-          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <End Type="DB_GamingFormModel.Status" Role="Status" Multiplicity="1" />
+          <End Type="DB_GamingFormModel.Order" Role="Order" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Status">
               <PropertyRef Name="StatusID" />
@@ -2227,8 +2452,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_OrderProduct_Order">
-          <End Role="Order" Type="Self.Order" Multiplicity="1" />
-          <End Role="OrderProduct" Type="Self.OrderProduct" Multiplicity="*" />
+          <End Type="DB_GamingFormModel.Order" Role="Order" Multiplicity="1" />
+          <End Type="DB_GamingFormModel.OrderProduct" Role="OrderProduct" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Order">
               <PropertyRef Name="OrderID" />
@@ -2239,8 +2464,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_OrderProduct_Product">
-          <End Role="Product" Type="Self.Product" Multiplicity="1" />
-          <End Role="OrderProduct" Type="Self.OrderProduct" Multiplicity="*" />
+          <End Type="DB_GamingFormModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="DB_GamingFormModel.OrderProduct" Role="OrderProduct" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Product">
               <PropertyRef Name="ProductID" />
@@ -2251,8 +2476,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Product_Status">
-          <End Role="Status" Type="Self.Status" Multiplicity="1" />
-          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <End Type="DB_GamingFormModel.Status" Role="Status" Multiplicity="1" />
+          <End Type="DB_GamingFormModel.Product" Role="Product" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Status">
               <PropertyRef Name="StatusID" />
@@ -2263,8 +2488,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ProductAction_Product">
-          <End Role="Product" Type="Self.Product" Multiplicity="1" />
-          <End Role="ProductTag" Type="Self.ProductTag" Multiplicity="*" />
+          <End Type="DB_GamingFormModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="DB_GamingFormModel.ProductTag" Role="ProductTag" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Product">
               <PropertyRef Name="ProductID" />
@@ -2275,8 +2500,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ProductAdvertise_Product">
-          <End Role="Product" Type="Self.Product" Multiplicity="1" />
-          <End Role="ProductAdvertise" Type="Self.ProductAdvertise" Multiplicity="*" />
+          <End Type="DB_GamingFormModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="DB_GamingFormModel.ProductAdvertise" Role="ProductAdvertise" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Product">
               <PropertyRef Name="ProductID" />
@@ -2287,8 +2512,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ProductEvaluate_Product">
-          <End Role="Product" Type="Self.Product" Multiplicity="1" />
-          <End Role="ProductEvaluate" Type="Self.ProductEvaluate" Multiplicity="*" />
+          <End Type="DB_GamingFormModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="DB_GamingFormModel.ProductEvaluate" Role="ProductEvaluate" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Product">
               <PropertyRef Name="ProductID" />
@@ -2299,8 +2524,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_WishList_Product">
-          <End Role="Product" Type="Self.Product" Multiplicity="1" />
-          <End Role="WishList" Type="Self.WishList" Multiplicity="*" />
+          <End Type="DB_GamingFormModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="DB_GamingFormModel.WishList" Role="WishList" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Product">
               <PropertyRef Name="ProductID" />
@@ -2311,8 +2536,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ProductAction_SubTag">
-          <End Role="SubTag" Type="Self.SubTag" Multiplicity="1" />
-          <End Role="ProductTag" Type="Self.ProductTag" Multiplicity="*" />
+          <End Type="DB_GamingFormModel.SubTag" Role="SubTag" Multiplicity="1" />
+          <End Type="DB_GamingFormModel.ProductTag" Role="ProductTag" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SubTag">
               <PropertyRef Name="SubTagID" />
@@ -2323,8 +2548,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_RegionDistrict_Region">
-          <End Role="Region" Type="Self.Region" Multiplicity="1" />
-          <End Role="RegionDistrict" Type="Self.RegionDistrict" Multiplicity="*" />
+          <End Type="DB_GamingFormModel.Region" Role="Region" Multiplicity="1" />
+          <End Type="DB_GamingFormModel.RegionDistrict" Role="RegionDistrict" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Region">
               <PropertyRef Name="RegionID" />
@@ -2335,8 +2560,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Skill_SkillClass">
-          <End Role="SkillClass" Type="Self.SkillClass" Multiplicity="1" />
-          <End Role="Skill" Type="Self.Skill" Multiplicity="*" />
+          <End Type="DB_GamingFormModel.SkillClass" Role="SkillClass" Multiplicity="1" />
+          <End Type="DB_GamingFormModel.Skill" Role="Skill" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SkillClass">
               <PropertyRef Name="SkillClassID" />
@@ -2347,8 +2572,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SubTag_Tag">
-          <End Role="Tag" Type="Self.Tag" Multiplicity="1" />
-          <End Role="SubTag" Type="Self.SubTag" Multiplicity="*" />
+          <End Type="DB_GamingFormModel.Tag" Role="Tag" Multiplicity="1" />
+          <End Type="DB_GamingFormModel.SubTag" Role="SubTag" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Tag">
               <PropertyRef Name="TagID" />
@@ -2358,247 +2583,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="DB_GamingFormEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Actions" EntityType="Self.Action" />
-          <EntitySet Name="Admins" EntityType="Self.Admin" />
-          <EntitySet Name="AdminRanks" EntityType="Self.AdminRank" />
-          <EntitySet Name="Advertises" EntityType="Self.Advertise" />
-          <EntitySet Name="Articles" EntityType="Self.Article" />
-          <EntitySet Name="ArticleActions" EntityType="Self.ArticleAction" />
-          <EntitySet Name="Blogs" EntityType="Self.Blog" />
-          <EntitySet Name="Certificates" EntityType="Self.Certificate" />
-          <EntitySet Name="Deputes" EntityType="Self.Depute" />
-          <EntitySet Name="DeputeRecords" EntityType="Self.DeputeRecord" />
-          <EntitySet Name="DeputeSkills" EntityType="Self.DeputeSkill" />
-          <EntitySet Name="Educations" EntityType="Self.Education" />
-          <EntitySet Name="Firms" EntityType="Self.Firm" />
-          <EntitySet Name="Images" EntityType="Self.Image" />
-          <EntitySet Name="JobAdvertises" EntityType="Self.JobAdvertise" />
-          <EntitySet Name="JobCertificates" EntityType="Self.JobCertificate" />
-          <EntitySet Name="Members" EntityType="Self.Member" />
-          <EntitySet Name="MemberStatus" EntityType="Self.MemberStatu" />
-          <EntitySet Name="MemberTags" EntityType="Self.MemberTag" />
-          <EntitySet Name="Orders" EntityType="Self.Order" />
-          <EntitySet Name="OrderProducts" EntityType="Self.OrderProduct" />
-          <EntitySet Name="Payments" EntityType="Self.Payment" />
-          <EntitySet Name="Products" EntityType="Self.Product" />
-          <EntitySet Name="ProductAdvertises" EntityType="Self.ProductAdvertise" />
-          <EntitySet Name="ProductEvaluates" EntityType="Self.ProductEvaluate" />
-          <EntitySet Name="ProductTags" EntityType="Self.ProductTag" />
-          <EntitySet Name="Regions" EntityType="Self.Region" />
-          <EntitySet Name="RegionDistricts" EntityType="Self.RegionDistrict" />
-          <EntitySet Name="Replies" EntityType="Self.Reply" />
-          <EntitySet Name="ReplyActions" EntityType="Self.ReplyAction" />
-          <EntitySet Name="ReplyImages" EntityType="Self.ReplyImage" />
-          <EntitySet Name="Resumes" EntityType="Self.Resume" />
-          <EntitySet Name="ResumeCertificates" EntityType="Self.ResumeCertificate" />
-          <EntitySet Name="ResumeSkills" EntityType="Self.ResumeSkill" />
-          <EntitySet Name="ResumeStyles" EntityType="Self.ResumeStyle" />
-          <EntitySet Name="SerachRecords" EntityType="Self.SerachRecord" />
-          <EntitySet Name="ShipMethods" EntityType="Self.ShipMethod" />
-          <EntitySet Name="Skills" EntityType="Self.Skill" />
-          <EntitySet Name="SkillClasses" EntityType="Self.SkillClass" />
-          <EntitySet Name="Status" EntityType="Self.Status" />
-          <EntitySet Name="SubBlogs" EntityType="Self.SubBlog" />
-          <EntitySet Name="SubBolgCategories" EntityType="Self.SubBolgCategory" />
-          <EntitySet Name="SubTags" EntityType="Self.SubTag" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
-          <EntitySet Name="Tags" EntityType="Self.Tag" />
-          <EntitySet Name="WishLists" EntityType="Self.WishList" />
-          <AssociationSet Name="FK_ArticleAction_Action" Association="Self.FK_ArticleAction_Action">
-            <End Role="Action" EntitySet="Actions" />
-            <End Role="ArticleAction" EntitySet="ArticleActions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Admin_AdminRank" Association="Self.FK_Admin_AdminRank">
-            <End Role="AdminRank" EntitySet="AdminRanks" />
-            <End Role="Admin" EntitySet="Admins" />
-          </AssociationSet>
-          <AssociationSet Name="FK_AD_Status" Association="Self.FK_AD_Status">
-            <End Role="Status" EntitySet="Status" />
-            <End Role="Advertise" EntitySet="Advertises" />
-          </AssociationSet>
-          <AssociationSet Name="FK_JobAdvertise_AD" Association="Self.FK_JobAdvertise_AD">
-            <End Role="Advertise" EntitySet="Advertises" />
-            <End Role="JobAdvertise" EntitySet="JobAdvertises" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProductAdvertise_AD" Association="Self.FK_ProductAdvertise_AD">
-            <End Role="Advertise" EntitySet="Advertises" />
-            <End Role="ProductAdvertise" EntitySet="ProductAdvertises" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Article_Article" Association="Self.FK_Article_Article">
-            <End Role="Article" EntitySet="Articles" />
-            <End Role="Article1" EntitySet="Articles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Article_Member" Association="Self.FK_Article_Member">
-            <End Role="Member" EntitySet="Members" />
-            <End Role="Article" EntitySet="Articles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Article_SubBlog" Association="Self.FK_Article_SubBlog">
-            <End Role="SubBlog" EntitySet="SubBlogs" />
-            <End Role="Article" EntitySet="Articles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ArticleAction_Article" Association="Self.FK_ArticleAction_Article">
-            <End Role="Article" EntitySet="Articles" />
-            <End Role="ArticleAction" EntitySet="ArticleActions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Reply_Article" Association="Self.FK_Reply_Article">
-            <End Role="Article" EntitySet="Articles" />
-            <End Role="Reply" EntitySet="Replies" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ArticleAction_Member" Association="Self.FK_ArticleAction_Member">
-            <End Role="Member" EntitySet="Members" />
-            <End Role="ArticleAction" EntitySet="ArticleActions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Blog_Image" Association="Self.FK_Blog_Image">
-            <End Role="Image" EntitySet="Images" />
-            <End Role="Blog" EntitySet="Blogs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Blog_SubTag" Association="Self.FK_Blog_SubTag">
-            <End Role="SubTag" EntitySet="SubTags" />
-            <End Role="Blog" EntitySet="Blogs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SubBlog_Blog" Association="Self.FK_SubBlog_Blog">
-            <End Role="Blog" EntitySet="Blogs" />
-            <End Role="SubBlog" EntitySet="SubBlogs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Depute_Member" Association="Self.FK_Depute_Member">
-            <End Role="Member" EntitySet="Members" />
-            <End Role="Depute" EntitySet="Deputes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Depute_Status" Association="Self.FK_Depute_Status">
-            <End Role="Status" EntitySet="Status" />
-            <End Role="Depute" EntitySet="Deputes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_DeputeRecord_Depute" Association="Self.FK_DeputeRecord_Depute">
-            <End Role="Depute" EntitySet="Deputes" />
-            <End Role="DeputeRecord" EntitySet="DeputeRecords" />
-          </AssociationSet>
-          <AssociationSet Name="FK_DeputeSkill_Depute" Association="Self.FK_DeputeSkill_Depute">
-            <End Role="Depute" EntitySet="Deputes" />
-            <End Role="DeputeSkill" EntitySet="DeputeSkills" />
-          </AssociationSet>
-          <AssociationSet Name="FK_DeputeRecord_Member" Association="Self.FK_DeputeRecord_Member">
-            <End Role="Member" EntitySet="Members" />
-            <End Role="DeputeRecord" EntitySet="DeputeRecords" />
-          </AssociationSet>
-          <AssociationSet Name="FK_DeputeRecord_Status" Association="Self.FK_DeputeRecord_Status">
-            <End Role="Status" EntitySet="Status" />
-            <End Role="DeputeRecord" EntitySet="DeputeRecords" />
-          </AssociationSet>
-          <AssociationSet Name="FK_DeputeSkill_Skill" Association="Self.FK_DeputeSkill_Skill">
-            <End Role="Skill" EntitySet="Skills" />
-            <End Role="DeputeSkill" EntitySet="DeputeSkills" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Member_Image" Association="Self.FK_Member_Image">
-            <End Role="Image" EntitySet="Images" />
-            <End Role="Member" EntitySet="Members" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Product_Image" Association="Self.FK_Product_Image">
-            <End Role="Image" EntitySet="Images" />
-            <End Role="Product" EntitySet="Products" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MemberStatus_Member" Association="Self.FK_MemberStatus_Member">
-            <End Role="Member" EntitySet="Members" />
-            <End Role="MemberStatus" EntitySet="MemberStatus" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MemberTag_Member" Association="Self.FK_MemberTag_Member">
-            <End Role="Member" EntitySet="Members" />
-            <End Role="MemberTag" EntitySet="MemberTags" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Order_Member" Association="Self.FK_Order_Member">
-            <End Role="Member" EntitySet="Members" />
-            <End Role="Order" EntitySet="Orders" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Product_Member" Association="Self.FK_Product_Member">
-            <End Role="Member" EntitySet="Members" />
-            <End Role="Product" EntitySet="Products" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProductEvaluate_Member" Association="Self.FK_ProductEvaluate_Member">
-            <End Role="Member" EntitySet="Members" />
-            <End Role="ProductEvaluate" EntitySet="ProductEvaluates" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Reply_Member" Association="Self.FK_Reply_Member">
-            <End Role="Member" EntitySet="Members" />
-            <End Role="Reply" EntitySet="Replies" />
-          </AssociationSet>
-          <AssociationSet Name="FK_WishList_Member" Association="Self.FK_WishList_Member">
-            <End Role="Member" EntitySet="Members" />
-            <End Role="WishList" EntitySet="WishLists" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MemberStatus_Status" Association="Self.FK_MemberStatus_Status">
-            <End Role="Status" EntitySet="Status" />
-            <End Role="MemberStatus" EntitySet="MemberStatus" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MemberTag_SubTag" Association="Self.FK_MemberTag_SubTag">
-            <End Role="SubTag" EntitySet="SubTags" />
-            <End Role="MemberTag" EntitySet="MemberTags" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MemberTag_Tag" Association="Self.FK_MemberTag_Tag">
-            <End Role="Tag" EntitySet="Tags" />
-            <End Role="MemberTag" EntitySet="MemberTags" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Order_Payment" Association="Self.FK_Order_Payment">
-            <End Role="Payment" EntitySet="Payments" />
-            <End Role="Order" EntitySet="Orders" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Order_RegionDistrict" Association="Self.FK_Order_RegionDistrict">
-            <End Role="RegionDistrict" EntitySet="RegionDistricts" />
-            <End Role="Order" EntitySet="Orders" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Order_ShipMethod" Association="Self.FK_Order_ShipMethod">
-            <End Role="ShipMethod" EntitySet="ShipMethods" />
-            <End Role="Order" EntitySet="Orders" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Order_Status" Association="Self.FK_Order_Status">
-            <End Role="Status" EntitySet="Status" />
-            <End Role="Order" EntitySet="Orders" />
-          </AssociationSet>
-          <AssociationSet Name="FK_OrderProduct_Order" Association="Self.FK_OrderProduct_Order">
-            <End Role="Order" EntitySet="Orders" />
-            <End Role="OrderProduct" EntitySet="OrderProducts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_OrderProduct_Product" Association="Self.FK_OrderProduct_Product">
-            <End Role="Product" EntitySet="Products" />
-            <End Role="OrderProduct" EntitySet="OrderProducts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Product_Status" Association="Self.FK_Product_Status">
-            <End Role="Status" EntitySet="Status" />
-            <End Role="Product" EntitySet="Products" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProductAction_Product" Association="Self.FK_ProductAction_Product">
-            <End Role="Product" EntitySet="Products" />
-            <End Role="ProductTag" EntitySet="ProductTags" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProductAdvertise_Product" Association="Self.FK_ProductAdvertise_Product">
-            <End Role="Product" EntitySet="Products" />
-            <End Role="ProductAdvertise" EntitySet="ProductAdvertises" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProductEvaluate_Product" Association="Self.FK_ProductEvaluate_Product">
-            <End Role="Product" EntitySet="Products" />
-            <End Role="ProductEvaluate" EntitySet="ProductEvaluates" />
-          </AssociationSet>
-          <AssociationSet Name="FK_WishList_Product" Association="Self.FK_WishList_Product">
-            <End Role="Product" EntitySet="Products" />
-            <End Role="WishList" EntitySet="WishLists" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProductAction_SubTag" Association="Self.FK_ProductAction_SubTag">
-            <End Role="SubTag" EntitySet="SubTags" />
-            <End Role="ProductTag" EntitySet="ProductTags" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RegionDistrict_Region" Association="Self.FK_RegionDistrict_Region">
-            <End Role="Region" EntitySet="Regions" />
-            <End Role="RegionDistrict" EntitySet="RegionDistricts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Skill_SkillClass" Association="Self.FK_Skill_SkillClass">
-            <End Role="SkillClass" EntitySet="SkillClasses" />
-            <End Role="Skill" EntitySet="Skills" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SubTag_Tag" Association="Self.FK_SubTag_Tag">
-            <End Role="Tag" EntitySet="Tags" />
-            <End Role="SubTag" EntitySet="SubTags" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema>
+        <Association Name="FK_Depute_Status">
+          <End Type="DB_GamingFormModel.Status" Role="Status" Multiplicity="1" />
+          <End Type="DB_GamingFormModel.Depute" Role="Depute" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="Depute">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -2607,476 +2604,475 @@
           <EntitySetMapping Name="Actions">
             <EntityTypeMapping TypeName="DB_GamingFormModel.Action">
               <MappingFragment StoreEntitySet="Action">
-                <ScalarProperty Name="ActionID" ColumnName="ActionID" />
                 <ScalarProperty Name="ActionType" ColumnName="ActionType" />
+                <ScalarProperty Name="ActionID" ColumnName="ActionID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Admins">
             <EntityTypeMapping TypeName="DB_GamingFormModel.Admin">
               <MappingFragment StoreEntitySet="Admin">
-                <ScalarProperty Name="AdminID" ColumnName="AdminID" />
-                <ScalarProperty Name="AdminAccount" ColumnName="AdminAccount" />
-                <ScalarProperty Name="AdminPassword" ColumnName="AdminPassword" />
                 <ScalarProperty Name="RankID" ColumnName="RankID" />
+                <ScalarProperty Name="AdminPassword" ColumnName="AdminPassword" />
+                <ScalarProperty Name="AdminAccount" ColumnName="AdminAccount" />
+                <ScalarProperty Name="AdminID" ColumnName="AdminID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AdminRanks">
             <EntityTypeMapping TypeName="DB_GamingFormModel.AdminRank">
               <MappingFragment StoreEntitySet="AdminRank">
-                <ScalarProperty Name="RankID" ColumnName="RankID" />
-                <ScalarProperty Name="RK_Product" ColumnName="RK_Product" />
-                <ScalarProperty Name="RK_Member" ColumnName="RK_Member" />
-                <ScalarProperty Name="RK_Blog" ColumnName="RK_Blog" />
-                <ScalarProperty Name="RK_Firm" ColumnName="RK_Firm" />
                 <ScalarProperty Name="RK_Order" ColumnName="RK_Order" />
+                <ScalarProperty Name="RK_Firm" ColumnName="RK_Firm" />
+                <ScalarProperty Name="RK_Blog" ColumnName="RK_Blog" />
+                <ScalarProperty Name="RK_Member" ColumnName="RK_Member" />
+                <ScalarProperty Name="RK_Product" ColumnName="RK_Product" />
+                <ScalarProperty Name="RankID" ColumnName="RankID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Advertises">
             <EntityTypeMapping TypeName="DB_GamingFormModel.Advertise">
               <MappingFragment StoreEntitySet="Advertise">
-                <ScalarProperty Name="AdvertiseID" ColumnName="AdvertiseID" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="AdContent" ColumnName="AdContent" />
-                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
-                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
                 <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="AdContent" ColumnName="AdContent" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="AdvertiseID" ColumnName="AdvertiseID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Articles">
             <EntityTypeMapping TypeName="DB_GamingFormModel.Article">
               <MappingFragment StoreEntitySet="Article">
-                <ScalarProperty Name="ArticleID" ColumnName="ArticleID" />
-                <ScalarProperty Name="SubBlogID" ColumnName="SubBlogID" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="ArticleContent" ColumnName="ArticleContent" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
                 <ScalarProperty Name="ReplyArticleID" ColumnName="ReplyArticleID" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ArticleContent" ColumnName="ArticleContent" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="SubBlogID" ColumnName="SubBlogID" />
+                <ScalarProperty Name="ArticleID" ColumnName="ArticleID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ArticleActions">
             <EntityTypeMapping TypeName="DB_GamingFormModel.ArticleAction">
               <MappingFragment StoreEntitySet="ArticleAction">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="ArticleID" ColumnName="ArticleID" />
-                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
                 <ScalarProperty Name="ActionID" ColumnName="ActionID" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="ArticleID" ColumnName="ArticleID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Blogs">
             <EntityTypeMapping TypeName="DB_GamingFormModel.Blog">
               <MappingFragment StoreEntitySet="Blog">
-                <ScalarProperty Name="BlogID" ColumnName="BlogID" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="SubTagID" ColumnName="SubTagID" />
                 <ScalarProperty Name="ImageID" ColumnName="ImageID" />
+                <ScalarProperty Name="SubTagID" ColumnName="SubTagID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="BlogID" ColumnName="BlogID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Certificates">
             <EntityTypeMapping TypeName="DB_GamingFormModel.Certificate">
               <MappingFragment StoreEntitySet="Certificate">
-                <ScalarProperty Name="CertificateID" ColumnName="CertificateID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CertificateID" ColumnName="CertificateID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Deputes">
             <EntityTypeMapping TypeName="DB_GamingFormModel.Depute">
               <MappingFragment StoreEntitySet="Depute">
-                <ScalarProperty Name="DeputeID" ColumnName="DeputeID" />
-                <ScalarProperty Name="ProviderID" ColumnName="ProviderID" />
-                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
-                <ScalarProperty Name="Modifiedate" ColumnName="Modifiedate" />
-                <ScalarProperty Name="DeputeContent" ColumnName="DeputeContent" />
-                <ScalarProperty Name="Salary" ColumnName="Salary" />
                 <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="DeputeContent" ColumnName="DeputeContent" />
+                <ScalarProperty Name="Modifiedate" ColumnName="Modifiedate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="ProviderID" ColumnName="ProviderID" />
+                <ScalarProperty Name="DeputeID" ColumnName="DeputeID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DeputeRecords">
             <EntityTypeMapping TypeName="DB_GamingFormModel.DeputeRecord">
               <MappingFragment StoreEntitySet="DeputeRecord">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="DeputeID" ColumnName="DeputeID" />
-                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
                 <ScalarProperty Name="ApplyStatusID" ColumnName="ApplyStatusID" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="DeputeID" ColumnName="DeputeID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DeputeSkills">
             <EntityTypeMapping TypeName="DB_GamingFormModel.DeputeSkill">
               <MappingFragment StoreEntitySet="DeputeSkill">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="DeputeID" ColumnName="DeputeID" />
                 <ScalarProperty Name="SkillID" ColumnName="SkillID" />
+                <ScalarProperty Name="DeputeID" ColumnName="DeputeID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Educations">
             <EntityTypeMapping TypeName="DB_GamingFormModel.Education">
               <MappingFragment StoreEntitySet="Education">
-                <ScalarProperty Name="EDID" ColumnName="EDID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="EDID" ColumnName="EDID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Firms">
             <EntityTypeMapping TypeName="DB_GamingFormModel.Firm">
               <MappingFragment StoreEntitySet="Firm">
-                <ScalarProperty Name="FirmID" ColumnName="FirmID" />
-                <ScalarProperty Name="FirmName" ColumnName="FirmName" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="TaxID" ColumnName="TaxID" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="FirmAddress" ColumnName="FirmAddress" />
-                <ScalarProperty Name="FirmScale" ColumnName="FirmScale" />
-                <ScalarProperty Name="FirmIntro" ColumnName="FirmIntro" />
-                <ScalarProperty Name="Contact" ColumnName="Contact" />
-                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
                 <ScalarProperty Name="ImageID" ColumnName="ImageID" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="FirmIntro" ColumnName="FirmIntro" />
+                <ScalarProperty Name="FirmScale" ColumnName="FirmScale" />
+                <ScalarProperty Name="FirmAddress" ColumnName="FirmAddress" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="TaxID" ColumnName="TaxID" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="FirmName" ColumnName="FirmName" />
+                <ScalarProperty Name="FirmID" ColumnName="FirmID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Images">
             <EntityTypeMapping TypeName="DB_GamingFormModel.Image">
               <MappingFragment StoreEntitySet="Image">
-                <ScalarProperty Name="ImageID" ColumnName="ImageID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Image1" ColumnName="Image" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ImageID" ColumnName="ImageID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="JobAdvertises">
             <EntityTypeMapping TypeName="DB_GamingFormModel.JobAdvertise">
               <MappingFragment StoreEntitySet="JobAdvertise">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="JobID" ColumnName="JobID" />
                 <ScalarProperty Name="AdvertiseID" ColumnName="AdvertiseID" />
+                <ScalarProperty Name="JobID" ColumnName="JobID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="JobCertificates">
             <EntityTypeMapping TypeName="DB_GamingFormModel.JobCertificate">
               <MappingFragment StoreEntitySet="JobCertificate">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="CertificateID" ColumnName="CertificateID" />
                 <ScalarProperty Name="JobID" ColumnName="JobID" />
+                <ScalarProperty Name="CertificateID" ColumnName="CertificateID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Members">
             <EntityTypeMapping TypeName="DB_GamingFormModel.Member">
               <MappingFragment StoreEntitySet="Member">
-                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Birth" ColumnName="Birth" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="ImageID" ColumnName="ImageID" />
-                <ScalarProperty Name="Mycomment" ColumnName="Mycomment" />
                 <ScalarProperty Name="BonusPoint" ColumnName="BonusPoint" />
+                <ScalarProperty Name="Mycomment" ColumnName="Mycomment" />
+                <ScalarProperty Name="ImageID" ColumnName="ImageID" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Birth" ColumnName="Birth" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MemberStatus">
             <EntityTypeMapping TypeName="DB_GamingFormModel.MemberStatu">
               <MappingFragment StoreEntitySet="MemberStatus">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="MemeberID" ColumnName="MemeberID" />
                 <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="MemeberID" ColumnName="MemeberID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MemberTags">
             <EntityTypeMapping TypeName="DB_GamingFormModel.MemberTag">
               <MappingFragment StoreEntitySet="MemberTag">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
-                <ScalarProperty Name="TagID" ColumnName="TagID" />
                 <ScalarProperty Name="SubTagID" ColumnName="SubTagID" />
+                <ScalarProperty Name="TagID" ColumnName="TagID" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Orders">
             <EntityTypeMapping TypeName="DB_GamingFormModel.Order">
               <MappingFragment StoreEntitySet="Order">
-                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
-                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
-                <ScalarProperty Name="FirmID" ColumnName="FirmID" />
-                <ScalarProperty Name="ShipName" ColumnName="ShipName" />
-                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
-                <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
-                <ScalarProperty Name="ShippingDate" ColumnName="ShippingDate" />
-                <ScalarProperty Name="CompletedDate" ColumnName="CompletedDate" />
-                <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
-                <ScalarProperty Name="ShipID" ColumnName="ShipID" />
-                <ScalarProperty Name="Zipcode" ColumnName="Zipcode" />
-                <ScalarProperty Name="ShipAddress" ColumnName="ShipAddress" />
-                <ScalarProperty Name="Note" ColumnName="Note" />
                 <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="ShipAddress" ColumnName="ShipAddress" />
+                <ScalarProperty Name="Zipcode" ColumnName="Zipcode" />
+                <ScalarProperty Name="ShipID" ColumnName="ShipID" />
+                <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
+                <ScalarProperty Name="CompletedDate" ColumnName="CompletedDate" />
+                <ScalarProperty Name="ShippingDate" ColumnName="ShippingDate" />
+                <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="ShipName" ColumnName="ShipName" />
+                <ScalarProperty Name="FirmID" ColumnName="FirmID" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="OrderProducts">
             <EntityTypeMapping TypeName="DB_GamingFormModel.OrderProduct">
               <MappingFragment StoreEntitySet="OrderProduct">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
-                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
-                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
-                <ScalarProperty Name="Quantinty" ColumnName="Quantinty" />
                 <ScalarProperty Name="Disconut" ColumnName="Disconut" />
+                <ScalarProperty Name="Quantinty" ColumnName="Quantinty" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Payments">
             <EntityTypeMapping TypeName="DB_GamingFormModel.Payment">
               <MappingFragment StoreEntitySet="Payment">
-                <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="DB_GamingFormModel.Product">
               <MappingFragment StoreEntitySet="Product">
-                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
-                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="AvailableDate" ColumnName="AvailableDate" />
-                <ScalarProperty Name="ProductContent" ColumnName="ProductContent" />
-                <ScalarProperty Name="UnitStock" ColumnName="UnitStock" />
-                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
-                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
-                <ScalarProperty Name="FirmID" ColumnName="FirmID" />
                 <ScalarProperty Name="ImageID" ColumnName="ImageID" />
+                <ScalarProperty Name="FirmID" ColumnName="FirmID" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="UnitStock" ColumnName="UnitStock" />
+                <ScalarProperty Name="ProductContent" ColumnName="ProductContent" />
+                <ScalarProperty Name="AvailableDate" ColumnName="AvailableDate" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ProductAdvertises">
             <EntityTypeMapping TypeName="DB_GamingFormModel.ProductAdvertise">
               <MappingFragment StoreEntitySet="ProductAdvertise">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
                 <ScalarProperty Name="AdvertiseID" ColumnName="AdvertiseID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ProductEvaluates">
             <EntityTypeMapping TypeName="DB_GamingFormModel.ProductEvaluate">
               <MappingFragment StoreEntitySet="ProductEvaluate">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
-                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
-                <ScalarProperty Name="EvaLevel" ColumnName="EvaLevel" />
                 <ScalarProperty Name="EvaContent" ColumnName="EvaContent" />
+                <ScalarProperty Name="EvaLevel" ColumnName="EvaLevel" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ProductTags">
             <EntityTypeMapping TypeName="DB_GamingFormModel.ProductTag">
               <MappingFragment StoreEntitySet="ProductTag">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
                 <ScalarProperty Name="SubTagID" ColumnName="SubTagID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Regions">
             <EntityTypeMapping TypeName="DB_GamingFormModel.Region">
               <MappingFragment StoreEntitySet="Region">
-                <ScalarProperty Name="RegionID" ColumnName="RegionID" />
                 <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="RegionID" ColumnName="RegionID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="RegionDistricts">
             <EntityTypeMapping TypeName="DB_GamingFormModel.RegionDistrict">
               <MappingFragment StoreEntitySet="RegionDistrict">
-                <ScalarProperty Name="Zipcode" ColumnName="Zipcode" />
-                <ScalarProperty Name="RegionID" ColumnName="RegionID" />
                 <ScalarProperty Name="District" ColumnName="District" />
+                <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+                <ScalarProperty Name="Zipcode" ColumnName="Zipcode" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Replies">
             <EntityTypeMapping TypeName="DB_GamingFormModel.Reply">
               <MappingFragment StoreEntitySet="Reply">
-                <ScalarProperty Name="ReplyID" ColumnName="ReplyID" />
-                <ScalarProperty Name="ArticleID" ColumnName="ArticleID" />
-                <ScalarProperty Name="ReplyContents" ColumnName="ReplyContents" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
                 <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ReplyContents" ColumnName="ReplyContents" />
+                <ScalarProperty Name="ArticleID" ColumnName="ArticleID" />
+                <ScalarProperty Name="ReplyID" ColumnName="ReplyID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ReplyActions">
             <EntityTypeMapping TypeName="DB_GamingFormModel.ReplyAction">
               <MappingFragment StoreEntitySet="ReplyAction">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
-                <ScalarProperty Name="ReplyID" ColumnName="ReplyID" />
                 <ScalarProperty Name="ActionID" ColumnName="ActionID" />
+                <ScalarProperty Name="ReplyID" ColumnName="ReplyID" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ReplyImages">
             <EntityTypeMapping TypeName="DB_GamingFormModel.ReplyImage">
               <MappingFragment StoreEntitySet="ReplyImage">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="ReplyID" ColumnName="ReplyID" />
                 <ScalarProperty Name="ImageID" ColumnName="ImageID" />
+                <ScalarProperty Name="ReplyID" ColumnName="ReplyID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Resumes">
             <EntityTypeMapping TypeName="DB_GamingFormModel.Resume">
               <MappingFragment StoreEntitySet="Resume">
-                <ScalarProperty Name="ResumeID" ColumnName="ResumeID" />
-                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
-                <ScalarProperty Name="FullName" ColumnName="FullName" />
-                <ScalarProperty Name="IdentityID" ColumnName="IdentityID" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="ResumeContent" ColumnName="ResumeContent" />
-                <ScalarProperty Name="WorkExp" ColumnName="WorkExp" />
-                <ScalarProperty Name="FormID" ColumnName="FormID" />
-                <ScalarProperty Name="ResumeStatusID" ColumnName="ResumeStatusID" />
-                <ScalarProperty Name="ImageID" ColumnName="ImageID" />
                 <ScalarProperty Name="EDID" ColumnName="EDID" />
+                <ScalarProperty Name="ImageID" ColumnName="ImageID" />
+                <ScalarProperty Name="ResumeStatusID" ColumnName="ResumeStatusID" />
+                <ScalarProperty Name="FormID" ColumnName="FormID" />
+                <ScalarProperty Name="WorkExp" ColumnName="WorkExp" />
+                <ScalarProperty Name="ResumeContent" ColumnName="ResumeContent" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="IdentityID" ColumnName="IdentityID" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="ResumeID" ColumnName="ResumeID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ResumeCertificates">
             <EntityTypeMapping TypeName="DB_GamingFormModel.ResumeCertificate">
               <MappingFragment StoreEntitySet="ResumeCertificate">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="ResumeID" ColumnName="ResumeID" />
                 <ScalarProperty Name="CertificateID" ColumnName="CertificateID" />
+                <ScalarProperty Name="ResumeID" ColumnName="ResumeID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ResumeSkills">
             <EntityTypeMapping TypeName="DB_GamingFormModel.ResumeSkill">
               <MappingFragment StoreEntitySet="ResumeSkill">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="ResumeID" ColumnName="ResumeID" />
                 <ScalarProperty Name="SkillID" ColumnName="SkillID" />
+                <ScalarProperty Name="ResumeID" ColumnName="ResumeID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ResumeStyles">
             <EntityTypeMapping TypeName="DB_GamingFormModel.ResumeStyle">
               <MappingFragment StoreEntitySet="ResumeStyle">
-                <ScalarProperty Name="FormID" ColumnName="FormID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="FormID" ColumnName="FormID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SerachRecords">
             <EntityTypeMapping TypeName="DB_GamingFormModel.SerachRecord">
               <MappingFragment StoreEntitySet="SerachRecord">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="CreateDays" ColumnName="CreateDays" />
                 <ScalarProperty Name="IsMember" ColumnName="IsMember" />
+                <ScalarProperty Name="CreateDays" ColumnName="CreateDays" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ShipMethods">
             <EntityTypeMapping TypeName="DB_GamingFormModel.ShipMethod">
               <MappingFragment StoreEntitySet="ShipMethod">
-                <ScalarProperty Name="ShipID" ColumnName="ShipID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ShipID" ColumnName="ShipID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Skills">
             <EntityTypeMapping TypeName="DB_GamingFormModel.Skill">
               <MappingFragment StoreEntitySet="Skill">
-                <ScalarProperty Name="SkillID" ColumnName="SkillID" />
-                <ScalarProperty Name="SkillClassID" ColumnName="SkillClassID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SkillClassID" ColumnName="SkillClassID" />
+                <ScalarProperty Name="SkillID" ColumnName="SkillID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SkillClasses">
             <EntityTypeMapping TypeName="DB_GamingFormModel.SkillClass">
               <MappingFragment StoreEntitySet="SkillClass">
-                <ScalarProperty Name="SkillClassID" ColumnName="SkillClassID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SkillClassID" ColumnName="SkillClassID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Status">
             <EntityTypeMapping TypeName="DB_GamingFormModel.Status">
               <MappingFragment StoreEntitySet="Status">
-                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SubBlogs">
             <EntityTypeMapping TypeName="DB_GamingFormModel.SubBlog">
               <MappingFragment StoreEntitySet="SubBlog">
-                <ScalarProperty Name="SubBlogID" ColumnName="SubBlogID" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="BlogID" ColumnName="BlogID" />
-                <ScalarProperty Name="ParentBlogID" ColumnName="ParentBlogID" />
                 <ScalarProperty Name="IsMemberBlog" ColumnName="IsMemberBlog" />
+                <ScalarProperty Name="ParentBlogID" ColumnName="ParentBlogID" />
+                <ScalarProperty Name="BlogID" ColumnName="BlogID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="SubBlogID" ColumnName="SubBlogID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SubBolgCategories">
             <EntityTypeMapping TypeName="DB_GamingFormModel.SubBolgCategory">
               <MappingFragment StoreEntitySet="SubBolgCategories">
-                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="SubBlogID" ColumnName="SubBlogID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SubTags">
             <EntityTypeMapping TypeName="DB_GamingFormModel.SubTag">
               <MappingFragment StoreEntitySet="SubTag">
-                <ScalarProperty Name="SubTagID" ColumnName="SubTagID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="TagID" ColumnName="TagID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SubTagID" ColumnName="SubTagID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="DB_GamingFormModel.sysdiagram">
               <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Tags">
             <EntityTypeMapping TypeName="DB_GamingFormModel.Tag">
               <MappingFragment StoreEntitySet="Tag">
-                <ScalarProperty Name="TagID" ColumnName="TagID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="TagID" ColumnName="TagID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="WishLists">
             <EntityTypeMapping TypeName="DB_GamingFormModel.WishList">
               <MappingFragment StoreEntitySet="WishList">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
                 <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

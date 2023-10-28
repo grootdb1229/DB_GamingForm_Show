@@ -1,4 +1,5 @@
 ﻿using Gaming_Forum;
+using Groot;
 //using Groot;
 using System;
 using System.Collections.Generic;
@@ -149,8 +150,9 @@ namespace DB_GamingForm_Show
                            SrartDate = n.StartDate.ToString("d"),
                            n.Modifiedate,
                            n.DeputeContent,
-                           n.Salary,
-                           Status = n.Status.Name
+                           //todo bian1028 找不到salary
+                           //n.salary,
+                           //status = n.status.name
                        };
             this.bindingSource1.DataSource = data.ToList();
             this.dataGridView1.DataSource = this.bindingSource1;
@@ -450,6 +452,7 @@ namespace DB_GamingForm_Show
 
         private void ListLoad(int sourcecount)
         {
+            
             count += 1;
             page = 0;
             list.Clear();
@@ -457,12 +460,13 @@ namespace DB_GamingForm_Show
             {
                 list.Add(new Result
                 {
+                    //todo bian1028 有例外
                     DeputeID = (string)this.dataGridView1.Rows[i].Cells[0].Value,
                     ProvideMember = (string)this.dataGridView1.Rows[i].Cells[1].Value,
                     StartDate = (int)this.dataGridView1.Rows[i].Cells[2].Value,
                     ModerfiedDate = (string)this.dataGridView1.Rows[i].Cells[3].Value,
                     DeputeContent = (string)this.dataGridView1.Rows[i].Cells[4].Value,
-                    Salary= (string)this.dataGridView1.Rows[i].Cells[5].Value,
+                    Salary = (string)this.dataGridView1.Rows[i].Cells[5].Value,
                     Status = (string)this.dataGridView1.Rows[i].Cells[6].Value,
 
                 });
@@ -488,7 +492,7 @@ namespace DB_GamingForm_Show
                 this.label12.Text = $"{list.Count} /{list.Count}筆";
                 this.button3.Enabled = false;
             }
-            
+
 
         }
 
@@ -503,8 +507,8 @@ namespace DB_GamingForm_Show
         {
             if (Gaming_Forum.ClassUtility.MemberID != 0)
             {
-                //FrmMakeResume re = new FrmMakeResume();
-                //re.Show();
+                FrmDepute re = new FrmDepute();
+                re.Show();
             }
             else
             {

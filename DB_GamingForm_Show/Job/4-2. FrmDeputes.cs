@@ -9,16 +9,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DB_GamingForm_Show;
+using DB_GamingForm_Show.Job;
 
 namespace Groot
 {
-    public partial class FrmMakeJobRequire : Form
+    public partial class FrmDepute : Form
     {
         DB_GamingFormEntities db = new DB_GamingFormEntities();
 
         string currentID;
 
-        public FrmMakeJobRequire()
+        public FrmDepute()
         {
             InitializeComponent();
 
@@ -96,8 +97,7 @@ namespace Groot
 
         private void LoadID()
         {
-            currentID = Gaming_Forum.ClassUtility.FirmID.ToString();
-            
+            currentID = Gaming_Forum.ClassUtility.MemberID.ToString();
         }
 
         private void LoadMyDepute()//ok
@@ -110,7 +110,7 @@ namespace Groot
                         委託內容=p.DeputeContent,
                         刊登時間=p.StartDate,
                         更新時間=p.Modifiedate,
-                        目前狀態=p.StatusID
+                        目前狀態=p.Status.Name,
                         //公司編號=p.FirmID,
                         //公司名稱=p.Firm.FirmName,
                         //工作編號=p.JobID,
@@ -123,13 +123,15 @@ namespace Groot
                     };
             this.dataGridView2.DataSource = q.ToList();
 
+            this.listBox4.Items.Clear();
+
             //標題
-            this.listBox4.Items.Add($"{"工作編號",-15}-{"應徵內容",-15}-{"狀態",-15}");
+            this.listBox4.Items.Add($"{"工作編號",-24}-{"狀態",-24}-{"應徵內容",-24}");
 
             //以下為listbox內容
             foreach(var i in q)
             {
-                this.listBox4.Items.Add($"{i.委託編號,-15}-{i.委託內容,-15}-{i.目前狀態,-15}");
+                this.listBox4.Items.Add($"{i.委託編號,-24}-{i.目前狀態,-24}-{i.委託內容,-24}");
             }
         }
 
@@ -483,6 +485,24 @@ namespace Groot
 
             //=================================
             this.listBox2.Items.Remove(this.listBox2.SelectedItem);
+        }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.tabControl1.SelectedIndex == 1)
+            {
+                this.richTextBox3.Text = "具備以下技能為佳:\r";
+                for(int i = 0;i<this.listBox3.Items.Count;i++)
+                {
+                    this.richTextBox3.Text += $"{i + 1}.{this.listBox3.Items[i]}\r";
+                }
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            FrmSendDepute f =new FrmSendDepute();
+            f.Show();
         }
     }
 }
