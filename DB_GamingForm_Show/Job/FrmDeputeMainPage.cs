@@ -1,4 +1,5 @@
 ﻿using Gaming_Forum;
+using Groot;
 //using Groot;
 using System;
 using System.Collections.Generic;
@@ -13,9 +14,9 @@ using System.Windows.Forms;
 
 namespace DB_GamingForm_Show
 {
-    public partial class FrmJobMainPage : Form
+    public partial class FrmDeputeMainPage : Form
     {
-        public FrmJobMainPage()
+        public FrmDeputeMainPage()
         {
 
             
@@ -43,7 +44,7 @@ namespace DB_GamingForm_Show
         {
             public string DeputeID { get; set; }
             public string ProvideMember { get; set; }
-            public int StartDate { get; set; }
+            public string StartDate { get; set; }
 
             public string ModerfiedDate { get; set; }
 
@@ -52,9 +53,7 @@ namespace DB_GamingForm_Show
             public string Salary { get; set; }
 
             public string Status { get; set; }
-            public string SkillRequirements { get; set; }
-
-            public string EducationRequirements { get; set; }
+            
 
         }
         private void HotSearch()
@@ -145,9 +144,9 @@ namespace DB_GamingForm_Show
                        select new
                        {
                            n.DeputeID,
-                           n.Member.MemberID,
+                           n.Member.Name,
                            SrartDate = n.StartDate.ToString("d"),
-                           n.Modifiedate,
+                           Modifiedate = n.Modifiedate.ToString("d"),
                            n.DeputeContent,
                            n.Salary,
                            Status = n.Status.Name
@@ -297,24 +296,24 @@ namespace DB_GamingForm_Show
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (this.comboBox1.SelectedIndex == 0)
-            {
-                Clear();
-                LoadData();
+            //if (this.comboBox1.SelectedIndex == 0)
+            //{
+            //    Clear();
+            //    LoadData();
 
-            }
-            else
-            {
-                var value = from n in list.AsEnumerable()
-                            where n.EducationRequirements == this.comboBox1.Text
-                            orderby n.ModerfiedDate descending
-                            select n;
-                this.bindingSource1.Clear();
-                this.bindingSource1.DataSource = value.ToList();
-                this.dataGridView1.DataSource = this.bindingSource1;
-                sourcecount = value.Count();
-                ListLoad(sourcecount);
-            }
+            //}
+            //else
+            //{
+            //    var value = from n in list.AsEnumerable()
+            //                where n.EducationRequirements == this.comboBox1.Text
+            //                orderby n.ModerfiedDate descending
+            //                select n;
+            //    this.bindingSource1.Clear();
+            //    this.bindingSource1.DataSource = value.ToList();
+            //    this.dataGridView1.DataSource = this.bindingSource1;
+            //    sourcecount = value.Count();
+            //    ListLoad(sourcecount);
+            //}
         }
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
@@ -403,7 +402,7 @@ namespace DB_GamingForm_Show
             else
             {
                 var value = this.list.AsEnumerable()
-                            .Where(n => int.Parse(n.Salary) >= int.Parse(this.comboBox6.Text))
+                            .Where(n => Convert.ToInt32(n.Salary) >= int.Parse(this.comboBox6.Text))
                             .Select(n => n).OrderByDescending(n => n.ModerfiedDate);
 
                 this.bindingSource1.Clear();
@@ -457,13 +456,13 @@ namespace DB_GamingForm_Show
             {
                 list.Add(new Result
                 {
-                    DeputeID = (string)this.dataGridView1.Rows[i].Cells[0].Value,
-                    ProvideMember = (string)this.dataGridView1.Rows[i].Cells[1].Value,
-                    StartDate = (int)this.dataGridView1.Rows[i].Cells[2].Value,
-                    ModerfiedDate = (string)this.dataGridView1.Rows[i].Cells[3].Value,
-                    DeputeContent = (string)this.dataGridView1.Rows[i].Cells[4].Value,
-                    Salary= (string)this.dataGridView1.Rows[i].Cells[5].Value,
-                    Status = (string)this.dataGridView1.Rows[i].Cells[6].Value,
+                    DeputeID = this.dataGridView1.Rows[i].Cells[0].Value.ToString(),
+                    ProvideMember = this.dataGridView1.Rows[i].Cells[1].Value.ToString(),
+                    StartDate = this.dataGridView1.Rows[i].Cells[2].Value.ToString(),
+                    ModerfiedDate = this.dataGridView1.Rows[i].Cells[3].Value.ToString(),
+                    DeputeContent = this.dataGridView1.Rows[i].Cells[4].Value.ToString(),
+                    Salary= this.dataGridView1.Rows[i].Cells[5].Value.ToString(),
+                    Status = this.dataGridView1.Rows[i].Cells[6].Value.ToString(),
 
                 });
             }
@@ -503,8 +502,8 @@ namespace DB_GamingForm_Show
         {
             if (Gaming_Forum.ClassUtility.MemberID != 0)
             {
-                //FrmMakeResume re = new FrmMakeResume();
-                //re.Show();
+                FrmMakeJobRequire re = new FrmMakeJobRequire();
+                re.Show();
             }
             else
             {

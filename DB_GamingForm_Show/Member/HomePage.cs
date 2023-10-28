@@ -204,7 +204,7 @@ namespace Gaming_Forum
             else if (Flag1 == false && Flag2 == true)
             {
                 MessageBox.Show("親愛的會員您好,正帶您前往履歷投遞平台");                
-                FrmJobMainPage FJB = new FrmJobMainPage();
+                FrmDeputeMainPage FJB = new FrmDeputeMainPage();
                 FJB.Show();
             }
             else 

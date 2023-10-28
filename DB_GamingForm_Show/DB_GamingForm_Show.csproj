@@ -152,11 +152,11 @@
       <DependentUpon>4-2. FrmDeputes.cs</DependentUpon>
     </Compile>
     <Compile Include="Job\ClsJob.cs" />
-    <Compile Include="Job\FrmJobMainPage.cs">
+    <Compile Include="Job\FrmDeputeMainPage.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Job\FrmJobMainPage.designer.cs">
-      <DependentUpon>FrmJobMainPage.cs</DependentUpon>
+    <Compile Include="Job\FrmDeputeMainPage.designer.cs">
+      <DependentUpon>FrmDeputeMainPage.cs</DependentUpon>
     </Compile>
     <Compile Include="Member.cs">
       <DependentUpon>GMModel.tt</DependentUpon>
@@ -358,8 +358,8 @@
     <EmbeddedResource Include="Job\4-2. FrmDeputes.resx">
       <DependentUpon>4-2. FrmDeputes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Job\FrmJobMainPage.resx">
-      <DependentUpon>FrmJobMainPage.cs</DependentUpon>
+    <EmbeddedResource Include="Job\FrmDeputeMainPage.resx">
+      <DependentUpon>FrmDeputeMainPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Member\FirmFrmRegistration.resx">
       <DependentUpon>FirmFrmRegistration.cs</DependentUpon>

@@ -24,7 +24,7 @@ namespace DB_GamingForm_Show
         public int DeputeID { get; set; }
         public int ProviderID { get; set; }
         public System.DateTime StartDate { get; set; }
-        public Nullable<System.DateTime> Modifiedate { get; set; }
+        public System.DateTime Modifiedate { get; set; }
         public string DeputeContent { get; set; }
         public int Salary { get; set; }
         public int StatusID { get; set; }
