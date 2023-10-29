@@ -14,12 +14,15 @@ using WindowsFormsApp1;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using DB_GamingForm_Show;
 using Gaming_Forum;
+using DB_GamingForm_Show.product;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 
 namespace Shopping
 {
     public partial class FrmPurchase : Form
     {
-        DB_GamingFormEntities db = new  DB_GamingFormEntities();    
+
+        DB_GamingFormEntities db = new DB_GamingFormEntities();
         List<CShoppingCar> car = new List<CShoppingCar>();
         bool flag = true;
         public int ID { get; set; }
@@ -43,8 +46,8 @@ namespace Shopping
             InitializeComponent();
             MemberFirm();
             //這段可能用不到
-            var StringTName = (from p in this.db.ProductTags.AsEnumerable()    
-                              select new { 商品ID = p.ProductID, 商品名 = p.Product.ProductName, Picture = p.Product.Image.Image1, 售價 = p.Product.Price, /*標籤 = p.SubTag.Name*/ }).Distinct();
+            var StringTName = (from p in this.db.ProductTags.AsEnumerable()
+                               select new { 商品ID = p.ProductID, 商品名 = p.Product.ProductName, Picture = p.Product.Image.Image1, 售價 = p.Product.Price, /*標籤 = p.SubTag.Name*/ }).Distinct();
             this.bindingSource1.DataSource = StringTName.ToList();
             this.dataGridView1.DataSource = this.bindingSource1;
 
@@ -52,6 +55,9 @@ namespace Shopping
             if (IsFirm)
             { this.button4.Visible = false; }
 
+
+            //帶入class
+            Purchase purchase = new Purchase();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -129,26 +135,47 @@ namespace Shopping
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
-         
+
         }
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e) { }
-      
+
 
         private void button3_Click(object sender, EventArgs e)
-        {
-            dataGridView1.DataSource = null;
+        {  
+            List<Purchase.Result> list = new List<Purchase.Result>();
+            list.Clear();
             string searchProduct = textBox1.Text;
-            
-            var StringTName = from p in this.db.ProductTags.AsEnumerable()
-                                 where p.Product.ProductName.Contains($"{searchProduct}") || p.SubTag.Name.Contains($"{searchProduct}")
-                              select new { 商品ID = p.ProductID, 商品名 = p.Product.ProductName, Picture = p.Product.Image.Image1, 售價 = p.Product.Price, /*標籤 = p.SubTag.Name*/ };
-         
-            this.bindingSource1.DataSource = StringTName.ToList();
-            this.dataGridView1.DataSource = this.bindingSource1;
 
+            {
+                for (int i = 0; i < dataGridView1.RowCount; i++)
+                {
+                    list.Add(new Purchase.Result
+                    {
+                        ProductID = (int)this.dataGridView1.Rows[i].Cells[0].Value,
+                        ProductName = (string)this.dataGridView1.Rows[i].Cells[1].Value,
+                        Image1 = (byte[])this.dataGridView1.Rows[i].Cells[2].Value,
+                        Price = (decimal)this.dataGridView1.Rows[i].Cells[3].Value,
+                    });
+                }
+                var StringTName = from p in list.AsEnumerable()
+                                  where p.ProductName.Contains($"{searchProduct}")
+                                  select new { 商品ID = p.ProductID, 商品名 = p.ProductName, Picture = p.Image1, 售價 = p.Price };
+
+                this.bindingSource1.DataSource = StringTName.ToList();
+                this.dataGridView1.DataSource = this.bindingSource1;
+            }
+            if (dataGridView1.RowCount == 0) 
+            {
+                MessageBox.Show("No Match");
+                var StringTName2 = from p in this.db.Products.AsEnumerable()
+                                   select new { 商品ID = p.ProductID, 商品名 = p.ProductName, Picture = p.Image.Image1, 售價 = p.Price };
+
+                this.bindingSource1.DataSource = StringTName2.ToList();
+                this.dataGridView1.DataSource = this.bindingSource1;
+            }
         }
-   
+
         private void FrmPurchase_Load(object sender, EventArgs e)
         {//讀入comboBox
             var SubTags = from p in db.SubTags
@@ -156,17 +183,17 @@ namespace Shopping
                           select new { p.Name };
             comboBox1.DataSource = SubTags.ToList();
             comboBox1.DisplayMember = "Name";
-    
-          
+
+
 
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        { 
-            string searchProduct=comboBox1.Text;
+        {
+            string searchProduct = comboBox1.Text;
             //選標籤後更新商城內容
             var StringTName = from p in this.db.ProductTags.AsEnumerable()
-                              where  p.SubTag.Name.Contains($"{searchProduct}")&&p.Product.StatusID ==1
+                              where p.SubTag.Name.Contains($"{searchProduct}") && p.Product.StatusID == 1
                               orderby p.ProductID
                               select new { 商品ID = p.ProductID, 商品名 = p.Product.ProductName, Picture = p.Product.Image.Image1, 售價 = p.Product.Price, /*標籤 = p.SubTag.Name*/ };
 
@@ -243,31 +270,21 @@ namespace Shopping
                 }
             }
         }
-        /// <summary>
-        /// /
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        { 
-            //{   //獲取選取值
-        //    int SelectProID = (int)dataGridView1.Rows[e.RowIndex].Cells["商品ID"].Value;
-        //    int MemcerID = 30;
+        {
 
-
-        //    FrmProductEvaluate frmProductEvaluate = new FrmProductEvaluate(SelectProID, MemcerID);
-        //    frmProductEvaluate.Show();
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-       
-        int SelectProID = (int)dataGridView1.CurrentRow.Cells[0].Value;
+
+            int SelectProID = (int)dataGridView1.CurrentRow.Cells[0].Value;
 
 
-        FrmProductEvaluate frmProductEvaluate = new FrmProductEvaluate(SelectProID, ID);
-        frmProductEvaluate.Show();
+            FrmProductEvaluate frmProductEvaluate = new FrmProductEvaluate(SelectProID, ID);
+            frmProductEvaluate.Show();
 
-    }
+        }
     }
 }
