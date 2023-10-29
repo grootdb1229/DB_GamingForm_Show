@@ -145,11 +145,11 @@
     <Compile Include="JobCertificate.cs">
       <DependentUpon>GMModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Job\4-2. FrmDeputes.cs">
+    <Compile Include="Job\FrmDeputes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Job\4-2. FrmDeputes.designer.cs">
-      <DependentUpon>4-2. FrmDeputes.cs</DependentUpon>
+    <Compile Include="Job\FrmDeputes.designer.cs">
+      <DependentUpon>FrmDeputes.cs</DependentUpon>
     </Compile>
     <Compile Include="Job\ClsJob.cs" />
     <Compile Include="Job\FrmDeputeMainPage.cs">
@@ -362,8 +362,8 @@
     <EmbeddedResource Include="Blog\NewART.resx">
       <DependentUpon>NewART.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Job\4-2. FrmDeputes.resx">
-      <DependentUpon>4-2. FrmDeputes.cs</DependentUpon>
+    <EmbeddedResource Include="Job\FrmDeputes.resx">
+      <DependentUpon>FrmDeputes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Job\FrmDeputeMainPage.resx">
       <DependentUpon>FrmDeputeMainPage.cs</DependentUpon>
