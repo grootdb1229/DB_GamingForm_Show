@@ -10,11 +10,17 @@ using System.Windows.Forms;
 
 namespace DB_GamingForm_Show.Job
 {
-    public partial class FrmSendDepute : Form
+    public partial class FrmDeputeB : Form
     {
-        public FrmSendDepute()
+        public FrmDeputeB()
         {
             InitializeComponent();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            FrmDeputeB f = new FrmDeputeB();
+            f.Close();
         }
     }
 }

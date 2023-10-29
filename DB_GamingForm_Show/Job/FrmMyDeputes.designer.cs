@@ -38,26 +38,26 @@
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.button7 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
-            this.richTextBox3 = new System.Windows.Forms.RichTextBox();
-            this.listBox3 = new System.Windows.Forms.ListBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.listBox2 = new System.Windows.Forms.ListBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.richTextBox3 = new System.Windows.Forms.RichTextBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.listBox3 = new System.Windows.Forms.ListBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.button13 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
@@ -73,7 +73,8 @@
             this.tabPage11 = new System.Windows.Forms.TabPage();
             this.tabPage10 = new System.Windows.Forms.TabPage();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.button7 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.tabControl2.SuspendLayout();
             this.tabPage12.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
@@ -190,6 +191,7 @@
             this.tabPage7.Controls.Add(this.label3);
             this.tabPage7.Controls.Add(this.label13);
             this.tabPage7.Controls.Add(this.label15);
+            this.tabPage7.Controls.Add(this.label1);
             this.tabPage7.Controls.Add(this.label11);
             this.tabPage7.Controls.Add(this.textBox3);
             this.tabPage7.Controls.Add(this.listBox2);
@@ -218,6 +220,16 @@
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.Click += new System.EventHandler(this.checkBox1_Click);
             // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(458, 511);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(75, 28);
+            this.button7.TabIndex = 23;
+            this.button7.Text = "重設";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
             // button4
             // 
             this.button4.Enabled = false;
@@ -229,6 +241,15 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(8, 20);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(73, 20);
+            this.label9.TabIndex = 0;
+            this.label9.Text = "會員編號";
+            // 
             // richTextBox3
             // 
             this.richTextBox3.Location = new System.Drawing.Point(727, 40);
@@ -236,6 +257,15 @@
             this.richTextBox3.Size = new System.Drawing.Size(474, 415);
             this.richTextBox3.TabIndex = 22;
             this.richTextBox3.Text = "";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(8, 196);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(73, 20);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "聯絡資訊";
             // 
             // listBox3
             // 
@@ -246,6 +276,15 @@
             this.listBox3.Size = new System.Drawing.Size(398, 184);
             this.listBox3.TabIndex = 21;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(8, 108);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(73, 20);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "會員名稱";
+            // 
             // label13
             // 
             this.label13.AutoSize = true;
@@ -255,6 +294,15 @@
             this.label13.TabIndex = 19;
             this.label13.Text = "所選技能";
             // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(8, 372);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(73, 20);
+            this.label15.TabIndex = 0;
+            this.label15.Text = "提供報酬";
+            // 
             // label11
             // 
             this.label11.AutoSize = true;
@@ -263,6 +311,13 @@
             this.label11.Size = new System.Drawing.Size(115, 20);
             this.label11.TabIndex = 20;
             this.label11.Text = "類別(雙擊選取)";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(12, 131);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(146, 26);
+            this.textBox3.TabIndex = 1;
             // 
             // listBox2
             // 
@@ -274,6 +329,14 @@
             this.listBox2.TabIndex = 17;
             this.listBox2.DoubleClick += new System.EventHandler(this.listBox2_DoubleClick);
             // 
+            // textBox6
+            // 
+            this.textBox6.Enabled = false;
+            this.textBox6.Location = new System.Drawing.Point(12, 43);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(146, 26);
+            this.textBox6.TabIndex = 8;
+            // 
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
@@ -284,21 +347,20 @@
             this.listBox1.TabIndex = 18;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
+            // textBox8
+            // 
+            this.textBox8.Enabled = false;
+            this.textBox8.Location = new System.Drawing.Point(12, 307);
+            this.textBox8.Name = "textBox8";
+            this.textBox8.Size = new System.Drawing.Size(237, 26);
+            this.textBox8.TabIndex = 8;
+            // 
             // textBox4
             // 
             this.textBox4.Location = new System.Drawing.Point(12, 395);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(146, 26);
             this.textBox4.TabIndex = 16;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(8, 284);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(48, 20);
-            this.label10.TabIndex = 10;
-            this.label10.Text = "Email";
             // 
             // textBox1
             // 
@@ -308,64 +370,14 @@
             this.textBox1.Size = new System.Drawing.Size(146, 26);
             this.textBox1.TabIndex = 8;
             // 
-            // textBox8
+            // label10
             // 
-            this.textBox8.Enabled = false;
-            this.textBox8.Location = new System.Drawing.Point(12, 307);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(237, 26);
-            this.textBox8.TabIndex = 8;
-            // 
-            // textBox6
-            // 
-            this.textBox6.Enabled = false;
-            this.textBox6.Location = new System.Drawing.Point(12, 43);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(146, 26);
-            this.textBox6.TabIndex = 8;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(12, 131);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(146, 26);
-            this.textBox3.TabIndex = 1;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(8, 20);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(73, 20);
-            this.label9.TabIndex = 0;
-            this.label9.Text = "會員編號";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(8, 372);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(73, 20);
-            this.label15.TabIndex = 0;
-            this.label15.Text = "提供報酬";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(8, 108);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(73, 20);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "會員名稱";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(8, 196);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(73, 20);
-            this.label8.TabIndex = 0;
-            this.label8.Text = "聯絡資訊";
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(8, 284);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(48, 20);
+            this.label10.TabIndex = 10;
+            this.label10.Text = "Email";
             // 
             // tabPage6
             // 
@@ -386,7 +398,6 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.button13);
             this.splitContainer1.Panel1.Controls.Add(this.button10);
             this.splitContainer1.Panel1.Controls.Add(this.button6);
             this.splitContainer1.Panel1.Controls.Add(this.button5);
@@ -399,17 +410,6 @@
             this.splitContainer1.SplitterDistance = 171;
             this.splitContainer1.TabIndex = 1;
             // 
-            // button13
-            // 
-            this.button13.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button13.Location = new System.Drawing.Point(0, 184);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(171, 46);
-            this.button13.TabIndex = 5;
-            this.button13.Text = "刪除";
-            this.button13.UseVisualStyleBackColor = true;
-            this.button13.Click += new System.EventHandler(this.button13_Click);
-            // 
             // button10
             // 
             this.button10.Dock = System.Windows.Forms.DockStyle.Top;
@@ -417,7 +417,7 @@
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(171, 46);
             this.button10.TabIndex = 4;
-            this.button10.Text = "錄取";
+            this.button10.Text = "合作";
             this.button10.UseVisualStyleBackColor = true;
             this.button10.Click += new System.EventHandler(this.button10_Click);
             // 
@@ -516,6 +516,7 @@
             // 
             // tabPage8
             // 
+            this.tabPage8.Controls.Add(this.button8);
             this.tabPage8.Controls.Add(this.button2);
             this.tabPage8.Location = new System.Drawing.Point(4, 29);
             this.tabPage8.Name = "tabPage8";
@@ -526,7 +527,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(151, 374);
+            this.button2.Location = new System.Drawing.Point(158, 101);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(108, 31);
             this.button2.TabIndex = 2;
@@ -567,16 +568,24 @@
             this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             // 
-            // button7
+            // button8
             // 
-            this.button7.Enabled = false;
-            this.button7.Location = new System.Drawing.Point(458, 511);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(75, 28);
-            this.button7.TabIndex = 23;
-            this.button7.Text = "重設";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
+            this.button8.Location = new System.Drawing.Point(363, 101);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(108, 31);
+            this.button8.TabIndex = 2;
+            this.button8.Text = "我想合作";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(930, 17);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(73, 20);
+            this.label1.TabIndex = 20;
+            this.label1.Text = "懸賞內容";
             // 
             // FrmDepute
             // 
@@ -644,7 +653,6 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button13;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.DataGridView dataGridView3;
         private System.Windows.Forms.ListBox listBox4;
@@ -660,5 +668,7 @@
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Label label1;
     }
 }

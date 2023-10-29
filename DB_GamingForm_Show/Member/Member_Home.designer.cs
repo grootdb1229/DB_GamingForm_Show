@@ -80,7 +80,7 @@
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(100, 33);
             this.button4.TabIndex = 3;
-            this.button4.Text = "個人履歷";
+            this.button4.Text = "我的委託";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
