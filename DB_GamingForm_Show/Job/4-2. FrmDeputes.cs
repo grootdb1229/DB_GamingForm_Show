@@ -204,79 +204,17 @@ namespace Groot
         //============================================================================
 
 
-        private void button4_Click_1(object sender, EventArgs e)
-        {
-            this.tabControl1.SelectedIndex += 1;
-        }
 
-        private void button9_Click_1(object sender, EventArgs e)
-        {
-            this.tabControl1.SelectedIndex -= 1;
-        }
+
+
 
         ListBox llb = new ListBox();
 
         ListBox lb = new ListBox();
 
-        private void button8_Click(object sender, EventArgs e)//ok
-        {
-            //=========================
-            //基本資料
-            Depute f = new Depute
-            {
-                ProviderID = int.Parse(currentID),
-                StartDate = DateTime.Now,
-                Modifiedate = DateTime.Now,
-                DeputeContent = this.richTextBox3.Text,
-                //Salary = this.textBox4.Text,
-                StatusID = 3,
-            };
-
-            this.db.Deputes.Add(f);
-            this.db.SaveChanges();
-
-            //=========================
-            //技能專長
-            int lb3Length = this.listBox3.Items.Count;
-            string[] lb3items = new string[lb3Length];
-
-            for (var l = 0; l < lb3Length; l++)
-            {
-                lb3items[l] = this.listBox3.Items[l].ToString();
-            }
-
-            for (var o = 0; o < lb3items.Length; o++)
-            {
-                string[] skillskill = lb3items[o].Split('-');
-                var s = this.db.Skills.AsEnumerable().Where(p => p.Name == skillskill[1]).Select(p => p.SkillID);
-
-                int skillid = s.SingleOrDefault();
-                DeputeSkill jobSkill = new DeputeSkill
-                {
-                    DeputeID = f.DeputeID,
-                    SkillID = skillid,
-                };
-                this.db.DeputeSkills.Add(jobSkill);
-            }
-            this.db.SaveChanges();
-            //=========================
-            MessageBox.Show("新增成功");
-            this.tabControl2.SelectedIndex = 2;
-            LoadReceiveMembers();
-            LoadMyDepute();
-        }
+       
         
-        private void checkBox1_Click(object sender, EventArgs e)
-        {//todo改r
-            if (this.checkBox1.Checked)
-            {
-                this.button8.Enabled = true;
-            }
-            else
-            {
-                this.button8.Enabled = false;
-            }
-        }
+
 
         private void button3_Click(object sender, EventArgs e)//ok
         {
@@ -485,24 +423,89 @@ namespace Groot
 
             //=================================
             this.listBox2.Items.Remove(this.listBox2.SelectedItem);
+
+            //=====================================
+            this.richTextBox3.Text = "具備以下技能為佳:\r";
+            for (int i = 0; i < this.listBox3.Items.Count; i++)
+            {
+                this.richTextBox3.Text += $"{i + 1}.{this.listBox3.Items[i]}\r";
+            }
+
         }
 
-        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (this.tabControl1.SelectedIndex == 1)
-            {
-                this.richTextBox3.Text = "具備以下技能為佳:\r";
-                for(int i = 0;i<this.listBox3.Items.Count;i++)
-                {
-                    this.richTextBox3.Text += $"{i + 1}.{this.listBox3.Items[i]}\r";
-                }
-            }
-        }
+
 
         private void button2_Click(object sender, EventArgs e)
         {
             FrmSendDepute f =new FrmSendDepute();
             f.Show();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            //=========================
+            //基本資料
+            Depute f = new Depute
+            {
+                ProviderID = int.Parse(currentID),
+                StartDate = DateTime.Now,
+                Modifiedate = DateTime.Now,
+                DeputeContent = this.richTextBox3.Text,
+                //Salary = this.textBox4.Text,
+                StatusID = 3,
+            };
+
+            this.db.Deputes.Add(f);
+            this.db.SaveChanges();
+
+            //=========================
+            //技能專長
+            int lb3Length = this.listBox3.Items.Count;
+            string[] lb3items = new string[lb3Length];
+
+            for (var l = 0; l < lb3Length; l++)
+            {
+                lb3items[l] = this.listBox3.Items[l].ToString();
+            }
+
+            for (var o = 0; o < lb3items.Length; o++)
+            {
+                string[] skillskill = lb3items[o].Split('-');
+                var s = this.db.Skills.AsEnumerable().Where(p => p.Name == skillskill[1]).Select(p => p.SkillID);
+
+                int skillid = s.SingleOrDefault();
+                DeputeSkill jobSkill = new DeputeSkill
+                {
+                    DeputeID = f.DeputeID,
+                    SkillID = skillid,
+                };
+                this.db.DeputeSkills.Add(jobSkill);
+            }
+            this.db.SaveChanges();
+            //=========================
+            MessageBox.Show("新增成功");
+            this.tabControl2.SelectedIndex = 2;
+            LoadReceiveMembers();
+            LoadMyDepute();
+        }
+
+        private void checkBox1_Click(object sender, EventArgs e)
+        {
+            if (this.checkBox1.Checked)
+            {
+                this.button4.Enabled = true;
+            }
+            else
+            {
+                this.button4.Enabled = false;
+            }
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            this.textBox4.Clear();
+            this.listBox3.Items.Clear();
+            this.richTextBox3.Clear();
         }
     }
 }
