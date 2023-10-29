@@ -22,9 +22,9 @@ namespace DB_GamingForm_Show
             
             InitializeComponent();
             this.button3.Enabled = false;
-            //ComboLoad();
+            ComboLoad();
             LoadData();
-            //HotSearch();
+            HotSearch();
             
 
 
@@ -53,6 +53,8 @@ namespace DB_GamingForm_Show
             public string Salary { get; set; }
 
             public string Status { get; set; }
+
+            public string region { get; set; }
             
 
         }
