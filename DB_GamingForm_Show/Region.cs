@@ -18,6 +18,7 @@ namespace DB_GamingForm_Show
         public Region()
         {
             this.RegionDistricts = new HashSet<RegionDistrict>();
+            this.Deputes = new HashSet<Depute>();
         }
     
         public int RegionID { get; set; }
@@ -25,5 +26,7 @@ namespace DB_GamingForm_Show
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RegionDistrict> RegionDistricts { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Depute> Deputes { get; set; }
     }
 }

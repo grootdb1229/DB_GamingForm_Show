@@ -94,7 +94,7 @@
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(192, 78);
             this.button3.TabIndex = 2;
-            this.button3.Text = "媒合平台入口";
+            this.button3.Text = "案件懸賞入口";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -126,7 +126,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(77, 12);
             this.label3.TabIndex = 5;
-            this.label3.Text = "媒合平台入口";
+            this.label3.Text = "案件懸賞入口";
             // 
             // label4
             // 

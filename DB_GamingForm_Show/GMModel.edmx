@@ -87,9 +87,11 @@
           <Property Name="DeputeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProviderID" Type="int" Nullable="false" />
           <Property Name="StartDate" Type="datetime" Nullable="false" />
-          <Property Name="Modifiedate" Type="datetime" />
+          <Property Name="Modifiedate" Type="datetime" Nullable="false" />
           <Property Name="DeputeContent" Type="nvarchar(max)" />
+          <Property Name="Salary" Type="int" Nullable="false" />
           <Property Name="StatusID" Type="int" Nullable="false" />
+          <Property Name="RegionID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="DeputeRecord">
           <Key>
@@ -563,6 +565,18 @@
             </Principal>
             <Dependent Role="Depute">
               <PropertyRef Name="ProviderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Depute_Region">
+          <End Role="Region" Type="Self.Region" Multiplicity="1" />
+          <End Role="Depute" Type="Self.Depute" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Region">
+              <PropertyRef Name="RegionID" />
+            </Principal>
+            <Dependent Role="Depute">
+              <PropertyRef Name="RegionID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1101,6 +1115,10 @@
             <End Role="Member" EntitySet="Member" />
             <End Role="Depute" EntitySet="Depute" />
           </AssociationSet>
+          <AssociationSet Name="FK_Depute_Region" Association="Self.FK_Depute_Region">
+            <End Role="Region" EntitySet="Region" />
+            <End Role="Depute" EntitySet="Depute" />
+          </AssociationSet>
           <AssociationSet Name="FK_Depute_Status" Association="Self.FK_Depute_Status">
             <End Role="Status" EntitySet="Status" />
             <End Role="Depute" EntitySet="Depute" />
@@ -1493,6 +1511,10 @@
             <End Role="Status" EntitySet="Status" />
             <End Role="Depute" EntitySet="Deputes" />
           </AssociationSet>
+          <AssociationSet Name="FK_Depute_Region" Association="DB_GamingFormModel.FK_Depute_Region">
+            <End Role="Region" EntitySet="Regions" />
+            <End Role="Depute" EntitySet="Deputes" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Action">
           <Key>
@@ -1594,13 +1616,16 @@
           <Property Name="DeputeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ProviderID" Type="Int32" Nullable="false" />
           <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Modifiedate" Type="DateTime" Precision="3" />
+          <Property Name="Modifiedate" Type="DateTime" Precision="3" Nullable="false" />
           <Property Name="DeputeContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="StatusID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Member" Relationship="DB_GamingFormModel.FK_Depute_Member" FromRole="Depute" ToRole="Member" />
           <NavigationProperty Name="DeputeRecords" Relationship="DB_GamingFormModel.FK_DeputeRecord_Depute" FromRole="Depute" ToRole="DeputeRecord" />
           <NavigationProperty Name="DeputeSkills" Relationship="DB_GamingFormModel.FK_DeputeSkill_Depute" FromRole="Depute" ToRole="DeputeSkill" />
           <NavigationProperty Name="Status" Relationship="DB_GamingFormModel.FK_Depute_Status" FromRole="Depute" ToRole="Status" />
+          <Property Name="Salary" Type="Int32" Nullable="false" />
+          <Property Name="RegionID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Region" Relationship="DB_GamingFormModel.FK_Depute_Region" FromRole="Depute" ToRole="Region" />
         </EntityType>
         <EntityType Name="DeputeRecord">
           <Key>
@@ -1831,6 +1856,7 @@
           <Property Name="RegionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="City" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="RegionDistricts" Relationship="DB_GamingFormModel.FK_RegionDistrict_Region" FromRole="Region" ToRole="RegionDistrict" />
+          <NavigationProperty Name="Deputes" Relationship="DB_GamingFormModel.FK_Depute_Region" FromRole="Region" ToRole="Depute" />
         </EntityType>
         <EntityType Name="RegionDistrict">
           <Key>
@@ -2595,6 +2621,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Depute_Region">
+          <End Type="DB_GamingFormModel.Region" Role="Region" Multiplicity="1" />
+          <End Type="DB_GamingFormModel.Depute" Role="Depute" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Region">
+              <PropertyRef Name="RegionID" />
+            </Principal>
+            <Dependent Role="Depute">
+              <PropertyRef Name="RegionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2687,6 +2725,8 @@
           <EntitySetMapping Name="Deputes">
             <EntityTypeMapping TypeName="DB_GamingFormModel.Depute">
               <MappingFragment StoreEntitySet="Depute">
+                <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
                 <ScalarProperty Name="StatusID" ColumnName="StatusID" />
                 <ScalarProperty Name="DeputeContent" ColumnName="DeputeContent" />
                 <ScalarProperty Name="Modifiedate" ColumnName="Modifiedate" />

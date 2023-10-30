@@ -14,9 +14,9 @@ using System.Windows.Forms;
 
 namespace DB_GamingForm_Show
 {
-    public partial class FrmJobMainPage : Form
+    public partial class FrmDeputeMainPage : Form
     {
-        public FrmJobMainPage()
+        public FrmDeputeMainPage()
         {
 
             
@@ -44,7 +44,7 @@ namespace DB_GamingForm_Show
         {
             public string DeputeID { get; set; }
             public string ProvideMember { get; set; }
-            public int StartDate { get; set; }
+            public string StartDate { get; set; }
 
             public string ModerfiedDate { get; set; }
 
@@ -53,9 +53,9 @@ namespace DB_GamingForm_Show
             public string Salary { get; set; }
 
             public string Status { get; set; }
-            public string SkillRequirements { get; set; }
 
-            public string EducationRequirements { get; set; }
+            public string Region { get; set; }
+            
 
         }
         private void HotSearch()
@@ -146,13 +146,13 @@ namespace DB_GamingForm_Show
                        select new
                        {
                            n.DeputeID,
-                           n.Member.MemberID,
+                           n.Member.Name,
                            SrartDate = n.StartDate.ToString("d"),
-                           n.Modifiedate,
+                           Modifiedate = n.Modifiedate.ToString("d"),
                            n.DeputeContent,
-                           //todo bian1028 找不到salary
-                           //n.salary,
-                           //status = n.status.name
+                           n.Salary,
+                           status = n.Status.Name,
+                           n.Region.City
                        };
             this.bindingSource1.DataSource = data.ToList();
             this.dataGridView1.DataSource = this.bindingSource1;
@@ -299,24 +299,24 @@ namespace DB_GamingForm_Show
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (this.comboBox1.SelectedIndex == 0)
-            {
-                Clear();
-                LoadData();
+            //if (this.comboBox1.SelectedIndex == 0)
+            //{
+            //    Clear();
+            //    LoadData();
 
-            }
-            else
-            {
-                var value = from n in list.AsEnumerable()
-                            where n.EducationRequirements == this.comboBox1.Text
-                            orderby n.ModerfiedDate descending
-                            select n;
-                this.bindingSource1.Clear();
-                this.bindingSource1.DataSource = value.ToList();
-                this.dataGridView1.DataSource = this.bindingSource1;
-                sourcecount = value.Count();
-                ListLoad(sourcecount);
-            }
+            //}
+            //else
+            //{
+            //    var value = from n in list.AsEnumerable()
+            //                where n.EducationRequirements == this.comboBox1.Text
+            //                orderby n.ModerfiedDate descending
+            //                select n;
+            //    this.bindingSource1.Clear();
+            //    this.bindingSource1.DataSource = value.ToList();
+            //    this.dataGridView1.DataSource = this.bindingSource1;
+            //    sourcecount = value.Count();
+            //    ListLoad(sourcecount);
+            //}
         }
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
@@ -373,26 +373,25 @@ namespace DB_GamingForm_Show
 
         private void comboBox5_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //Todo 沒有Region
-            //if (this.comboBox5.SelectedIndex == 0)
-            //{
-            //    Clear();
-            //    LoadData();
-            //}
-            //else
-            //{
-            //    var value = from n in list.AsEnumerable()
-            //                where n.Region == this.comboBox5.Text
-            //                orderby n.ModerfiedDate descending
-            //                select n;
+            if (this.comboBox5.SelectedIndex == 0)
+            {
+                Clear();
+                LoadData();
+            }
+            else
+            {
+                var value = from n in list.AsEnumerable()
+                            where n.Region == this.comboBox5.Text
+                            orderby n.ModerfiedDate descending
+                            select n;
 
-            //    this.bindingSource1.Clear();
-            //    this.bindingSource1.DataSource = value.ToList();
-            //    this.dataGridView1.DataSource = this.bindingSource1;
-            //    sourcecount = value.Count();
-            //    ListLoad(sourcecount);
-            //}
-            //this.label12.Text = $"10/{this.dataGridView1.RowCount}筆";
+                this.bindingSource1.Clear();
+                this.bindingSource1.DataSource = value.ToList();
+                this.dataGridView1.DataSource = this.bindingSource1;
+                sourcecount = value.Count();
+                ListLoad(sourcecount);
+            }
+            this.label12.Text = $"10/{this.dataGridView1.RowCount}筆";
         }
 
         private void comboBox6_SelectedIndexChanged(object sender, EventArgs e)
@@ -405,7 +404,7 @@ namespace DB_GamingForm_Show
             else
             {
                 var value = this.list.AsEnumerable()
-                            .Where(n => int.Parse(n.Salary) >= int.Parse(this.comboBox6.Text))
+                            .Where(n => Convert.ToInt32(n.Salary) >= int.Parse(this.comboBox6.Text))
                             .Select(n => n).OrderByDescending(n => n.ModerfiedDate);
 
                 this.bindingSource1.Clear();
@@ -460,14 +459,14 @@ namespace DB_GamingForm_Show
             {
                 list.Add(new Result
                 {
-                    //todo bian1028 有例外
-                    DeputeID = (string)this.dataGridView1.Rows[i].Cells[0].Value,
-                    ProvideMember = (string)this.dataGridView1.Rows[i].Cells[1].Value,
-                    StartDate = (int)this.dataGridView1.Rows[i].Cells[2].Value,
-                    ModerfiedDate = (string)this.dataGridView1.Rows[i].Cells[3].Value,
-                    DeputeContent = (string)this.dataGridView1.Rows[i].Cells[4].Value,
-                    Salary = (string)this.dataGridView1.Rows[i].Cells[5].Value,
-                    Status = (string)this.dataGridView1.Rows[i].Cells[6].Value,
+                    DeputeID = this.dataGridView1.Rows[i].Cells[0].Value.ToString(),
+                    ProvideMember = this.dataGridView1.Rows[i].Cells[1].Value.ToString(),
+                    StartDate = this.dataGridView1.Rows[i].Cells[2].Value.ToString(),
+                    ModerfiedDate = this.dataGridView1.Rows[i].Cells[3].Value.ToString(),
+                    DeputeContent = this.dataGridView1.Rows[i].Cells[4].Value.ToString(),
+                    Salary= this.dataGridView1.Rows[i].Cells[5].Value.ToString(),
+                    Status = this.dataGridView1.Rows[i].Cells[6].Value.ToString(),
+                    Region = this.dataGridView1.Rows[i].Cells[7].Value.ToString()
 
                 });
             }

@@ -89,8 +89,8 @@ namespace Gaming_Forum
 
         private void button4_Click(object sender, EventArgs e)
         {
-            //FrmMakeResume f = new FrmMakeResume();
-            //f.Show();
+            FrmDepute f = new FrmDepute();
+            f.Show();
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)

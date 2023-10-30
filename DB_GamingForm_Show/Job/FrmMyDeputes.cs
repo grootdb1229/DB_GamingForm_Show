@@ -45,7 +45,7 @@ namespace Groot
                     select p;
             if (q.Any())
             {
-                MessageBox.Show($"您有{q.Count()}份新履歷");
+                MessageBox.Show($"有{q.Count()}位會員想接下您的懸賞");
             }
         }
 
@@ -74,21 +74,11 @@ namespace Groot
             //f.DefaultCellStyle.NullValue = "邀請";
 
 
-            //var q= from p in this.db.Deputes.AsEnumerable()
-            //       where p.StatusID==1
-            //       select new
-            //       {
-            //           履歷編號=p.DeputeID,
-            //           會員編號=p.ProviderID,
-            //           會員姓名=MaskString(p.n),
-            //           身份證字號= MaskString(p.IdentityID),
-            //           電話號碼= MaskString(p.PhoneNumber),
-            //           擁有技能=p.ResumeSkills.Select(_=>_.Skill.Name).FirstOrDefault()+"等"+ p.ResumeSkills.Select(_ => _.Skill.Name).Count() + "項技能",
-            //           履歷內容=p.ResumeContent,
-            //           工作經驗=p.WorkExp+"年",
-            //           學歷=p.Education.Name,
-            //           狀態=p.Status.Name
-            //       };
+            //var q = from p in this.db.Blogs.AsEnumerable()
+            //        select new
+            //        {
+            //            p.
+            //        };
             //this.dataGridView3.DataSource = q.ToList();
             //this.dataGridView3.Columns.Add(f);
         }
@@ -108,25 +98,18 @@ namespace Groot
                     {
                         委託編號=p.DeputeID,
                         委託內容=p.DeputeContent,
+                        目前申請人數=p.DeputeRecords.Where(x=>x.ID==int.Parse(currentID)).Count(),
                         刊登時間=p.StartDate,
-                        更新時間=p.Modifiedate,
+                        最後更新時間=p.Modifiedate,
                         目前狀態=p.Status.Name,
-                        //公司編號=p.FirmID,
-                        //公司名稱=p.Firm.FirmName,
-                        //工作編號=p.JobID,
-                        //應徵內容=p.JobContent,
-                        //需求人數= p.RequiredNum+"人",
-                        //薪水=p.Salary,
-                        //狀態=p.Status.Name,
-                        //工作經驗=p.JobExp,
-                        //更新時間=p.ModifiedDate
+                        提供報酬 = p.Salary,
                     };
             this.dataGridView2.DataSource = q.ToList();
 
             this.listBox4.Items.Clear();
 
             //標題
-            this.listBox4.Items.Add($"{"工作編號",-24}-{"狀態",-24}-{"應徵內容",-24}");
+            this.listBox4.Items.Add($"{"委託編號",-24}-{"狀態",-24}-{"應徵內容",-24}");
 
             //以下為listbox內容
             foreach(var i in q)
@@ -202,81 +185,7 @@ namespace Groot
         }
 
         //============================================================================
-
-
-        private void button4_Click_1(object sender, EventArgs e)
-        {
-            this.tabControl1.SelectedIndex += 1;
-        }
-
-        private void button9_Click_1(object sender, EventArgs e)
-        {
-            this.tabControl1.SelectedIndex -= 1;
-        }
-
-        ListBox llb = new ListBox();
-
-        ListBox lb = new ListBox();
-
-        private void button8_Click(object sender, EventArgs e)//ok
-        {
-            //=========================
-            //基本資料
-            Depute f = new Depute
-            {
-                ProviderID = int.Parse(currentID),
-                StartDate = DateTime.Now,
-                Modifiedate = DateTime.Now,
-                DeputeContent = this.richTextBox3.Text,
-                //Salary = this.textBox4.Text,
-                StatusID = 3,
-            };
-
-            this.db.Deputes.Add(f);
-            this.db.SaveChanges();
-
-            //=========================
-            //技能專長
-            int lb3Length = this.listBox3.Items.Count;
-            string[] lb3items = new string[lb3Length];
-
-            for (var l = 0; l < lb3Length; l++)
-            {
-                lb3items[l] = this.listBox3.Items[l].ToString();
-            }
-
-            for (var o = 0; o < lb3items.Length; o++)
-            {
-                string[] skillskill = lb3items[o].Split('-');
-                var s = this.db.Skills.AsEnumerable().Where(p => p.Name == skillskill[1]).Select(p => p.SkillID);
-
-                int skillid = s.SingleOrDefault();
-                DeputeSkill jobSkill = new DeputeSkill
-                {
-                    DeputeID = f.DeputeID,
-                    SkillID = skillid,
-                };
-                this.db.DeputeSkills.Add(jobSkill);
-            }
-            this.db.SaveChanges();
-            //=========================
-            MessageBox.Show("新增成功");
-            this.tabControl2.SelectedIndex = 2;
-            LoadReceiveMembers();
-            LoadMyDepute();
-        }
         
-        private void checkBox1_Click(object sender, EventArgs e)
-        {//todo改r
-            if (this.checkBox1.Checked)
-            {
-                this.button8.Enabled = true;
-            }
-            else
-            {
-                this.button8.Enabled = false;
-            }
-        }
 
         private void button3_Click(object sender, EventArgs e)//ok
         {
@@ -311,13 +220,13 @@ namespace Groot
 
             if (q == null) return;
 
-            if (q.StatusID == 3)
+            if (q.StatusID == 18)
             {
-                q.StatusID = 4;
+                q.StatusID = 19;
             }
-            else if(q.StatusID == 4)
+            else if(q.StatusID == 19)
             {
-                q.StatusID = 3;
+                q.StatusID = 18;
             }
             
             q.Modifiedate= DateTime.Now;
@@ -372,21 +281,7 @@ namespace Groot
 
             LoadMyDepute();
         }
-
-        private void button13_Click(object sender, EventArgs e)//ok
-        {
-            var q =from p in this.db.DeputeRecords.AsEnumerable()
-                   where p.DeputeID == int.Parse(this.dataGridView1.CurrentRow.Cells[0].Value.ToString()) 
-                   &&p.MemberID== int.Parse(this.dataGridView1.CurrentRow.Cells[1].Value.ToString())
-                   select p;
-
-            foreach(var r in q)
-            {
-                this.db.DeputeRecords.Remove(r);
-            }
-            this.db.SaveChanges();
-            LoadReceiveMembers();
-        }
+               
 
         private void dataGridView3_CellContentClick(object sender, DataGridViewCellEventArgs e)//todo bian
         {
@@ -430,7 +325,6 @@ namespace Groot
         {
             if (this.listBox1.SelectedIndex >= 0)
             {
-                this.llb.Items.Clear();
                 this.listBox2.Items.Clear();
                 //===========================
                 var id = from p in this.db.SkillClasses
@@ -440,20 +334,18 @@ namespace Groot
                         where p.SkillClassID == id.ToList()[this.listBox1.SelectedIndex].SkillClassID
                         select p;
 
-                foreach (var item in q)
+                foreach(var item in q)
                 {
-                    this.llb.Items.Add(item.Name);
-                }
-                foreach (var item in llb.Items)
-                {
-                    this.listBox2.Items.Add(item);
+                    this.listBox2.Items.Add(item.Name);
                 }
             }
             else { }
         }
 
+        ListBox lb = new ListBox();
         private void listBox2_DoubleClick(object sender, EventArgs e)
         {
+
             //===============================
             //技能選項listbox
             this.listBox3.Items.Clear();
@@ -485,23 +377,94 @@ namespace Groot
 
             //=================================
             this.listBox2.Items.Remove(this.listBox2.SelectedItem);
+
+            //=====================================
+            this.richTextBox3.Text = "具備以下技能為佳:\r";
+            for (int i = 0; i < this.listBox3.Items.Count; i++)
+            {
+                this.richTextBox3.Text += $"{i + 1}.{this.listBox3.Items[i]}\r";
+            }
+
         }
 
-        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (this.tabControl1.SelectedIndex == 1)
-            {
-                this.richTextBox3.Text = "具備以下技能為佳:\r";
-                for(int i = 0;i<this.listBox3.Items.Count;i++)
-                {
-                    this.richTextBox3.Text += $"{i + 1}.{this.listBox3.Items[i]}\r";
-                }
-            }
-        }
+
 
         private void button2_Click(object sender, EventArgs e)
         {
-            FrmSendDepute f =new FrmSendDepute();
+            FrmDeputeA f =new FrmDeputeA();
+            f.Show();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            //=========================
+            //基本資料
+            Depute f = new Depute
+            {
+                ProviderID = int.Parse(currentID),
+                StartDate = DateTime.Now,
+                Modifiedate = DateTime.Now,
+                DeputeContent = this.richTextBox3.Text,
+                Salary = int.Parse(this.textBox4.Text),
+                StatusID = 18,
+            };
+
+            this.db.Deputes.Add(f);
+            this.db.SaveChanges();
+
+            //=========================
+            //技能專長
+            int lb3Length = this.listBox3.Items.Count;
+            string[] lb3items = new string[lb3Length];
+
+            for (var l = 0; l < lb3Length; l++)
+            {
+                lb3items[l] = this.listBox3.Items[l].ToString();
+            }
+
+            for (var o = 0; o < lb3items.Length; o++)
+            {
+                string[] skillskill = lb3items[o].Split('-');
+                var s = this.db.Skills.AsEnumerable().Where(p => p.Name == skillskill[1]).Select(p => p.SkillID);
+
+                int skillid = s.SingleOrDefault();
+                DeputeSkill jobSkill = new DeputeSkill
+                {
+                    DeputeID = f.DeputeID,
+                    SkillID = skillid,
+                };
+                this.db.DeputeSkills.Add(jobSkill);
+            }
+            this.db.SaveChanges();
+            //=========================
+            MessageBox.Show("新增成功");
+            this.tabControl2.SelectedIndex = 0;
+            LoadReceiveMembers();
+            LoadMyDepute();
+        }
+
+        private void checkBox1_Click(object sender, EventArgs e)
+        {
+            if (this.checkBox1.Checked)
+            {
+                this.button4.Enabled = true;
+            }
+            else
+            {
+                this.button4.Enabled = false;
+            }
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            this.textBox4.Clear();
+            this.listBox3.Items.Clear();
+            this.richTextBox3.Clear();
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            FrmDeputeB f=new FrmDeputeB();
             f.Show();
         }
     }
