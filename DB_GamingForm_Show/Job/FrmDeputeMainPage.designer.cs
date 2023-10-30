@@ -89,7 +89,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(537, 68);
+            this.textBox1.Location = new System.Drawing.Point(557, 95);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(447, 26);
             this.textBox1.TabIndex = 0;
@@ -151,7 +151,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(447, 64);
+            this.button2.Location = new System.Drawing.Point(467, 91);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 32);
             this.button2.TabIndex = 3;
@@ -173,7 +173,7 @@
             // linkLabel3
             // 
             this.linkLabel3.AutoSize = true;
-            this.linkLabel3.Location = new System.Drawing.Point(847, 104);
+            this.linkLabel3.Location = new System.Drawing.Point(867, 131);
             this.linkLabel3.Name = "linkLabel3";
             this.linkLabel3.Size = new System.Drawing.Size(99, 19);
             this.linkLabel3.TabIndex = 2;
@@ -184,7 +184,7 @@
             // linkLabel2
             // 
             this.linkLabel2.AutoSize = true;
-            this.linkLabel2.Location = new System.Drawing.Point(742, 104);
+            this.linkLabel2.Location = new System.Drawing.Point(762, 131);
             this.linkLabel2.Name = "linkLabel2";
             this.linkLabel2.Size = new System.Drawing.Size(99, 19);
             this.linkLabel2.TabIndex = 2;
@@ -195,7 +195,7 @@
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(637, 104);
+            this.linkLabel1.Location = new System.Drawing.Point(657, 131);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(99, 19);
             this.linkLabel1.TabIndex = 2;
@@ -206,16 +206,16 @@
             // label11
             // 
             this.label11.Font = new System.Drawing.Font("Consolas", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(31, 22);
+            this.label11.Location = new System.Drawing.Point(457, 12);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(318, 72);
+            this.label11.Size = new System.Drawing.Size(610, 72);
             this.label11.TabIndex = 1;
-            this.label11.Text = "Groot委託";
+            this.label11.Text = "Groot懸賞~找人才就在這";
             // 
             // label10
             // 
             this.label10.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(534, 107);
+            this.label10.Location = new System.Drawing.Point(554, 134);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(97, 19);
             this.label10.TabIndex = 1;
@@ -288,12 +288,8 @@
             // 
             this.checkedListBox1.FormattingEnabled = true;
             this.checkedListBox1.Items.AddRange(new object[] {
-            "新鮮人",
-            "二度就業",
-            "轉職",
-            "兼職",
-            "計時",
-            "打工"});
+            "人氣",
+            "懸賞中"});
             this.checkedListBox1.Location = new System.Drawing.Point(41, 395);
             this.checkedListBox1.Name = "checkedListBox1";
             this.checkedListBox1.Size = new System.Drawing.Size(167, 151);
@@ -433,7 +429,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(76, 19);
             this.label3.TabIndex = 1;
-            this.label3.Text = "希望職缺";
+            this.label3.Text = "懸賞條件";
             // 
             // comboBox1
             // 
