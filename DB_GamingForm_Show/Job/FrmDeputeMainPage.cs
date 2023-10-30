@@ -54,7 +54,7 @@ namespace DB_GamingForm_Show
 
             public string Status { get; set; }
 
-            public string region { get; set; }
+            public string Region { get; set; }
             
 
         }
@@ -151,7 +151,8 @@ namespace DB_GamingForm_Show
                            Modifiedate = n.Modifiedate.ToString("d"),
                            n.DeputeContent,
                            n.Salary,
-                           status = n.Status.Name
+                           status = n.Status.Name,
+                           n.Region.City
                        };
             this.bindingSource1.DataSource = data.ToList();
             this.dataGridView1.DataSource = this.bindingSource1;
@@ -372,26 +373,25 @@ namespace DB_GamingForm_Show
 
         private void comboBox5_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //Todo 沒有Region
-            //if (this.comboBox5.SelectedIndex == 0)
-            //{
-            //    Clear();
-            //    LoadData();
-            //}
-            //else
-            //{
-            //    var value = from n in list.AsEnumerable()
-            //                where n.Region == this.comboBox5.Text
-            //                orderby n.ModerfiedDate descending
-            //                select n;
+            if (this.comboBox5.SelectedIndex == 0)
+            {
+                Clear();
+                LoadData();
+            }
+            else
+            {
+                var value = from n in list.AsEnumerable()
+                            where n.Region == this.comboBox5.Text
+                            orderby n.ModerfiedDate descending
+                            select n;
 
-            //    this.bindingSource1.Clear();
-            //    this.bindingSource1.DataSource = value.ToList();
-            //    this.dataGridView1.DataSource = this.bindingSource1;
-            //    sourcecount = value.Count();
-            //    ListLoad(sourcecount);
-            //}
-            //this.label12.Text = $"10/{this.dataGridView1.RowCount}筆";
+                this.bindingSource1.Clear();
+                this.bindingSource1.DataSource = value.ToList();
+                this.dataGridView1.DataSource = this.bindingSource1;
+                sourcecount = value.Count();
+                ListLoad(sourcecount);
+            }
+            this.label12.Text = $"10/{this.dataGridView1.RowCount}筆";
         }
 
         private void comboBox6_SelectedIndexChanged(object sender, EventArgs e)
@@ -466,6 +466,7 @@ namespace DB_GamingForm_Show
                     DeputeContent = this.dataGridView1.Rows[i].Cells[4].Value.ToString(),
                     Salary= this.dataGridView1.Rows[i].Cells[5].Value.ToString(),
                     Status = this.dataGridView1.Rows[i].Cells[6].Value.ToString(),
+                    Region = this.dataGridView1.Rows[i].Cells[7].Value.ToString()
 
                 });
             }

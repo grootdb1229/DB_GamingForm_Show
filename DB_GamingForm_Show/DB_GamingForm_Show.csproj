@@ -438,7 +438,6 @@
     </Compile>
     <EntityDeploy Include="GMModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>GMModel1.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <None Include="GMModel.edmx.diagram">
       <DependentUpon>GMModel.edmx</DependentUpon>

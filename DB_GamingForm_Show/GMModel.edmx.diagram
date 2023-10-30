@@ -99,6 +99,7 @@
         <AssociationConnector Association="DB_GamingFormModel.FK_RegionDistrict_Region" ManuallyRouted="false" />
         <AssociationConnector Association="DB_GamingFormModel.FK_Skill_SkillClass" ManuallyRouted="false" />
         <AssociationConnector Association="DB_GamingFormModel.FK_SubTag_Tag" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_GamingFormModel.FK_Depute_Region" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
