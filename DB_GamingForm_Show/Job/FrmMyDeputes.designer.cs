@@ -47,6 +47,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.listBox2 = new System.Windows.Forms.ListBox();
@@ -68,13 +69,14 @@
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.listBox4 = new System.Windows.Forms.ListBox();
             this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.button8 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.tabPage9 = new System.Windows.Forms.TabPage();
             this.tabPage11 = new System.Windows.Forms.TabPage();
             this.tabPage10 = new System.Windows.Forms.TabPage();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.button8 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.tabControl2.SuspendLayout();
             this.tabPage12.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
@@ -181,6 +183,8 @@
             // 
             // tabPage7
             // 
+            this.tabPage7.Controls.Add(this.comboBox1);
+            this.tabPage7.Controls.Add(this.label2);
             this.tabPage7.Controls.Add(this.checkBox1);
             this.tabPage7.Controls.Add(this.button7);
             this.tabPage7.Controls.Add(this.button4);
@@ -302,6 +306,15 @@
             this.label15.Size = new System.Drawing.Size(73, 20);
             this.label15.TabIndex = 0;
             this.label15.Text = "提供報酬";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(930, 17);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(73, 20);
+            this.label1.TabIndex = 20;
+            this.label1.Text = "懸賞內容";
             // 
             // label11
             // 
@@ -525,6 +538,16 @@
             this.tabPage8.Text = "廣告和宣傳";
             this.tabPage8.UseVisualStyleBackColor = true;
             // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(363, 101);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(108, 31);
+            this.button8.TabIndex = 2;
+            this.button8.Text = "我想合作";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(158, 101);
@@ -568,24 +591,22 @@
             this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             // 
-            // button8
+            // label2
             // 
-            this.button8.Location = new System.Drawing.Point(363, 101);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(108, 31);
-            this.button8.TabIndex = 2;
-            this.button8.Text = "我想合作";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 458);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(41, 20);
+            this.label2.TabIndex = 25;
+            this.label2.Text = "地區";
             // 
-            // label1
+            // comboBox1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(930, 17);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(73, 20);
-            this.label1.TabIndex = 20;
-            this.label1.Text = "懸賞內容";
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(12, 481);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 28);
+            this.comboBox1.TabIndex = 26;
             // 
             // FrmDepute
             // 
@@ -670,5 +691,7 @@
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label2;
     }
 }

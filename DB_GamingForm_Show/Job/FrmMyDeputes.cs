@@ -137,7 +137,7 @@ namespace Groot
             }
             else
             {
-                MessageBox.Show("看到趕快來加東西");
+                MessageBox.Show("尚無委託紀錄");
             }
         }
 
@@ -152,10 +152,8 @@ namespace Groot
                         委託編號 = p.DeputeID,
                         應徵會員編號 = p.MemberID,
                         姓名 = p.Member.Name,
-                        //身份證字號 = p.Resume.IdentityID,
                         手機號碼 = p.Member.Phone,
-                        //工作經驗 = p.Resume.WorkExp,
-                        狀態=p.Status.Name,
+                        狀態 = p.Status.Name,
                     };
             this.dataGridView1.DataSource = q.ToList();
         }
@@ -410,6 +408,7 @@ namespace Groot
                     DeputeContent = this.richTextBox3.Text,
                     Salary = int.Parse(this.textBox4.Text),
                     StatusID = 18,
+                    
                 };
 
                 this.db.Deputes.Add(f);
