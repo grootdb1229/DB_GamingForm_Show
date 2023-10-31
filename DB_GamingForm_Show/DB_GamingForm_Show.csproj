@@ -439,10 +439,12 @@
     <EntityDeploy Include="GMModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
     </EntityDeploy>
+    <None Include="DB\DB_Gaming1031.bak" />
     <None Include="GMModel.edmx.diagram">
       <DependentUpon>GMModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="PowerBi\GROOT_POWERBI %282%29.pbix" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
