@@ -136,6 +136,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GMModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="GMModel2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GMModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Image.cs">
       <DependentUpon>GMModel.tt</DependentUpon>
     </Compile>
@@ -440,13 +445,14 @@
     </Compile>
     <EntityDeploy Include="GMModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>GMModel2.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <None Include="DB\DB_Gaming1031.bak" />
     <None Include="GMModel.edmx.diagram">
       <DependentUpon>GMModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
-    <None Include="PowerBi\GROOT_POWERBI %282%29.pbix" />
+    <None Include="PowerBi\GROOT_POWERBI.pbix" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

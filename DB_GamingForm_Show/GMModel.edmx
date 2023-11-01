@@ -170,6 +170,7 @@
           <Property Name="ImageID" Type="int" Nullable="false" />
           <Property Name="Mycomment" Type="ntext" />
           <Property Name="BonusPoint" Type="int" Nullable="false" />
+          <Property Name="Gender" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="MemberStatus">
           <Key>
@@ -1725,6 +1726,7 @@
           <NavigationProperty Name="ProductEvaluates" Relationship="DB_GamingFormModel.FK_ProductEvaluate_Member" FromRole="Member" ToRole="ProductEvaluate" />
           <NavigationProperty Name="Replies" Relationship="DB_GamingFormModel.FK_Reply_Member" FromRole="Member" ToRole="Reply" />
           <NavigationProperty Name="WishLists" Relationship="DB_GamingFormModel.FK_WishList_Member" FromRole="Member" ToRole="WishList" />
+          <Property Name="Gender" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="MemberStatu">
           <Key>
@@ -2810,6 +2812,7 @@
           <EntitySetMapping Name="Members">
             <EntityTypeMapping TypeName="DB_GamingFormModel.Member">
               <MappingFragment StoreEntitySet="Member">
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
                 <ScalarProperty Name="BonusPoint" ColumnName="BonusPoint" />
                 <ScalarProperty Name="Mycomment" ColumnName="Mycomment" />
                 <ScalarProperty Name="ImageID" ColumnName="ImageID" />

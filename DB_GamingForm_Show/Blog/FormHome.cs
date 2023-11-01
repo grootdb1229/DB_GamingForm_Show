@@ -389,36 +389,48 @@ namespace DBGaming
 
         private void btnBlogDelete_Click(object sender, EventArgs e)
         {
-            var delRe = db.Replies
-                .Where(r => r.Article.SubBlog.Blog.Title == this.txbBlog.Text && r.Article.SubBlog.Blog.SubTag.Name == this.cbmBlog.Text)
-                .Select(r => r);
-            if (delRe == null) return;
-            foreach (var item in delRe)
-            {
-                db.Replies.Remove(item);
-            };
-            var delArt = db.Articles
-                .Where(a => a.SubBlog.Blog.Title == this.txbBlog.Text && a.SubBlog.Blog.SubTag.Name == this.cbmBlog.Text)
-                .Select(a => a);
-            if (delArt == null) return;
-            foreach (var item in delArt)
-            {
-                db.Articles.Remove(item);
-            }
-            var delSubBlog = db.SubBlogs
-                .Where(s => s.Blog.Title == this.txbBlog.Text && s.Blog.SubTag.Name == this.cbmBlog.Text)
-                .Select(s => s);
-            if (delSubBlog == null) return;
-            foreach (var item in delSubBlog)
-            {
-                db.SubBlogs.Remove(item);
-            }
+
             var delBlog = db.Blogs.AsEnumerable()
                 .Where(b => b.Title == this.txbBlog.Text)
-                .Select(b => b).FirstOrDefault();
-            if (delBlog == null) return;
-            db.Blogs.Remove(delBlog);
-            db.SaveChanges();
+                .Select(b => b);
+
+            foreach (var item in delBlog)
+            {
+                
+            item.SubTagID = 14;
+           
+
+            } db.SaveChanges();
+            //var delRe = db.Replies
+            //    .Where(r => r.Article.SubBlog.Blog.Title == this.txbBlog.Text && r.Article.SubBlog.Blog.SubTag.Name == this.cbmBlog.Text)
+            //    .Select(r => r);
+            //if (delRe == null) return;
+            //foreach (var item in delRe)
+            //{
+            //    db.Replies.Remove(item);
+            //};
+            //var delArt = db.Articles
+            //    .Where(a => a.SubBlog.Blog.Title == this.txbBlog.Text && a.SubBlog.Blog.SubTag.Name == this.cbmBlog.Text)
+            //    .Select(a => a);
+            //if (delArt == null) return;
+            //foreach (var item in delArt)
+            //{
+            //    db.Articles.Remove(item);
+            //}
+            //var delSubBlog = db.SubBlogs
+            //    .Where(s => s.Blog.Title == this.txbBlog.Text && s.Blog.SubTag.Name == this.cbmBlog.Text)
+            //    .Select(s => s);
+            //if (delSubBlog == null) return;
+            //foreach (var item in delSubBlog)
+            //{
+            //    db.SubBlogs.Remove(item);
+            //}
+            //var delBlog = db.Blogs.AsEnumerable()
+            //    .Where(b => b.Title == this.txbBlog.Text)
+            //    .Select(b => b).FirstOrDefault();
+            //if (delBlog == null) return;
+            //db.Blogs.Remove(delBlog);
+            //db.SaveChanges();
             dataGridView1.DataSource = null;
             ALLClear();
             LoadBlog();
