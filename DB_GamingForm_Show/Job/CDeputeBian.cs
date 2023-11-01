@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DB_GamingForm_Show.Job
 {
-    public class CDepute
+    public class CDeputeBian
     {
         
         public DateTime date開始時間 { get; set; }

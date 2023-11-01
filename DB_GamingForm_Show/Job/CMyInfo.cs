@@ -11,7 +11,7 @@ namespace DB_GamingForm_Show.Job
     {
         DB_GamingFormEntities db = new DB_GamingFormEntities();
 
-        private List<CDepute> _list = new List<CDepute>();
+        private List<CDeputeBian> _list = new List<CDeputeBian>();
 
         public static int selectedMemberid;
 
@@ -30,7 +30,7 @@ namespace DB_GamingForm_Show.Job
                     where p.ProviderID == ClassUtility.MemberID
                     select p;
 
-            CDepute x = new CDepute();
+            CDeputeBian x = new CDeputeBian();
             CMyInfoDetial.int提供者編號 = ClassUtility.MemberID;
             CMyInfoDetial.string提供者名稱 = m.Name;
             CMyInfoDetial.string提供者手機 = m.Phone;
@@ -47,7 +47,7 @@ namespace DB_GamingForm_Show.Job
                 _list.Add(x);
             }
         }
-        public List<CDepute> allMyDetpue { get { return _list; } }
+        public List<CDeputeBian> allMyDetpue { get { return _list; } }
 
         
     }

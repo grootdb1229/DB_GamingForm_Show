@@ -59,16 +59,16 @@ namespace DB_GamingForm_Show.Job
 
         }
 
-        public List<CDepute> Search(string input)
-        {
-            var data = from n in _list.AsEnumerable()
-                       where n.content.ToLower().Contains(input.ToLower())
-                       orderby n.startdate descending
-                       select n;
+        //public List<CDepute> Search(string input)
+        //{
+        //    var data = from n in _list.AsEnumerable()
+        //               where n.content.ToLower().Contains(input.ToLower())
+        //               orderby n.startdate descending
+        //               select n;
 
-            DgvDataLoad();
-
-        }
+        //    DgvDataLoad();
+        //bian修不好
+        //}
 
         public List<CDepute> DgvDataLoad(int sourcecount)
         {
