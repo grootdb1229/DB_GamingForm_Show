@@ -153,6 +153,9 @@
     <Compile Include="Job\CDepute.cs" />
     <Compile Include="Job\CMyInfo.cs" />
     <Compile Include="Job\CMyInfoDetial.cs" />
+    <Compile Include="Job\DeputeClass\CDepluteMainPageLoad.cs" />
+    <Compile Include="Job\DeputeClass\CDepute.cs" />
+    <Compile Include="Job\DeputeClass\DeputeMove.cs" />
     <Compile Include="Job\FrmDeputeB.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -165,18 +168,17 @@
     <Compile Include="Job\FrmDeputeA.Designer.cs">
       <DependentUpon>FrmDeputeA.cs</DependentUpon>
     </Compile>
+    <Compile Include="Job\FrmDeputeMainPage - 複製.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Job\FrmDeputeMainPage - 複製.designer.cs">
+      <DependentUpon>FrmDeputeMainPage - 複製.cs</DependentUpon>
+    </Compile>
     <Compile Include="Job\FrmMyDeputes.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Job\FrmMyDeputes.designer.cs">
       <DependentUpon>FrmMyDeputes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Job\ClsJob.cs" />
-    <Compile Include="Job\FrmDeputeMainPage.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Job\FrmDeputeMainPage.designer.cs">
-      <DependentUpon>FrmDeputeMainPage.cs</DependentUpon>
     </Compile>
     <Compile Include="Member.cs">
       <DependentUpon>GMModel.tt</DependentUpon>
@@ -383,11 +385,11 @@
     <EmbeddedResource Include="Job\FrmDeputeA.resx">
       <DependentUpon>FrmDeputeA.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Job\FrmDeputeMainPage - 複製.resx">
+      <DependentUpon>FrmDeputeMainPage - 複製.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Job\FrmMyDeputes.resx">
       <DependentUpon>FrmMyDeputes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Job\FrmDeputeMainPage.resx">
-      <DependentUpon>FrmDeputeMainPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Member\FirmFrmRegistration.resx">
       <DependentUpon>FirmFrmRegistration.cs</DependentUpon>

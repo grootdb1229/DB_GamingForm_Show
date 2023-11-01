@@ -1,6 +1,4 @@
-﻿using DB_GamingForm_Show.Job;
-using DB_GamingForm_Show.Job.DeputeClass;
-using Gaming_Forum;
+﻿using Gaming_Forum;
 using Groot;
 //using Groot;
 using System;
@@ -29,21 +27,56 @@ namespace DB_GamingForm_Show
             HotSearch();
 
 
-            
+            this.button1.Enabled = true;
+            this.bindingSource1.Clear();
+            var data = from n in this.entities.Deputes.AsEnumerable()
+                       orderby n.StartDate descending
+                       select new
+                       {
+                           n.DeputeID,
+                           n.Member.Name,
+                           SrartDate = n.StartDate.ToString("d"),
+                           Modifiedate = n.Modifiedate.ToString("d"),
+                           n.DeputeContent,
+                           n.Salary,
+                           status = n.Status.Name,
+                           n.Region.City
+                       };
+            this.bindingSource1.DataSource = data.ToList();
+            this.dataGridView1.DataSource = this.bindingSource1;
+            sourcecount = this.dataGridView1.RowCount;
+            ListLoad(sourcecount);
+
 
 
 
         }
         #region OfficalCode
-        public int getmemberID { get; set; }
         public int count = 1;
         public int sourcecount = 0;
         public int page = 0;
         public int pagecount = 25;
         public bool flag = true;
         DB_GamingFormEntities entities = new DB_GamingFormEntities();
-        List<CDepute> _dgvList = new List<CDepute>();
-        CDepluteMainPageLoad x = new CDepluteMainPageLoad();
+        List<Result> list = new List<Result>();
+        public class Result
+        {
+            public string DeputeID { get; set; }
+            public string ProvideMember { get; set; }
+            public string StartDate { get; set; }
+
+            public string ModerfiedDate { get; set; }
+
+            public string DeputeContent { get; set; }
+
+            public string Salary { get; set; }
+
+            public string Status { get; set; }
+
+            public string Region { get; set; }
+            
+
+        }
         private void HotSearch()
         {
             try {
@@ -125,37 +158,31 @@ namespace DB_GamingForm_Show
 
         private void LoadData()
         {
-            
             this.button1.Enabled = true;
             this.bindingSource1.Clear();
-            this.bindingSource1.DataSource = x.List;
+            var data = from n in this.entities.Deputes.AsEnumerable()
+                       orderby n.StartDate descending
+                       select new
+                       {
+                           n.DeputeID,
+                           n.Member.Name,
+                           SrartDate = n.StartDate.ToString("d"),
+                           Modifiedate = n.Modifiedate.ToString("d"),
+                           n.DeputeContent,
+                           n.Salary,
+                           status = n.Status.Name,
+                           n.Region.City
+                       };
+            this.bindingSource1.DataSource = data.ToList();
             this.dataGridView1.DataSource = this.bindingSource1;
             sourcecount = this.dataGridView1.RowCount;
-            x.DgvDataLoad(sourcecount);
-            if ( x.DgvList.Count== 0 && count != 1)
-            {
-                MessageBox.Show("No Match");
-                ComboBoxReset();
-                LoadData();
-
-            }
-            else if (x.DgvList.Count <= pagecount)
-            {
-                this.label12.Text = $"{x.DgvList.Count} /{x.DgvList.Count}筆";
-                this.button1.Enabled = false;
-                this.button3.Enabled = false;
-            }
-            else
-            {
-                this.label12.Text = $"{x.DgvList.Count} /{x.DgvList.Count}筆";
-                this.button3.Enabled = false;
-            }
+            ListLoad(sourcecount);
 
         }
 
 
 
-        private void ComboBoxReset()
+        private void Clear()
         {
             this.comboBox1.SelectedIndex = 0;
             this.comboBox2.SelectedIndex = 0;
@@ -164,16 +191,36 @@ namespace DB_GamingForm_Show
             this.comboBox6.SelectedIndex = 0;
             this.comboBox7.SelectedIndex = 0;
 
+
+
+
+
         }
+
+
+
 
         private void checkedListBox1_ItemCheck(object sender, ItemCheckEventArgs e)
         {
+            list.Clear();
+            var data = from n in this.entities.Deputes.AsEnumerable()
+                       where n.DeputeContent.Contains(this.checkedListBox1.Text)
+                       orderby n.StartDate descending
+                       select new
+                       {
+                           n.DeputeID,
+                           n.Member.MemberID,
+                           SrartDate = n.StartDate.ToString("d"),
+                           n.Modifiedate,
+                           n.DeputeContent,
+                           Status = n.Status.Name
+                       };
             if (flag)
             {
                 this.bindingSource1.Clear();
-                this.bindingSource1.DataSource = x.Search(this.checkedListBox1.Text); ;
+                this.bindingSource1.DataSource = data.ToList();
                 this.dataGridView1.DataSource = this.bindingSource1;
-                this.label12.Text = $"{page * pagecount}/{x.Search(this.checkedListBox1.Text).Count()}筆";
+                this.label12.Text = $"{page * pagecount}/{list.Count()}筆";
                 flag = !flag;
             }
             else
@@ -194,11 +241,24 @@ namespace DB_GamingForm_Show
             Search(this.textBox1.Text);
         }
 
+        private void Remove()
+        {
+            //var value = (from p in this.entities.SerachRecords
+            //               where p.CreateDays.Day <=DateTime.Now.Day-7
+            //               select p).FirstOrDefault();
+
+            //if (value == null) return;
+
+            this.entities.SerachRecords.Remove
+                                (new SerachRecord { ID = 2 });
+            this.entities.SaveChanges();
+
+        }
         private void Search(string source)
         {
             if (source == "")
             {
-                ComboBoxReset();
+                Clear();
                 LoadData();
             }
             else
@@ -206,30 +266,41 @@ namespace DB_GamingForm_Show
                 this.entities.SerachRecords.Add
                                 (new SerachRecord { Name = source, CreateDays = (DateTime.Now.Date), IsMember = true });
                 this.entities.SaveChanges();
+                var data = from n in this.entities.Deputes.AsEnumerable()
+                           where n.DeputeContent.ToLower().Contains(source.ToLower())
+                           orderby n.StartDate descending
+                           select new
+                           {
+                               n.DeputeID,
+                               n.Member.MemberID,
+                               SrartDate = n.StartDate.ToString("d"),
+                               n.Modifiedate,
+                               n.DeputeContent,
+                               Status = n.Status.Name
+                           };
                 this.bindingSource1.Clear();
-                this.bindingSource1.DataSource = x.Search(textBox1.Text);
+                this.bindingSource1.DataSource = data.ToList();
                 this.dataGridView1.DataSource = this.bindingSource1;
                 this.label12.Text = $"{page* pagecount}/{this.dataGridView1.RowCount}筆";
-                sourcecount = x.Search(textBox1.Text).Count;
-                DgvDataLoad(sourcecount);
+                sourcecount = data.Count();
+                ListLoad(sourcecount);
 
             }
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            x.Search(this.linkLabel1.Text);
+            Search(this.linkLabel1.Text);
         }
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            x.Search(this.linkLabel2.Text);
+            Search(this.linkLabel2.Text);
         }
 
         private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            x.Search(this.linkLabel3.Text);
-            Refresh();
+            Search(this.linkLabel3.Text);
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -237,27 +308,33 @@ namespace DB_GamingForm_Show
             Filter();
 
         }
-       
+
+
+
+
+        private void button4_Click_1(object sender, EventArgs e)
+        {
+        }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             //if (this.comboBox1.SelectedIndex == 0)
             //{
-            //    ComboBoxReset();
+            //    Clear();
             //    LoadData();
 
             //}
             //else
             //{
-            //    var value = from n in _dgvList.AsEnumerable()
+            //    var value = from n in list.AsEnumerable()
             //                where n.EducationRequirements == this.comboBox1.Text
             //                orderby n.modifieddate descending
             //                select n;
-            //    this.bindingSource1.ComboBoxReset();
+            //    this.bindingSource1.Clear();
             //    this.bindingSource1.DataSource = value.ToList();
             //    this.dataGridView1.DataSource = this.bindingSource1;
             //    sourcecount = value.Count();
-            //    DgvDataLoad(sourcecount);
+            //    ListLoad(sourcecount);
             //}
         }
 
@@ -265,17 +342,20 @@ namespace DB_GamingForm_Show
         {
             if (this.comboBox2.SelectedIndex == 0)
             {
-                ComboBoxReset();
+                Clear();
                 LoadData();
             }
             else
             {
-                var value = from n in _dgvList.AsEnumerable()
-                            where n.content.ToLower().Contains(this.comboBox2.Text.ToLower())
-                            orderby n.startdate
+                var value = from n in list.AsEnumerable()
+                            where n.DeputeContent.ToLower().Contains(this.comboBox2.Text.ToLower())
+                            orderby n.StartDate
                             select n;
-                Refresh(value);
-
+                this.bindingSource1.Clear();
+                this.bindingSource1.DataSource = value.ToList();
+                this.dataGridView1.DataSource = this.bindingSource1;
+                sourcecount = value.ToList().Count();
+                ListLoad(sourcecount);
             }
 
         }
@@ -288,37 +368,47 @@ namespace DB_GamingForm_Show
             if (this.comboBox3.SelectedIndex == 0)
             {
                 this.comboBox4.Text = "";
-                ComboBoxReset();
+                Clear();
                 LoadData();
             }
+
+            //this.label12.Text = $"10/{this.dataGridView1.RowCount}筆";
         }
 
 
 
         private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var value = from n in _dgvList.AsEnumerable()
-                        where n.content.ToLower().Contains(this.comboBox4.Text.ToLower())
-                        orderby n.startdate descending
+            var value = from n in list.AsEnumerable()
+                        where n.DeputeContent.ToLower().Contains(this.comboBox4.Text.ToLower())
+                        orderby n.StartDate descending
                         select n;
-            Refresh(value);
+            this.bindingSource1.Clear();
+            this.bindingSource1.DataSource = value.ToList();
+            this.dataGridView1.DataSource = this.bindingSource1;
+            sourcecount = value.Count();
+            ListLoad(sourcecount);
         }
 
         private void comboBox5_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (this.comboBox5.SelectedIndex == 0)
             {
-                ComboBoxReset();
+                Clear();
                 LoadData();
             }
             else
             {
-                var value = from n in _dgvList.AsEnumerable()
-                            where n.region == this.comboBox5.Text
-                            orderby n.modifieddate descending
+                var value = from n in list.AsEnumerable()
+                            where n.Region == this.comboBox5.Text
+                            orderby n.ModerfiedDate descending
                             select n;
 
-                Refresh(value);
+                this.bindingSource1.Clear();
+                this.bindingSource1.DataSource = value.ToList();
+                this.dataGridView1.DataSource = this.bindingSource1;
+                sourcecount = value.Count();
+                ListLoad(sourcecount);
             }
             this.label12.Text = $"10/{this.dataGridView1.RowCount}筆";
         }
@@ -327,16 +417,20 @@ namespace DB_GamingForm_Show
         {
             if (this.comboBox6.SelectedIndex == 0)
             {
-                ComboBoxReset();
+                Clear();
                 LoadData();
             }
             else
             {
-                var value = this._dgvList.AsEnumerable()
-                            .Where(n => Convert.ToInt32(n.salary) >= int.Parse(this.comboBox6.Text))
-                            .Select(n => n).OrderByDescending(n => n.modifieddate);
+                var value = this.list.AsEnumerable()
+                            .Where(n => Convert.ToInt32(n.Salary) >= int.Parse(this.comboBox6.Text))
+                            .Select(n => n).OrderByDescending(n => n.ModerfiedDate);
 
-                Refresh(value);
+                this.bindingSource1.Clear();
+                this.bindingSource1.DataSource = value.ToList();
+                this.dataGridView1.DataSource = this.bindingSource1;
+                sourcecount = value.Count();
+                ListLoad(sourcecount);
             }
         }
 
@@ -344,31 +438,26 @@ namespace DB_GamingForm_Show
         {
             if (this.comboBox7.SelectedIndex == 0)
             {
-                ComboBoxReset();
+                Clear();
                 LoadData();
             }
             else
             {
-                var value = from n in _dgvList.AsEnumerable()
-                            where n.status == this.comboBox7.Text
-                            orderby n.modifieddate descending
+                var value = from n in list.AsEnumerable()
+                            where n.Status == this.comboBox7.Text
+                            orderby n.ModerfiedDate descending
                             select n;
-                Refresh(value);
+                this.bindingSource1.Clear();
+                this.bindingSource1.DataSource = value.ToList();
+                this.dataGridView1.DataSource = this.bindingSource1;
+                sourcecount = value.Count();
+                ListLoad(sourcecount);
             }
-        }
-
-        private void Refresh(IOrderedEnumerable<CDepute> value)
-        {
-            this.bindingSource1.Clear();
-            this.bindingSource1.DataSource = value.ToList();
-            this.dataGridView1.DataSource = this.bindingSource1;
-            sourcecount = value.Count();
-            DgvDataLoad(sourcecount);
         }
 
         private void button4_Click_2(object sender, EventArgs e)
         {
-            ComboBoxReset();
+            Clear();
             LoadData();
         }
 
@@ -379,30 +468,46 @@ namespace DB_GamingForm_Show
 
 
 
-        private void DgvDataLoad(int sourcecount)
+        private void ListLoad(int sourcecount)
         {
             
             count += 1;
             page = 0;
+            list.Clear();
+            for (int i = 0; i < sourcecount; i++)
+            {
+                list.Add(new Result
+                {
+                    DeputeID = this.dataGridView1.Rows[i].Cells[0].Value.ToString(),
+                    ProvideMember = this.dataGridView1.Rows[i].Cells[1].Value.ToString(),
+                    StartDate = this.dataGridView1.Rows[i].Cells[2].Value.ToString(),
+                    ModerfiedDate = this.dataGridView1.Rows[i].Cells[3].Value.ToString(),
+                    DeputeContent = this.dataGridView1.Rows[i].Cells[4].Value.ToString(),
+                    Salary= this.dataGridView1.Rows[i].Cells[5].Value.ToString(),
+                    Status = this.dataGridView1.Rows[i].Cells[6].Value.ToString(),
+                    Region = this.dataGridView1.Rows[i].Cells[7].Value.ToString()
+
+                });
+            }
             this.bindingSource1.Clear();
-            this.bindingSource1.DataSource = x.DgvDataLoad(sourcecount);
+            this.bindingSource1.DataSource = list.ToList();
             this.dataGridView1.DataSource = this.bindingSource1;
-            if (_dgvList.Count == 0 && count != 1)
+            if (list.Count == 0 && count != 1)
             {
                 MessageBox.Show("No Match");
-                ComboBoxReset();
+                Clear();
                 LoadData();
 
             }
-            else if (_dgvList.Count <= pagecount)
+            else if (list.Count <= pagecount)
             {
-                this.label12.Text = $"{_dgvList.Count} /{_dgvList.Count}筆";
+                this.label12.Text = $"{list.Count} /{list.Count}筆";
                 this.button1.Enabled = false;
                 this.button3.Enabled = false;
             }
             else
             {
-                this.label12.Text = $"{_dgvList.Count} /{_dgvList.Count}筆";
+                this.label12.Text = $"{list.Count} /{list.Count}筆";
                 this.button3.Enabled = false;
             }
 
@@ -413,7 +518,7 @@ namespace DB_GamingForm_Show
 
 
 
-        
+        public int Id { get; set; }
 
 
         private void linkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -450,7 +555,7 @@ namespace DB_GamingForm_Show
             {
                 page = 0;
                 this.bindingSource1.Clear();
-                this.bindingSource1.DataSource = _dgvList.ToList().Skip(page  * pagecount).Take(pagecount);
+                this.bindingSource1.DataSource = list.ToList().Skip(page  * pagecount).Take(pagecount);
                 this.dataGridView1.DataSource = this.bindingSource1;
                 this.button3.Enabled = false;
                 this.label12.Text = $"已是第一頁";
@@ -459,10 +564,10 @@ namespace DB_GamingForm_Show
             else
             {
                 this.bindingSource1.Clear();
-                this.bindingSource1.DataSource = _dgvList.ToList().Skip(page * pagecount).Take(pagecount);
+                this.bindingSource1.DataSource = list.ToList().Skip(page * pagecount).Take(pagecount);
                 this.dataGridView1.DataSource = this.bindingSource1;
                 this.button1.Enabled = true;
-                this.label12.Text = $"{page * pagecount} /{_dgvList.Count}筆";
+                this.label12.Text = $"{page * pagecount} /{list.Count}筆";
 
             }
             
@@ -471,12 +576,12 @@ namespace DB_GamingForm_Show
         private void button1_Click(object sender, EventArgs e)
         {
             page += 1;
-            if (page * pagecount > _dgvList.Count)
+            if (page * pagecount > list.Count)
             {
 
                 page -= 1;
                 this.bindingSource1.Clear();
-                this.bindingSource1.DataSource = _dgvList.ToList().Skip(page * pagecount).Take(pagecount);
+                this.bindingSource1.DataSource = list.ToList().Skip(page * pagecount).Take(pagecount);
                 this.dataGridView1.DataSource = this.bindingSource1;
                 this.label12.Text = $"已是最後一頁";
                 this.button1.Enabled = false;
@@ -486,9 +591,9 @@ namespace DB_GamingForm_Show
             {
                 this.button3.Enabled = true;
                 this.bindingSource1.Clear();
-                this.bindingSource1.DataSource = _dgvList.ToList().Skip(page * pagecount).Take(pagecount);
+                this.bindingSource1.DataSource = list.ToList().Skip(page * pagecount).Take(pagecount);
                 this.dataGridView1.DataSource = this.bindingSource1;
-                this.label12.Text = $"{page * pagecount} /{_dgvList.Count}筆";
+                this.label12.Text = $"{page * pagecount} /{list.Count}筆";
 
             }
             
@@ -520,30 +625,17 @@ namespace DB_GamingForm_Show
 
             if (ClassUtility.FirmID == 0)
             {
-                getmemberID = ClassUtility.FirmID;
+                Id = ClassUtility.FirmID;
 
             }
             else
             {
-                getmemberID = ClassUtility.MemberID;
+                Id = ClassUtility.MemberID;
 
             }
 
 
         }
         #endregion
-        private void Remove()
-        {
-            //var value = (from p in this.entities.SerachRecords
-            //               where p.CreateDays.Day <=DateTime.Now.Day-7
-            //               select p).FirstOrDefault();
-
-            //if (value == null) return;
-
-            this.entities.SerachRecords.Remove
-                                (new SerachRecord { ID = 2 });
-            this.entities.SaveChanges();
-
-        }
     }
 }
