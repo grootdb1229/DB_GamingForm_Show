@@ -249,7 +249,5 @@ namespace Gaming_Forum
             this.textBox1.Text = "ben@gmail.com";
             this.textBox2.Text = "As123456";
         }
-
-        
     }
 }

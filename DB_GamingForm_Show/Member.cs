@@ -39,6 +39,7 @@ namespace DB_GamingForm_Show
         public int ImageID { get; set; }
         public string Mycomment { get; set; }
         public int BonusPoint { get; set; }
+        public int Gender { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Article> Articles { get; set; }
