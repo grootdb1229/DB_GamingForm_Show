@@ -424,6 +424,7 @@
       <DependentUpon>GMModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="PowerBi\GROOT_POWERBI.pbix" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
