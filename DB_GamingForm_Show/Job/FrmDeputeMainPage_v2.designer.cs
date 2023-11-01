@@ -1,6 +1,6 @@
 ﻿namespace DB_GamingForm_Show
 {
-    partial class FrmDeputeMainPage
+    partial class FrmDeputeMainPage_v2
     {
         /// <summary>
         /// 設計工具所需的變數。
@@ -524,7 +524,7 @@
             this.label15.TabIndex = 1;
             this.label15.Text = "及時回復(跳出視窗)";
             // 
-            // FrmDeputeMainPage
+            // FrmDeputeMainPage_v2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -532,8 +532,8 @@
             this.Controls.Add(this.tabControl1);
             this.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.Name = "FrmDeputeMainPage";
-            this.Text = "FrmDeputeMainPage";
+            this.Name = "FrmDeputeMainPage_v2";
+            this.Text = "FrmDeputeMainPage_v2";
             this.tabControl1.ResumeLayout(false);
             this.tpHomePage.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);

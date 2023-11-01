@@ -168,11 +168,11 @@
     <Compile Include="Job\FrmDeputeA.Designer.cs">
       <DependentUpon>FrmDeputeA.cs</DependentUpon>
     </Compile>
-    <Compile Include="Job\FrmDeputeMainPage - 複製.cs">
+    <Compile Include="Job\FrmDeputeMainPage.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Job\FrmDeputeMainPage - 複製.designer.cs">
-      <DependentUpon>FrmDeputeMainPage - 複製.cs</DependentUpon>
+    <Compile Include="Job\FrmDeputeMainPage.designer.cs">
+      <DependentUpon>FrmDeputeMainPage.cs</DependentUpon>
     </Compile>
     <Compile Include="Job\FrmMyDeputes.cs">
       <SubType>Form</SubType>
@@ -385,8 +385,8 @@
     <EmbeddedResource Include="Job\FrmDeputeA.resx">
       <DependentUpon>FrmDeputeA.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Job\FrmDeputeMainPage - 複製.resx">
-      <DependentUpon>FrmDeputeMainPage - 複製.cs</DependentUpon>
+    <EmbeddedResource Include="Job\FrmDeputeMainPage.resx">
+      <DependentUpon>FrmDeputeMainPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Job\FrmMyDeputes.resx">
       <DependentUpon>FrmMyDeputes.cs</DependentUpon>

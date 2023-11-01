@@ -59,33 +59,31 @@ namespace DB_GamingForm_Show.Job
 
         }
 
-        //public List<CDepute> Search(string input)
-        //{
-        //    var data = from n in _list.AsEnumerable()
-        //               where n.content.ToLower().Contains(input.ToLower())
-        //               orderby n.startdate descending
-        //               select n;
+        public List<CDepute> Search(string input)
+        {
+            var data = from n in _list.AsEnumerable()
+                       where n.content.ToLower().Contains(input.ToLower())
+                       orderby n.startdate descending
+                       select n;
+                return data.ToList();
+            
+        }
 
-        //    DgvDataLoad();
-        //bian修不好
-        //}
-
-        public List<CDepute> DgvDataLoad(int sourcecount)
+        public List<CDepute> DgvDataLoad(int sourcecount, DataGridView data)
         {
             _dgvList.Clear();
-            DataGridView a = new DataGridView();
             for (int i = 0; i < sourcecount; i++)
             {
                 _dgvList.Add(new CDepute
                 {
-                    id = a.Rows[i].Cells[0].Value.ToString(),
-                    providername = a.Rows[i].Cells[1].Value.ToString(),
-                    startdate = a.Rows[i].Cells[2].Value.ToString(),
-                    modifieddate = a.Rows[i].Cells[3].Value.ToString(),
-                    content = a.Rows[i].Cells[4].Value.ToString(),
-                    salary = a.Rows[i].Cells[5].Value.ToString(),
-                    status = a.Rows[i].Cells[6].Value.ToString(),
-                    region = a.Rows[i].Cells[7].Value.ToString()
+                    id = data.Rows[i].Cells[0].Value.ToString(),
+                    providername = data.Rows[i].Cells[1].Value.ToString(),
+                    startdate = data.Rows[i].Cells[2].Value.ToString(),
+                    modifieddate = data.Rows[i].Cells[3].Value.ToString(),
+                    content = data.Rows[i].Cells[4].Value.ToString(),
+                    salary = data.Rows[i].Cells[5].Value.ToString(),
+                    status = data.Rows[i].Cells[6].Value.ToString(),
+                    region = data.Rows[i].Cells[7].Value.ToString()
 
                 });
             }
