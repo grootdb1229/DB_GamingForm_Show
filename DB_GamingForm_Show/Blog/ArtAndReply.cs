@@ -32,13 +32,14 @@ namespace WindowsFormsApp1
             //------------------------------
             var re = from q in db.Replies
                      where q.ArticleID == ClassUtility.aid
-                     select new { 會員編號 = q.MemberID, 作者名稱 = q.Member.Name, 帳號 = q.MemberID, 內容 = q.ReplyContents, 更新時間 = q.ModifiedDate , 回文 = q.ReplyID };
+                     select new { 會員編號 = q.MemberID, 作者名稱 = q.Member.Name, 帳號 = q.MemberID, 內容 = q.ReplyContents, 更新時間 = q.ModifiedDate, 回文 = q.ReplyID };
 
             dataGridView1.DataSource = re.ToList();
             //------------------------------
             this.textBox2.Enabled = false;
             this.textBox3.Enabled = false;
-
+            this.button4.Enabled = false;
+            this.button5.Enabled = false;
 
             //var memberInfo = from q in db.Members
             //                 where q.MemberID == ClassUtility.MemberID
@@ -79,10 +80,13 @@ namespace WindowsFormsApp1
 
             if (textBox2.Text == "該文章已刪除")
             {
-                this.button1.Enabled = false;
-                this.button2.Enabled = false;
-                this.button3.Enabled = false;
+                this.button1.Visible = false;
+                this.button2.Visible = false;
+                this.button3.Visible = false;
+                this.button4.Visible = false;
+                this.button5.Visible = false;
                 this.textBox1.Enabled = false;
+
             }
 
             //--------------------------------
@@ -100,10 +104,13 @@ namespace WindowsFormsApp1
 
             if (sub.MemberID != ClassUtility.MemberID)
             {
-                button2.Enabled = false;
-                button3.Enabled = false;
+                //button2.Enabled = false;
+                //button3.Enabled = false;
+                button2.Visible = false;
+                button3.Visible = false;
 
             }
+            
 
 
 
@@ -154,7 +161,7 @@ namespace WindowsFormsApp1
             if (sub.MemberID == ClassUtility.MemberID)
             {
                 sub.Title = "該文章已刪除";
-                sub.ArticleContent = "該文章已刪除";
+                sub.ArticleContent = "該文章已刪除，請返回上一頁";
                 //db.Articles.Remove(sub);
                 db.SaveChanges();
 
