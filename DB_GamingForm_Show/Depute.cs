@@ -24,16 +24,18 @@ namespace DB_GamingForm_Show
         public int DeputeID { get; set; }
         public int ProviderID { get; set; }
         public System.DateTime StartDate { get; set; }
-        public Nullable<System.DateTime> Modifiedate { get; set; }
+        public System.DateTime Modifiedate { get; set; }
         public string DeputeContent { get; set; }
-        public int Salary { get; set; }
         public int StatusID { get; set; }
+        public int Salary { get; set; }
+        public int RegionID { get; set; }
     
         public virtual Member Member { get; set; }
-        public virtual Status Status { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DeputeRecord> DeputeRecords { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DeputeSkill> DeputeSkills { get; set; }
+        public virtual Status Status { get; set; }
+        public virtual Region Region { get; set; }
     }
 }

@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DB_GamingForm_Show;
 using DBGaming;
+using Groot;
 using Shopping;
 
 namespace Gaming_Forum
@@ -203,8 +204,8 @@ namespace Gaming_Forum
 
             else if (Flag1 == false && Flag2 == true)
             {
-                MessageBox.Show("親愛的會員您好,正帶您前往履歷投遞平台");                
-                FrmJobMainPage FJB = new FrmJobMainPage();
+                MessageBox.Show("親愛的會員您好,正帶您前往案件懸賞頁面");                
+                FrmDeputeMainPage FJB = new FrmDeputeMainPage();
                 FJB.Show();
             }
             else 
@@ -239,6 +240,8 @@ namespace Gaming_Forum
         {
             this.textBox1.Text = "123123@gmail.com";
             this.textBox2.Text = "asas12345678";
+            //this.textBox1.Text = "huluhulu@gmail.com";
+            //this.textBox2.Text = "as123456";
         }
 
         private void button12_Click(object sender, EventArgs e)

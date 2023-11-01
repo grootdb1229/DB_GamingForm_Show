@@ -136,6 +136,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GMModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="GMModel2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GMModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Image.cs">
       <DependentUpon>GMModel.tt</DependentUpon>
     </Compile>
@@ -145,18 +150,30 @@
     <Compile Include="JobCertificate.cs">
       <DependentUpon>GMModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Job\4-2. FrmDeputes.cs">
+    <Compile Include="Job\FrmDeputeB.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Job\4-2. FrmDeputes.designer.cs">
-      <DependentUpon>4-2. FrmDeputes.cs</DependentUpon>
+    <Compile Include="Job\FrmDeputeB.Designer.cs">
+      <DependentUpon>FrmDeputeB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Job\FrmDeputeA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Job\FrmDeputeA.Designer.cs">
+      <DependentUpon>FrmDeputeA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Job\FrmMyDeputes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Job\FrmMyDeputes.designer.cs">
+      <DependentUpon>FrmMyDeputes.cs</DependentUpon>
     </Compile>
     <Compile Include="Job\ClsJob.cs" />
-    <Compile Include="Job\FrmJobMainPage.cs">
+    <Compile Include="Job\FrmDeputeMainPage.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Job\FrmJobMainPage.designer.cs">
-      <DependentUpon>FrmJobMainPage.cs</DependentUpon>
+    <Compile Include="Job\FrmDeputeMainPage.designer.cs">
+      <DependentUpon>FrmDeputeMainPage.cs</DependentUpon>
     </Compile>
     <Compile Include="Member.cs">
       <DependentUpon>GMModel.tt</DependentUpon>
@@ -250,6 +267,7 @@
     <Compile Include="Product\AddProduct.designer.cs">
       <DependentUpon>AddProduct.cs</DependentUpon>
     </Compile>
+    <Compile Include="Product\CAddProduct.cs" />
     <Compile Include="Product\COrder.cs" />
     <Compile Include="Product\COrderProduct.cs" />
     <Compile Include="Product\CProduct.cs" />
@@ -284,6 +302,7 @@
     <Compile Include="Product\FrmUpdateProduct.designer.cs">
       <DependentUpon>FrmUpdateProduct.cs</DependentUpon>
     </Compile>
+    <Compile Include="Product\Purchase.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Region.cs">
@@ -355,11 +374,17 @@
     <EmbeddedResource Include="Blog\NewART.resx">
       <DependentUpon>NewART.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Job\4-2. FrmDeputes.resx">
-      <DependentUpon>4-2. FrmDeputes.cs</DependentUpon>
+    <EmbeddedResource Include="Job\FrmDeputeB.resx">
+      <DependentUpon>FrmDeputeB.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Job\FrmJobMainPage.resx">
-      <DependentUpon>FrmJobMainPage.cs</DependentUpon>
+    <EmbeddedResource Include="Job\FrmDeputeA.resx">
+      <DependentUpon>FrmDeputeA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Job\FrmMyDeputes.resx">
+      <DependentUpon>FrmMyDeputes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Job\FrmDeputeMainPage.resx">
+      <DependentUpon>FrmDeputeMainPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Member\FirmFrmRegistration.resx">
       <DependentUpon>FirmFrmRegistration.cs</DependentUpon>
@@ -418,8 +443,9 @@
     </Compile>
     <EntityDeploy Include="GMModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>GMModel1.Designer.cs</LastGenOutput>
+      <LastGenOutput>GMModel2.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="DB\DB_Gaming1031.bak" />
     <None Include="GMModel.edmx.diagram">
       <DependentUpon>GMModel.edmx</DependentUpon>
     </None>

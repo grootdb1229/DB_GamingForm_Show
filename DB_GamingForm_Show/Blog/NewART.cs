@@ -92,7 +92,7 @@ namespace WindowsFormsApp1
             this.db.SaveChanges();
 
             ClassUtility.aid = article.ArticleID;
-            MessageBox.Show(ClassUtility.aid.ToString());
+            //MessageBox.Show(ClassUtility.aid.ToString());
             //----------------------------
             MessageBox.Show("發文成功");
 

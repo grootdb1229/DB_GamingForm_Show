@@ -21,6 +21,7 @@ using Image = System.Drawing.Image;
 using DB_GamingForm_Show;
 using Gaming_Forum;
 
+
 namespace 其中專題
 {
     public partial class AddProduct : Form
@@ -45,10 +46,8 @@ namespace 其中專題
         {
             InitializeComponent();
             MemberFirm();
+
         }
-        ///todo 上架日期要自動匯入資料庫 <summary>
-        /// todo 上架日期要自動匯入資料庫
-        /// Tag還沒想到  ---依照資料庫讀取自動0生成對應比數的checkBox?
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -56,7 +55,7 @@ namespace 其中專題
             //資料讀入各種控制項
 
             var Tags = from p in db.Tags
-                       where p.TagID!=4
+                       where p.TagID != 4
                        select new { p.Name, p.TagID };
 
             comboBox1.DataSource = Tags.ToList();
@@ -73,7 +72,6 @@ namespace 其中專題
 
 
 
-
         }
         //全域變數
         decimal Price_Value; //存放價格轉型
@@ -81,16 +79,14 @@ namespace 其中專題
 
 
 
-
-
         private void button2_Click(object sender, EventArgs e)
         {
-            ClearEveryContorl();     
+            ClearEveryContorl();
         }
 
         private void ClearEveryContorl()
         {
-          pictureBox1.Image = null;
+            pictureBox1.Image = null;
             textBox1.Clear();
             ProductNameTextBox.Clear();
             UnitStockTextBox.Clear();
@@ -99,115 +95,106 @@ namespace 其中專題
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {//"46546555//1234444555
-              DB_GamingFormEntities db = new DB_GamingFormEntities();
+        {
+            DB_GamingFormEntities db = new DB_GamingFormEntities();
             using (TransactionScope ts = new TransactionScope())
             {
 
                 string Unit_Stock = UnitStockTextBox.Text;
                 string Price_Text = PriceTextBox.Text;
                 byte[] bytes;
-
+                ///當六面旗幟判定接成功時，才能開始儲存進資料庫。          
                 try
                 {
                     if (decimal.TryParse(Price_Text, out Price_Value))
-                    {
-
-                        if (int.TryParse(Unit_Stock, out Stock_Value))
-                        {
-                            if (ProductNameTextBox.Text != "")
-                            {
-                                if (pictureBox1.Image != null)
-                                {
-                                    if (listBox2.Items.Count > 0)
-                                    {
-                                        if (textBox1.Text.Length > 10)
-                                        {
-
-                                            //儲存圖片等等要檢查
-                                            System.IO.MemoryStream ms = new System.IO.MemoryStream();
-                                            this.pictureBox1.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
-                                            bytes = ms.GetBuffer();
-                                            var ImgStore = new DB_GamingForm_Show.Image { Image1 = bytes };
-                                            db.Images.Add(ImgStore);
-                                            db.SaveChanges();
-                                      
-                                         
-                                            //抓圖片ID
-                                             int newImageId = ImgStore.ImageID;
-                                            //var picIDCheck = db.Images.AsEnumerable().Select(x => x.ImageID).Last();
-
-                                            if (IsFirm)
-                                            {
-                                                var product = new Product { ProductName = ProductNameTextBox.Text, Price = Price_Value, AvailableDate = DateTime.Now, UnitStock = Stock_Value, StatusID = 1, FirmID = ID, ProductContent = textBox1.Text, ImageID = newImageId };
-                                                db.Products.Add(product);
-                                                db.SaveChanges();
-                                                
-                                            }
-                                            else
-                                            { var product = new Product { ProductName = ProductNameTextBox.Text, Price = Price_Value, AvailableDate = DateTime.Now, UnitStock = Stock_Value, StatusID = 1, MemberID = ID, ProductContent = textBox1.Text, ImageID = newImageId };
-                                            db.Products.Add(product);
-                                            db.SaveChanges();
-                                            }
-                                            var LastProductId = db.Products.AsEnumerable().Select(x => x.ProductID).Last();
-                                            
-                                            //儲存商品上架with交易
-                                            
-
-                                            for (int i = 0; i < listBox2.Items.Count; i++)
-                                            {
-                                                var aa = (from x in db.SubTags.AsEnumerable()
-                                                          where x.Name == listBox2.Items[i].ToString()
-                                                          select x.SubTagID).ToList();
-
-                                                var pTag = new ProductTag { ProductID = LastProductId, SubTagID = aa.First() };
-                                                db.ProductTags.Add(pTag);
-                                                db.SaveChanges();
-                                            }
-
-                                            ts.Complete();
-                                            MessageBox.Show("上架成功");
-                                            ClearEveryContorl();
-
-                                        }
-                                        else { MessageBox.Show("請輸入至少10個字元"); }
-                                    }
-                                    else { MessageBox.Show("請至少選擇一個標籤"); }
-
-                                }
-                                else { MessageBox.Show("請選擇一張圖片"); }
-
-                            }
-                            else
-                            {
-                                MessageBox.Show("請輸入產品名稱");
-                            }
-                        }
-                        else
-                        {// 轉型失敗
-                            MessageBox.Show("請確認輸入了正確的庫存數量");
-
-                        }
-
-                    }
+                    { CAddProduct.flag5 = true; }
                     else
                     {// 轉型失敗
                         MessageBox.Show("請確認輸入金額為正確的阿拉伯數字");
                     }
 
+                    if (int.TryParse(Unit_Stock, out Stock_Value))
+                    { CAddProduct.flag6 = true; }
+                    else
+                    {// 轉型失敗
+                        MessageBox.Show("請確認輸入了正確的庫存數量");
+                    }
 
+                    if (ProductNameTextBox.Text != "")
+                    { CAddProduct.flag1 = true; }
+                    else
+                    {
+                        MessageBox.Show("請輸入產品名稱");
+                    }
+
+                    if (pictureBox1.Image != null)
+                    { CAddProduct.flag2 = true; }
+                    else { MessageBox.Show("請選擇一張圖片"); }
+
+                    if (listBox2.Items.Count > 0)
+                    { CAddProduct.flag3 = true; }
+                    else { MessageBox.Show("請至少選擇一個標籤"); }
+
+                    if (textBox1.Text.Length > 10)
+                    { CAddProduct.flag4 = true; }
+                    else { MessageBox.Show("請輸入至少10個字元"); }
+
+                    if (CAddProduct.flag1 == true && CAddProduct.flag2 == true && CAddProduct.flag3 == true && CAddProduct.flag4 == true && CAddProduct.flag5 == true && CAddProduct.flag6 == true)
+                    {  //儲存圖片等等要檢查
+                        System.IO.MemoryStream ms = new System.IO.MemoryStream();
+                        this.pictureBox1.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                        bytes = ms.GetBuffer();
+                        var ImgStore = new DB_GamingForm_Show.Image { Image1 = bytes };
+                        db.Images.Add(ImgStore);
+                        db.SaveChanges();
+
+
+                        //抓圖片ID
+                        int newImageId = ImgStore.ImageID;
+                        //var picIDCheck = db.Images.AsEnumerable().Select(x => x.ImageID).Last();
+
+                        if (IsFirm)
+                        {
+                            var product = new Product { ProductName = ProductNameTextBox.Text, Price = Price_Value, AvailableDate = DateTime.Now, UnitStock = Stock_Value, StatusID = 1, FirmID = ID, ProductContent = textBox1.Text, ImageID = newImageId };
+                            db.Products.Add(product);
+                            db.SaveChanges();
+
+                        }
+                        else
+                        {
+                            var product = new Product { ProductName = ProductNameTextBox.Text, Price = Price_Value, AvailableDate = DateTime.Now, UnitStock = Stock_Value, StatusID = 1, MemberID = ID, ProductContent = textBox1.Text, ImageID = newImageId };
+                            db.Products.Add(product);
+                            db.SaveChanges();
+                        }
+                        var LastProductId = db.Products.AsEnumerable().Select(x => x.ProductID).Last();
+
+                        //儲存商品上架with交易
+
+                        for (int i = 0; i < listBox2.Items.Count; i++)
+                        {
+                            var aa = (from x in db.SubTags.AsEnumerable()
+                                      where x.Name == listBox2.Items[i].ToString()
+                                      select x.SubTagID).ToList();
+
+                            var pTag = new ProductTag { ProductID = LastProductId, SubTagID = aa.First() };
+                            db.ProductTags.Add(pTag);
+                            db.SaveChanges();
+                        }
+                        //連續上架前必須將旗幟重新關閉，下次上架才能正常的判斷是否有遺漏未填的資訊。
+                        CAddProduct.flag1 = false;
+                        CAddProduct.flag2 = false;     
+                        CAddProduct.flag3 = false;
+                        CAddProduct.flag4 = false;               
+                        CAddProduct.flag5 = false;
+                        CAddProduct.flag6 = false;
+                        ts.Complete();
+                        MessageBox.Show("上架成功");
+                        ClearEveryContorl();
+                    }
                 }
                 catch (Exception ex) { MessageBox.Show(ex.Message); }
-
-
             }
-
-
-
-
-
         }
-
 
 
         private void buttonSelectPic_Click(object sender, EventArgs e)
@@ -238,6 +225,7 @@ namespace 其中專題
             int parthSelectItem = int.Parse(aa);
 
 
+
             DB_GamingFormEntities db = new DB_GamingFormEntities();
             var SubTags = from p in db.SubTags
                           where p.TagID == parthSelectItem
@@ -263,8 +251,6 @@ namespace 其中專題
             }
         }
 
-
-
         private void listBox2_DoubleClick(object sender, EventArgs e)
         {
             if (listBox2.SelectedIndex != -1) //你有選值
@@ -280,7 +266,7 @@ namespace 其中專題
 
         private void UnitStockTextBox_Leave(object sender, EventArgs e)
         {
-       
+
         }
 
         private void UnitStockTextBox_TextChanged(object sender, EventArgs e)

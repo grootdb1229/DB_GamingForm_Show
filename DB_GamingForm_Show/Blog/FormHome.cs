@@ -570,19 +570,21 @@ namespace DBGaming
         private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             // 獲取選取數據
-            string selectedTitle = dataGridView2.Rows[e.RowIndex].Cells["標題"].Value.ToString();
-            string selectedContent = dataGridView2.Rows[e.RowIndex].Cells["內文預覽"].Value.ToString();
-            int articleID = (int)dataGridView2.Rows[e.RowIndex].Cells["文章編號"].Value;
-            //int memberID = (int)dataGridView3.Rows[e.RowIndex].Cells["會員編號"].Value;
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                string selectedTitle = dataGridView2.Rows[e.RowIndex].Cells["標題"].Value.ToString();
+                string selectedContent = dataGridView2.Rows[e.RowIndex].Cells["內文預覽"].Value.ToString();
+                int articleID = (int)dataGridView2.Rows[e.RowIndex].Cells["文章編號"].Value;
+                //int memberID = (int)dataGridView3.Rows[e.RowIndex].Cells["會員編號"].Value;
 
-            //int memberID = Class1.memberid2;
+                //int memberID = Class1.memberid2;
 
-            ClassUtility.aid = articleID;
+                ClassUtility.aid = articleID;
 
-            // 數據傳遞到下一個視窗
-            Art_Reply artReplyForm = new Art_Reply(selectedTitle, selectedContent, articleID);
-            artReplyForm.ShowDialog();
-
+                // 數據傳遞到下一個視窗
+                Art_Reply artReplyForm = new Art_Reply(selectedTitle, selectedContent, articleID);
+                artReplyForm.ShowDialog();
+            }
         }
     }
 }
