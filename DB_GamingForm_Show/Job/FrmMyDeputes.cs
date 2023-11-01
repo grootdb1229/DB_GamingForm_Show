@@ -26,10 +26,10 @@ namespace Groot
             showMyInfo();
             loadComboboxRegion();
             
-            LoadSkillClasses();
+            loadSkillClasses();
 
-            LoadReceiveMembers();
-            LoadMyDepute();
+            loadReceiveMembers();
+            loadMyDepute();
 
             ConfirmResumes();
 
@@ -116,7 +116,7 @@ namespace Groot
 
 
 
-        private void LoadMyDepute()//ok
+        private void loadMyDepute()//ok
         {
             this.richTextBox1.Clear();
 
@@ -137,18 +137,18 @@ namespace Groot
             this.listBox4.Items.Clear();
 
             //標題
-            this.listBox4.Items.Add($"{"委託編號",-24}-{"狀態",-24}-{"應徵內容",-24}");
+            this.listBox4.Items.Add($"{"委託編號",-24}-{"狀態",-24}");//-{"應徵內容",-24}
 
             //以下為listbox內容
-            foreach(var i in q)
+            foreach (var i in q)
             {
-                this.listBox4.Items.Add($"{i.委託編號,-24}-{i.目前狀態,-24}");
+                this.listBox4.Items.Add($"{i.委託編號,-24}-{i.目前狀態,-24}");//-{"i.應徵內容",-24}
             }
         }
 
         
 
-        private void LoadReceiveMembers()//應徵者ok
+        private void loadReceiveMembers()//應徵者ok
         {   
             db = new DB_GamingFormEntities();
 
@@ -165,7 +165,7 @@ namespace Groot
             this.dataGridView1.DataSource = q.ToList();
         }
 
-        private void LoadSkillClasses()//ok
+        private void loadSkillClasses()//ok
         {
             var q = from p in db.SkillClasses
                     select p;
@@ -175,7 +175,7 @@ namespace Groot
             }
         }
 
-        private void ChangeApplyStatusID(int s)//ok
+        private void changeApplyStatusID(int s)//ok
         {
             //狀態更動
             var x = (from p in this.db.DeputeRecords.AsEnumerable()
@@ -186,7 +186,7 @@ namespace Groot
             x.ApplyStatusID = s;
 
             this.db.SaveChanges();
-            LoadReceiveMembers();
+            loadReceiveMembers();
         }
 
         //============================================================================
@@ -195,25 +195,25 @@ namespace Groot
         private void button3_Click(object sender, EventArgs e)//ok
         {
             //待定
-            ChangeApplyStatusID(7);
+            changeApplyStatusID(7);
         }
 
         private void button5_Click(object sender, EventArgs e)//ok
         {
             //拒絕
-            ChangeApplyStatusID(8);
+            changeApplyStatusID(8);
         }
 
         private void button6_Click(object sender, EventArgs e)//ok
         {
             //面試邀請
-            ChangeApplyStatusID(9);
+            changeApplyStatusID(9);
         }
 
         private void button10_Click(object sender, EventArgs e)//ok
         {
             //錄取
-            ChangeApplyStatusID(10);
+            changeApplyStatusID(10);
         }
 
         private void button1_Click(object sender, EventArgs e)//ok
@@ -233,11 +233,11 @@ namespace Groot
             {
                 q.StatusID = 18;
             }
-            
-            q.Modifiedate= DateTime.Now;
+
+            q.Modifiedate = DateTime.Now;
 
             this.db.SaveChanges();
-            LoadMyDepute();
+            loadMyDepute();
         }
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)//待刪
@@ -247,7 +247,7 @@ namespace Groot
                     && p.ApplyStatusID == 5
                     select p).FirstOrDefault();
             if (q == null) return;
-            ChangeApplyStatusID(6);
+            changeApplyStatusID(6);
         }
 
         private void button12_Click(object sender, EventArgs e)//ok
@@ -284,7 +284,7 @@ namespace Groot
             this.db.Deputes.Remove(q);
             this.db.SaveChanges();
 
-            LoadMyDepute();
+            loadMyDepute();
         }
                
 
@@ -409,6 +409,7 @@ namespace Groot
             {
                 DialogResult result = MessageBox.Show("未填寫提供報酬，請問後續再與會員討論？", "儲存檔案", MessageBoxButtons.OKCancel);
                 if (result == DialogResult.Cancel) return;
+                else this.textBox4.Text = "0";
             }
             //=========================
             //基本資料
@@ -456,8 +457,8 @@ namespace Groot
             //=========================
             MessageBox.Show("新增成功");
             this.tabControl2.SelectedIndex = 0;
-            LoadReceiveMembers();
-            LoadMyDepute();
+            loadReceiveMembers();
+            loadMyDepute();
 
         }
 
@@ -482,12 +483,13 @@ namespace Groot
 
         private void button8_Click(object sender, EventArgs e)
         {
-            FrmDeputeB f=new FrmDeputeB();
+            FrmDeputeB f = new FrmDeputeB();
             f.Show();
         }
 
         private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex == -1) return;
             var q = (from p in this.db.Deputes.AsEnumerable()
                     where p.DeputeID == Convert.ToInt32(this.dataGridView2.CurrentRow.Cells[0].Value)
                     select p).FirstOrDefault();

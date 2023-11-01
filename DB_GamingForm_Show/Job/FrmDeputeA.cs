@@ -20,6 +20,8 @@ namespace DB_GamingForm_Show.Job
         }
         DB_GamingFormEntities db = new DB_GamingFormEntities();
 
+        private string s = "";
+
         private void button2_Click(object sender, EventArgs e)
         {
             FrmDeputeA f= new FrmDeputeA();
@@ -28,7 +30,20 @@ namespace DB_GamingForm_Show.Job
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            
+            refresh();
+        }
+
+        private void refresh()
+        {
+            this.richTextBox2.Clear();
+            var q = from p in this.db.Articles.AsEnumerable()
+                    where p.MemberID == ClassUtility.MemberID&&p.SubBlogID==33
+                    select p;
+            foreach (var item in q)
+            {
+                s += $"{item.ArticleContent}\r";
+            }
+            this.richTextBox2.Text = s;
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -40,9 +55,8 @@ namespace DB_GamingForm_Show.Job
                 ArticleContent=richTextBox1.Text,
                 ModifiedDate=DateTime.Now,
                 MemberID=ClassUtility.MemberID,//發送者
-                ReplyArticleID=CMyInfo.selectedMemberid,//接收者
             };
-            this.richTextBox2.Text = a.ArticleContent;
+            //this.richTextBox2.Text = a.ArticleContent;
             this.richTextBox1.Clear();
             this.db.Articles.Add(a);
             this.db.SaveChanges();
@@ -52,7 +66,7 @@ namespace DB_GamingForm_Show.Job
         {
 
             var q=from p in this.db.Articles
-                  where p.MemberID== ClassUtility.MemberID&&p.ReplyArticleID== CMyInfo.selectedMemberid
+                  where p.MemberID== ClassUtility.MemberID&& p.SubBlogID == 33
                   select p;
             if (q.Any())
             {
