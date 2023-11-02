@@ -8,21 +8,28 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DB_GamingForm_Show;
+using DBGaming;
 using Gaming_Forum;
 
 namespace WindowsFormsApp1
 {
     public partial class NewART : Form
     {
-        public NewART(/*int memberid*/)
+        public NewART(/*int memberid*/ string subblogname , string subblogca)
         {
             InitializeComponent();
             LoadCombobox1();
-           
+            
+
+
             comboBox1.SelectedIndex = 0;
+            comboBox2.SelectedIndex = 0;
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
-            
+
+
+
+
         }
 
         private void LoadCombobox2()
@@ -92,7 +99,6 @@ namespace WindowsFormsApp1
             this.db.SaveChanges();
 
             ClassUtility.aid = article.ArticleID;
-            //MessageBox.Show(ClassUtility.aid.ToString());
             //----------------------------
             MessageBox.Show("發文成功");
 
@@ -101,6 +107,9 @@ namespace WindowsFormsApp1
             Art_Reply artReplyForm = new Art_Reply(textBox1.Text, textBox2.Text,ClassUtility.aid);
             artReplyForm.Show();
             this.Close();
+
+            
+
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)

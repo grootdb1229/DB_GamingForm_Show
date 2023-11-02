@@ -27,6 +27,12 @@ namespace Gaming_Forum
             this.button9.Visible = false;//會員個人資料 登入後設成true
             label8.Visible = false;
             this.button10.Visible = false;
+
+
+
+
+
+
         }
         
         
