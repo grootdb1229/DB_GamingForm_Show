@@ -11,18 +11,25 @@ using WindowsFormsApp1;
 using DB_GamingForm_Show;
 using Gaming_Forum;
 using System.Security.AccessControl;
+using System.Web.UI.WebControls;
 
 namespace DBGaming
 {
     public partial class FormHome : Form
     {
+
         public FormHome(int memberid)
         {
             InitializeComponent();
             LoadBlog();
+
+
         }
         //DB_GamingFormEntities1 db = new DB_GamingFormEntities1();
         DB_GamingFormEntities db = new DB_GamingFormEntities();
+
+          
+
         private void LoadBlog()
         {
             db = new DB_GamingFormEntities();
@@ -571,10 +578,16 @@ namespace DBGaming
 
         private void btnArticleInsert_Click(object sender, EventArgs e)
         {
-            NewART aRT = new NewART();
+            string subblogname = "";
+            string subblogca = "";
+            txbBlog.Text = subblogname;
+            txbSubBlog.SelectedText = subblogca;
+            NewART aRT = new NewART(subblogname,subblogca);
             aRT.ShowDialog();
             SubAllClear();
             LoadBlog();
+
+
         }
 
         private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)

@@ -10,42 +10,71 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DB_GamingForm_Show;
 using DB_GamingForm_Show.Job;
+using Gaming_Forum;
 
 namespace Groot
 {
     public partial class FrmDepute : Form
     {
         DB_GamingFormEntities db = new DB_GamingFormEntities();
-
-        string currentID;
+        CMyInfo _CMyInfo = new CMyInfo();
 
         public FrmDepute()
         {
             InitializeComponent();
-
-            Text = "廠商";
+            Text = "委託管理系統";
+            showMyInfo();
+            loadComboboxRegion();
             
-            LoadID();
-            LoadInfo();
-            
-            LoadSkillClasses();
+            loadSkillClasses();
 
-            LoadReceiveMembers();
-            LoadMyDepute();
+            loadReceiveMembers();
+            loadMyDepute();
 
             ConfirmResumes();
 
             LoadTalent();
         }
 
+        private void loadComboboxRegion()
+        {
+            var q = from p in this.db.Regions
+                    select p;
+            foreach(var g in q)
+            {
+                this.comboBox1.Items.Add(g.City);
+            }
+        }
+
+        private void showMyInfo()//ok
+        {
+            //會員編號
+            this.textBox6.Text = CMyInfoDetial.int提供者編號.ToString();
+            //會員名稱
+            this.textBox3.Text = CMyInfoDetial.string提供者名稱;
+            //聯絡方式
+            this.textBox1.Text = CMyInfoDetial.string提供者手機;
+            //電子信箱
+            this.textBox8.Text = CMyInfoDetial.string提供者信箱;
+        }
+
         private void ConfirmResumes()
         {
+            var d = from p in this.db.Deputes.AsEnumerable()
+                    where p.ProviderID == CMyInfoDetial.int提供者編號
+                    select p;
+
+            if (!d.Any())
+            {
+                MessageBox.Show("尚無委託紀錄");
+            }
+
             var q = from p in this.db.DeputeRecords.AsEnumerable()
-                    where p.MemberID == int.Parse(currentID) && p.ApplyStatusID == 5
+                    where p.MemberID == ClassUtility.MemberID && p.ApplyStatusID == 5
                     select p;
             if (q.Any())
             {
-                MessageBox.Show($"有{q.Count()}位會員想接下您的懸賞");
+                MessageBox.Show($"有{d.Count()}位會員想接下您的懸賞");
             }
         }
 
@@ -85,20 +114,19 @@ namespace Groot
 
         
 
-        private void LoadID()
-        {
-            currentID = Gaming_Forum.ClassUtility.MemberID.ToString();
-        }
 
-        private void LoadMyDepute()//ok
+
+        private void loadMyDepute()//ok
         {
+            this.richTextBox1.Clear();
+
             var q = from p in this.db.Deputes.AsEnumerable()
-                    where p.Member.MemberID== int.Parse(currentID)
+                    where p.ProviderID== ClassUtility.MemberID
                     select new
                     {
                         委託編號=p.DeputeID,
-                        委託內容=p.DeputeContent,
-                        目前申請人數=p.DeputeRecords.Where(x=>x.ID==int.Parse(currentID)).Count(),
+                        //委託內容 = p.DeputeContent,
+                        目前申請人數 =p.DeputeRecords.Where(x=>x.ID== ClassUtility.MemberID).Count(),
                         刊登時間=p.StartDate,
                         最後更新時間=p.Modifiedate,
                         目前狀態=p.Status.Name,
@@ -109,44 +137,23 @@ namespace Groot
             this.listBox4.Items.Clear();
 
             //標題
-            this.listBox4.Items.Add($"{"委託編號",-24}-{"狀態",-24}-{"應徵內容",-24}");
+            this.listBox4.Items.Add($"{"委託編號",-24}-{"狀態",-24}");//-{"應徵內容",-24}
 
             //以下為listbox內容
-            foreach(var i in q)
+            foreach (var i in q)
             {
-                this.listBox4.Items.Add($"{i.委託編號,-24}-{i.目前狀態,-24}-{i.委託內容,-24}");
+                this.listBox4.Items.Add($"{i.委託編號,-24}-{i.目前狀態,-24}");//-{"i.應徵內容",-24}
             }
         }
 
-        private void LoadInfo()//ok
-        {
-            var q = from p in this.db.Members.AsEnumerable()
-                    where p.MemberID == int.Parse(currentID)
-                    select p;
+        
 
-            if (q.Any(n => n.MemberID == int.Parse(currentID)))
-            {
-                //會員編號
-                this.textBox6.Text = currentID;
-                //會員名稱
-                this.textBox3.Text = q.FirstOrDefault().Name;
-                //聯絡方式
-                this.textBox1.Text = q.FirstOrDefault().Phone;
-                //電子信箱
-                this.textBox8.Text = q.FirstOrDefault().Email;
-            }
-            else
-            {
-                MessageBox.Show("尚無委託紀錄");
-            }
-        }
-
-        private void LoadReceiveMembers()//應徵者ok
+        private void loadReceiveMembers()//應徵者ok
         {   
             db = new DB_GamingFormEntities();
 
             var q = from p in this.db.DeputeRecords.AsEnumerable()
-                    where p.Depute.Member.MemberID == int.Parse(currentID)
+                    where p.Depute.Member.MemberID == ClassUtility.MemberID
                     select new
                     {
                         委託編號 = p.DeputeID,
@@ -158,7 +165,7 @@ namespace Groot
             this.dataGridView1.DataSource = q.ToList();
         }
 
-        private void LoadSkillClasses()//ok
+        private void loadSkillClasses()//ok
         {
             var q = from p in db.SkillClasses
                     select p;
@@ -168,7 +175,7 @@ namespace Groot
             }
         }
 
-        private void ChangeApplyStatusID(int s)//ok
+        private void changeApplyStatusID(int s)//ok
         {
             //狀態更動
             var x = (from p in this.db.DeputeRecords.AsEnumerable()
@@ -179,7 +186,7 @@ namespace Groot
             x.ApplyStatusID = s;
 
             this.db.SaveChanges();
-            LoadReceiveMembers();
+            loadReceiveMembers();
         }
 
         //============================================================================
@@ -188,25 +195,25 @@ namespace Groot
         private void button3_Click(object sender, EventArgs e)//ok
         {
             //待定
-            ChangeApplyStatusID(7);
+            changeApplyStatusID(7);
         }
 
         private void button5_Click(object sender, EventArgs e)//ok
         {
             //拒絕
-            ChangeApplyStatusID(8);
+            changeApplyStatusID(8);
         }
 
         private void button6_Click(object sender, EventArgs e)//ok
         {
             //面試邀請
-            ChangeApplyStatusID(9);
+            changeApplyStatusID(9);
         }
 
         private void button10_Click(object sender, EventArgs e)//ok
         {
             //錄取
-            ChangeApplyStatusID(10);
+            changeApplyStatusID(10);
         }
 
         private void button1_Click(object sender, EventArgs e)//ok
@@ -226,11 +233,11 @@ namespace Groot
             {
                 q.StatusID = 18;
             }
-            
-            q.Modifiedate= DateTime.Now;
+
+            q.Modifiedate = DateTime.Now;
 
             this.db.SaveChanges();
-            LoadMyDepute();
+            loadMyDepute();
         }
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)//待刪
@@ -240,7 +247,7 @@ namespace Groot
                     && p.ApplyStatusID == 5
                     select p).FirstOrDefault();
             if (q == null) return;
-            ChangeApplyStatusID(6);
+            changeApplyStatusID(6);
         }
 
         private void button12_Click(object sender, EventArgs e)//ok
@@ -277,7 +284,7 @@ namespace Groot
             this.db.Deputes.Remove(q);
             this.db.SaveChanges();
 
-            LoadMyDepute();
+            loadMyDepute();
         }
                
 
@@ -395,55 +402,64 @@ namespace Groot
 
         private void button4_Click(object sender, EventArgs e)
         {
+            //儲存委託
             //=========================
-            DialogResult result = MessageBox.Show("未填寫提供報酬，請問後續再與會員討論？", "儲存檔案", MessageBoxButtons.OKCancel);
-            if (result == DialogResult.OK)
+            //判斷有無填寫報酬欄位
+            if (this.textBox4 == null)
             {
-                //基本資料
-                Depute f = new Depute
-                {
-                    ProviderID = int.Parse(currentID),
-                    StartDate = DateTime.Now,
-                    Modifiedate = DateTime.Now,
-                    DeputeContent = this.richTextBox3.Text,
-                    Salary = int.Parse(this.textBox4.Text),
-                    StatusID = 18,
-                    
-                };
-
-                this.db.Deputes.Add(f);
-                this.db.SaveChanges();
-
-                //=========================
-                //技能專長
-                int lb3Length = this.listBox3.Items.Count;
-                string[] lb3items = new string[lb3Length];
-
-                for (var l = 0; l < lb3Length; l++)
-                {
-                    lb3items[l] = this.listBox3.Items[l].ToString();
-                }
-
-                for (var o = 0; o < lb3items.Length; o++)
-                {
-                    string[] skillskill = lb3items[o].Split('-');
-                    var s = this.db.Skills.AsEnumerable().Where(p => p.Name == skillskill[1]).Select(p => p.SkillID);
-
-                    int skillid = s.SingleOrDefault();
-                    DeputeSkill jobSkill = new DeputeSkill
-                    {
-                        DeputeID = f.DeputeID,
-                        SkillID = skillid,
-                    };
-                    this.db.DeputeSkills.Add(jobSkill);
-                }
-                this.db.SaveChanges();
-                //=========================
-                MessageBox.Show("新增成功");
-                this.tabControl2.SelectedIndex = 0;
-                LoadReceiveMembers();
-                LoadMyDepute();
+                DialogResult result = MessageBox.Show("未填寫提供報酬，請問後續再與會員討論？", "儲存檔案", MessageBoxButtons.OKCancel);
+                if (result == DialogResult.Cancel) return;
+                else this.textBox4.Text = "0";
             }
+            //=========================
+            //基本資料
+            var q = from p in this.db.Regions
+                    select p;
+            
+            Depute f = new Depute
+            {
+                ProviderID = ClassUtility.MemberID,
+                StartDate = DateTime.Now,
+                Modifiedate = DateTime.Now,
+                DeputeContent = this.richTextBox3.Text,
+                Salary = int.Parse(this.textBox4.Text),
+                StatusID = 18,
+                RegionID = q.ToList()[this.comboBox1.SelectedIndex].RegionID
+            };
+
+            this.db.Deputes.Add(f);
+            this.db.SaveChanges();
+
+            //=========================
+            //技能專長
+            int lb3Length = this.listBox3.Items.Count;
+            string[] lb3items = new string[lb3Length];
+
+            for (var l = 0; l < lb3Length; l++)
+            {
+                lb3items[l] = this.listBox3.Items[l].ToString();
+            }
+
+            for (var o = 0; o < lb3items.Length; o++)
+            {
+                string[] skillskill = lb3items[o].Split('-');
+                var s = this.db.Skills.AsEnumerable().Where(p => p.Name == skillskill[1]).Select(p => p.SkillID);
+
+                int skillid = s.SingleOrDefault();
+                DeputeSkill jobSkill = new DeputeSkill
+                {
+                    DeputeID = f.DeputeID,
+                    SkillID = skillid,
+                };
+                this.db.DeputeSkills.Add(jobSkill);
+            }
+            this.db.SaveChanges();
+            //=========================
+            MessageBox.Show("新增成功");
+            this.tabControl2.SelectedIndex = 0;
+            loadReceiveMembers();
+            loadMyDepute();
+
         }
 
         private void checkBox1_Click(object sender, EventArgs e)
@@ -467,8 +483,17 @@ namespace Groot
 
         private void button8_Click(object sender, EventArgs e)
         {
-            FrmDeputeB f=new FrmDeputeB();
+            FrmDeputeB f = new FrmDeputeB();
             f.Show();
+        }
+
+        private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex == -1) return;
+            var q = (from p in this.db.Deputes.AsEnumerable()
+                    where p.DeputeID == Convert.ToInt32(this.dataGridView2.CurrentRow.Cells[0].Value)
+                    select p).FirstOrDefault();
+            this.richTextBox1.Text = q.DeputeContent;
         }
     }
 }
