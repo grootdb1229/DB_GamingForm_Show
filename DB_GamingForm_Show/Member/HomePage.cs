@@ -27,6 +27,12 @@ namespace Gaming_Forum
             this.button9.Visible = false;//會員個人資料 登入後設成true
             label8.Visible = false;
             this.button10.Visible = false;
+
+
+
+
+
+
         }
         
         
@@ -205,8 +211,8 @@ namespace Gaming_Forum
             else if (Flag1 == false && Flag2 == true)
             {
                 MessageBox.Show("親愛的會員您好,正帶您前往案件懸賞頁面");                
-                FrmDeputeMainPage FJB = new FrmDeputeMainPage();
-                FJB.Show();
+                //FrmDeputeMainPage FJB = new FrmDeputeMainPage();
+                //FJB.Show();
             }
             else 
             {

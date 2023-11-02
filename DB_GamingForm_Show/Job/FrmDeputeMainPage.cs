@@ -25,8 +25,27 @@ namespace DB_GamingForm_Show
             ComboLoad();
             LoadData();
             HotSearch();
-            
 
+
+            this.button1.Enabled = true;
+            this.bindingSource1.Clear();
+            var data = from n in this.entities.Deputes.AsEnumerable()
+                       orderby n.StartDate descending
+                       select new
+                       {
+                           n.DeputeID,
+                           n.Member.Name,
+                           SrartDate = n.StartDate.ToString("d"),
+                           Modifiedate = n.Modifiedate.ToString("d"),
+                           n.DeputeContent,
+                           n.Salary,
+                           status = n.Status.Name,
+                           n.Region.City
+                       };
+            this.bindingSource1.DataSource = data.ToList();
+            this.dataGridView1.DataSource = this.bindingSource1;
+            sourcecount = this.dataGridView1.RowCount;
+            ListLoad(sourcecount);
 
 
 
@@ -309,7 +328,7 @@ namespace DB_GamingForm_Show
             //{
             //    var value = from n in list.AsEnumerable()
             //                where n.EducationRequirements == this.comboBox1.Text
-            //                orderby n.ModerfiedDate descending
+            //                orderby n.modifieddate descending
             //                select n;
             //    this.bindingSource1.Clear();
             //    this.bindingSource1.DataSource = value.ToList();

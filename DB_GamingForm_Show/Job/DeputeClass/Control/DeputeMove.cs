@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DB_GamingForm_Show.Class
+namespace DB_GamingForm_Show.Job.DeputeClass
 {
-    internal class MyMethod
+    public class DeputeMove
     {
-       
     }
 }

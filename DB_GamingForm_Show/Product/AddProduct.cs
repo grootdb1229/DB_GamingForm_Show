@@ -27,20 +27,10 @@ namespace 其中專題
     public partial class AddProduct : Form
     {
         public int ID { get; set; }
-        public bool IsFirm { get; set; }
 
         private void MemberFirm()
         {
-            if (ClassUtility.FirmID != 0)
-            {
-                ID = ClassUtility.FirmID;
-                IsFirm = true;
-            }
-            else
-            {
                 ID = ClassUtility.MemberID;
-                IsFirm = false;
-            }
         }
         public AddProduct()
         {
@@ -153,19 +143,11 @@ namespace 其中專題
                         int newImageId = ImgStore.ImageID;
                         //var picIDCheck = db.Images.AsEnumerable().Select(x => x.ImageID).Last();
 
-                        if (IsFirm)
-                        {
-                            var product = new Product { ProductName = ProductNameTextBox.Text, Price = Price_Value, AvailableDate = DateTime.Now, UnitStock = Stock_Value, StatusID = 1, FirmID = ID, ProductContent = textBox1.Text, ImageID = newImageId };
-                            db.Products.Add(product);
-                            db.SaveChanges();
 
-                        }
-                        else
-                        {
-                            var product = new Product { ProductName = ProductNameTextBox.Text, Price = Price_Value, AvailableDate = DateTime.Now, UnitStock = Stock_Value, StatusID = 1, MemberID = ID, ProductContent = textBox1.Text, ImageID = newImageId };
-                            db.Products.Add(product);
-                            db.SaveChanges();
-                        }
+                        var product = new Product { ProductName = ProductNameTextBox.Text, Price = Price_Value, AvailableDate = DateTime.Now, UnitStock = Stock_Value, StatusID = 1, MemberID = ID, ProductContent = textBox1.Text, ImageID = newImageId };
+                        db.Products.Add(product);
+                        db.SaveChanges();
+
                         var LastProductId = db.Products.AsEnumerable().Select(x => x.ProductID).Last();
 
                         //儲存商品上架with交易
@@ -182,9 +164,9 @@ namespace 其中專題
                         }
                         //連續上架前必須將旗幟重新關閉，下次上架才能正常的判斷是否有遺漏未填的資訊。
                         CAddProduct.flag1 = false;
-                        CAddProduct.flag2 = false;     
+                        CAddProduct.flag2 = false;
                         CAddProduct.flag3 = false;
-                        CAddProduct.flag4 = false;               
+                        CAddProduct.flag4 = false;
                         CAddProduct.flag5 = false;
                         CAddProduct.flag6 = false;
                         ts.Complete();
