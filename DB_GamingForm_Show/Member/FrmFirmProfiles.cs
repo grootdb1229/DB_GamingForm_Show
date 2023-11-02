@@ -89,11 +89,11 @@ namespace Gaming_Forum
 
         private void button4_Click(object sender, EventArgs e)
         {
-            ClassUtility classUtility = new ClassUtility();
+            ClassUtility CS = new ClassUtility();
             string input = this.textBox1.Text;
             string result = "";
-            classUtility.CheckName(input, ref result);
-            if (ClassUtility.FirmName)
+            CS.CheckName(input, ref result);
+            if (CS.FirmName)
             {
                 try
                 {
@@ -130,7 +130,7 @@ namespace Gaming_Forum
             string input = this.textBox3.Text;
             string result = "";
             Cs.CheckPhone(input, ref result);
-            if (ClassUtility.Phone)
+            if (Cs.Phone)
             {
                 try
                 {
@@ -158,7 +158,7 @@ namespace Gaming_Forum
             string input = this.textBox4.Text;
             string result = "";
             Cs.CheckAddress(input, ref result);
-            if (ClassUtility.FirmAddress)
+            if (Cs.FirmAddress)
             {
                 try
                 {
@@ -186,7 +186,7 @@ namespace Gaming_Forum
             string input = this.textBox6.Text;
             string result = "";
             Cs.CheckFirmScale(input, ref result);
-            if (ClassUtility.FirmScale) 
+            if (Cs.FirmScale) 
             {
                 try
                 {
