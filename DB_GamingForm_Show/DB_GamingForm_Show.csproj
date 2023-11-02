@@ -115,6 +115,12 @@
     <Compile Include="Firm.cs">
       <DependentUpon>GMModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="BlogAndArtical.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BlogAndArtical.Designer.cs">
+      <DependentUpon>BlogAndArtical.cs</DependentUpon>
+    </Compile>
     <Compile Include="GMModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -180,6 +186,12 @@
     </Compile>
     <Compile Include="Member.cs">
       <DependentUpon>GMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Memberhome.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Memberhome.Designer.cs">
+      <DependentUpon>Memberhome.cs</DependentUpon>
     </Compile>
     <Compile Include="MemberStatu.cs">
       <DependentUpon>GMModel.tt</DependentUpon>
@@ -368,6 +380,9 @@
     <Compile Include="WishList.cs">
       <DependentUpon>GMModel.tt</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="BlogAndArtical.resx">
+      <DependentUpon>BlogAndArtical.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Blog\ArtAndReply.resx">
       <DependentUpon>ArtAndReply.cs</DependentUpon>
     </EmbeddedResource>

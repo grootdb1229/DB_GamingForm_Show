@@ -20,8 +20,6 @@ namespace WindowsFormsApp1
             InitializeComponent();
             LoadCombobox1();
             
-            comboBox1.SelectedIndex = 0;
-            comboBox2.SelectedIndex = 0;
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
 
@@ -29,12 +27,17 @@ namespace WindowsFormsApp1
             comboBox1.SelectedItem = subblogname;
             comboBox2.SelectedItem = subblogca;
 
+            if (subblogca == "")
+            {
+                comboBox2.SelectedIndex = 0;
+            }
+
         }
 
         private void LoadCombobox2()
         {
            
-              comboBox2.Items.Clear();
+            comboBox2.Items.Clear();
             comboBox2.Text = string.Empty;
             var ID = from A in this.db.SubBlogs
                      where  A.Blog.Title == comboBox1.SelectedItem.ToString()

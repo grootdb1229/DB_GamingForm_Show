@@ -1380,6 +1380,14 @@
             <End Role="Member" EntitySet="Members" />
             <End Role="Depute" EntitySet="Deputes" />
           </AssociationSet>
+          <AssociationSet Name="FK_Depute_Region" Association="DB_GamingFormModel.FK_Depute_Region">
+            <End Role="Region" EntitySet="Regions" />
+            <End Role="Depute" EntitySet="Deputes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Depute_Status" Association="DB_GamingFormModel.FK_Depute_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Depute" EntitySet="Deputes" />
+          </AssociationSet>
           <AssociationSet Name="FK_DeputeRecord_Depute" Association="DB_GamingFormModel.FK_DeputeRecord_Depute">
             <End Role="Depute" EntitySet="Deputes" />
             <End Role="DeputeRecord" EntitySet="DeputeRecords" />
@@ -1508,14 +1516,6 @@
             <End Role="Tag" EntitySet="Tags" />
             <End Role="SubTag" EntitySet="SubTags" />
           </AssociationSet>
-          <AssociationSet Name="FK_Depute_Status" Association="DB_GamingFormModel.FK_Depute_Status">
-            <End Role="Status" EntitySet="Status" />
-            <End Role="Depute" EntitySet="Deputes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Depute_Region" Association="DB_GamingFormModel.FK_Depute_Region">
-            <End Role="Region" EntitySet="Regions" />
-            <End Role="Depute" EntitySet="Deputes" />
-          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Action">
           <Key>
@@ -1617,16 +1617,16 @@
           <Property Name="DeputeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ProviderID" Type="Int32" Nullable="false" />
           <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Modifiedate" Type="DateTime" Precision="3" Nullable="false" />
+          <Property Name="Modifiedate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="DeputeContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Salary" Type="Int32" Nullable="false" />
           <Property Name="StatusID" Type="Int32" Nullable="false" />
+          <Property Name="RegionID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Member" Relationship="DB_GamingFormModel.FK_Depute_Member" FromRole="Depute" ToRole="Member" />
+          <NavigationProperty Name="Region" Relationship="DB_GamingFormModel.FK_Depute_Region" FromRole="Depute" ToRole="Region" />
+          <NavigationProperty Name="Status" Relationship="DB_GamingFormModel.FK_Depute_Status" FromRole="Depute" ToRole="Status" />
           <NavigationProperty Name="DeputeRecords" Relationship="DB_GamingFormModel.FK_DeputeRecord_Depute" FromRole="Depute" ToRole="DeputeRecord" />
           <NavigationProperty Name="DeputeSkills" Relationship="DB_GamingFormModel.FK_DeputeSkill_Depute" FromRole="Depute" ToRole="DeputeSkill" />
-          <NavigationProperty Name="Status" Relationship="DB_GamingFormModel.FK_Depute_Status" FromRole="Depute" ToRole="Status" />
-          <Property Name="Salary" Type="Int32" Nullable="false" />
-          <Property Name="RegionID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Region" Relationship="DB_GamingFormModel.FK_Depute_Region" FromRole="Depute" ToRole="Region" />
         </EntityType>
         <EntityType Name="DeputeRecord">
           <Key>
@@ -1714,6 +1714,7 @@
           <Property Name="ImageID" Type="Int32" Nullable="false" />
           <Property Name="Mycomment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="BonusPoint" Type="Int32" Nullable="false" />
+          <Property Name="Gender" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Articles" Relationship="DB_GamingFormModel.FK_Article_Member" FromRole="Member" ToRole="Article" />
           <NavigationProperty Name="ArticleActions" Relationship="DB_GamingFormModel.FK_ArticleAction_Member" FromRole="Member" ToRole="ArticleAction" />
           <NavigationProperty Name="Deputes" Relationship="DB_GamingFormModel.FK_Depute_Member" FromRole="Member" ToRole="Depute" />
@@ -1726,7 +1727,6 @@
           <NavigationProperty Name="ProductEvaluates" Relationship="DB_GamingFormModel.FK_ProductEvaluate_Member" FromRole="Member" ToRole="ProductEvaluate" />
           <NavigationProperty Name="Replies" Relationship="DB_GamingFormModel.FK_Reply_Member" FromRole="Member" ToRole="Reply" />
           <NavigationProperty Name="WishLists" Relationship="DB_GamingFormModel.FK_WishList_Member" FromRole="Member" ToRole="WishList" />
-          <Property Name="Gender" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="MemberStatu">
           <Key>
@@ -1857,8 +1857,8 @@
           </Key>
           <Property Name="RegionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="City" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="RegionDistricts" Relationship="DB_GamingFormModel.FK_RegionDistrict_Region" FromRole="Region" ToRole="RegionDistrict" />
           <NavigationProperty Name="Deputes" Relationship="DB_GamingFormModel.FK_Depute_Region" FromRole="Region" ToRole="Depute" />
+          <NavigationProperty Name="RegionDistricts" Relationship="DB_GamingFormModel.FK_RegionDistrict_Region" FromRole="Region" ToRole="RegionDistrict" />
         </EntityType>
         <EntityType Name="RegionDistrict">
           <Key>
@@ -1980,11 +1980,11 @@
           <Property Name="StatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Advertises" Relationship="DB_GamingFormModel.FK_AD_Status" FromRole="Status" ToRole="Advertise" />
+          <NavigationProperty Name="Deputes" Relationship="DB_GamingFormModel.FK_Depute_Status" FromRole="Status" ToRole="Depute" />
           <NavigationProperty Name="DeputeRecords" Relationship="DB_GamingFormModel.FK_DeputeRecord_Status" FromRole="Status" ToRole="DeputeRecord" />
           <NavigationProperty Name="MemberStatus" Relationship="DB_GamingFormModel.FK_MemberStatus_Status" FromRole="Status" ToRole="MemberStatu" />
           <NavigationProperty Name="Orders" Relationship="DB_GamingFormModel.FK_Order_Status" FromRole="Status" ToRole="Order" />
           <NavigationProperty Name="Products" Relationship="DB_GamingFormModel.FK_Product_Status" FromRole="Status" ToRole="Product" />
-          <NavigationProperty Name="Deputes" Relationship="DB_GamingFormModel.FK_Depute_Status" FromRole="Status" ToRole="Depute" />
         </EntityType>
         <EntityType Name="SubBlog">
           <Key>
@@ -2224,6 +2224,30 @@
             </Principal>
             <Dependent Role="Depute">
               <PropertyRef Name="ProviderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Depute_Region">
+          <End Type="DB_GamingFormModel.Region" Role="Region" Multiplicity="1" />
+          <End Type="DB_GamingFormModel.Depute" Role="Depute" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Region">
+              <PropertyRef Name="RegionID" />
+            </Principal>
+            <Dependent Role="Depute">
+              <PropertyRef Name="RegionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Depute_Status">
+          <End Type="DB_GamingFormModel.Status" Role="Status" Multiplicity="1" />
+          <End Type="DB_GamingFormModel.Depute" Role="Depute" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="Depute">
+              <PropertyRef Name="StatusID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2611,30 +2635,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Depute_Status">
-          <End Type="DB_GamingFormModel.Status" Role="Status" Multiplicity="1" />
-          <End Type="DB_GamingFormModel.Depute" Role="Depute" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Status">
-              <PropertyRef Name="StatusID" />
-            </Principal>
-            <Dependent Role="Depute">
-              <PropertyRef Name="StatusID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Depute_Region">
-          <End Type="DB_GamingFormModel.Region" Role="Region" Multiplicity="1" />
-          <End Type="DB_GamingFormModel.Depute" Role="Depute" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Region">
-              <PropertyRef Name="RegionID" />
-            </Principal>
-            <Dependent Role="Depute">
-              <PropertyRef Name="RegionID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2728,8 +2728,8 @@
             <EntityTypeMapping TypeName="DB_GamingFormModel.Depute">
               <MappingFragment StoreEntitySet="Depute">
                 <ScalarProperty Name="RegionID" ColumnName="RegionID" />
-                <ScalarProperty Name="Salary" ColumnName="Salary" />
                 <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
                 <ScalarProperty Name="DeputeContent" ColumnName="DeputeContent" />
                 <ScalarProperty Name="Modifiedate" ColumnName="Modifiedate" />
                 <ScalarProperty Name="StartDate" ColumnName="StartDate" />
