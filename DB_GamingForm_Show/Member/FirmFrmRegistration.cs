@@ -83,7 +83,7 @@ namespace Gaming_Forum
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void ControllerReset() 
         {
             this.textBox1.Text = "";
             this.textBox2.Text = "";
@@ -91,6 +91,10 @@ namespace Gaming_Forum
             this.textBox4.Text = "";
             this.textBox5.Text = "";
             this.textBox6.Text = "";
+        }
+        private void button2_Click(object sender, EventArgs e)
+        {
+           ControllerReset();
         }
 
         private void textBox1_Leave(object sender, EventArgs e)

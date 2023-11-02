@@ -5,12 +5,22 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Web.UI.WebControls;
+using System.Windows.Forms;
 using DB_GamingForm_Show;
 
 namespace Gaming_Forum
 {
     public class ClassUtility
-    {   //===================紀錄會員ID
+
+    {
+        //===================Reset控制項
+        public void ControllerReset(System.Windows.Forms.TextBox textBox) 
+        {
+            textBox.Text = "";
+        }
+        
+        //===================紀錄會員ID
         public static int aid { get; set; }
         public static int FirmID { get; set; }
         public static int MemberID { get; set; }
