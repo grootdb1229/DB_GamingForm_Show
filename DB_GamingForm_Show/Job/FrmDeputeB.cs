@@ -57,7 +57,7 @@ namespace DB_GamingForm_Show.Job
         private void FrmDeputeB_FormClosed(object sender, FormClosedEventArgs e)
         {
             var q = from p in this.db.Articles
-                    where p.MemberID == ClassUtility.MemberID && p.ReplyArticleID == CMyInfo.selectedMemberid
+                    where p.MemberID == ClassUtility.MemberID && p.ReplyArticleID == CInfo.selectedMemberid
                     select p;
             if (q.Any())
             {

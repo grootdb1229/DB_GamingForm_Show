@@ -26,6 +26,7 @@ namespace DB_GamingForm_Show.Job.DeputeClass
 
             public string region { get; set; }
 
+
         public int int委託編號 { get; set; }
         public DateTime date開始時間 { get; set; }
         public DateTime date修改時間 { get; set; }
@@ -35,7 +36,6 @@ namespace DB_GamingForm_Show.Job.DeputeClass
         public int int地區編號 { get; set; }
         public int int目前申請人數 { get;set; }
         public string string目前狀態 { get; set; }
-
 
     }
 }
