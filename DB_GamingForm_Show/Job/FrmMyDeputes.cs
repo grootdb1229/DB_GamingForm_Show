@@ -120,19 +120,31 @@ namespace Groot
         {
             this.richTextBox1.Clear();
 
-            var q = from p in this.db.Deputes.AsEnumerable()
-                    where p.ProviderID== ClassUtility.MemberID
+            //var q = from p in this.db.Deputes.AsEnumerable()
+            //        where p.ProviderID== ClassUtility.MemberID
+            //        select new
+            //        {
+            //            委託編號=p.DeputeID,
+            //            目前申請人數 =p.DeputeRecords.Where(x=>x.DeputeID== p.DeputeID).Count(),
+            //            刊登時間=p.StartDate,
+            //            最後更新時間=p.Modifiedate,
+            //            目前狀態=p.Status.Name,
+            //            提供報酬 = p.Salary,
+            //        };
+            //this.dataGridView2.DataSource = q.ToList();
+
+
+            var f = from p in _CMyInfo.allMyDetpue
                     select new
                     {
-                        委託編號=p.DeputeID,
-                        //委託內容 = p.DeputeContent,
-                        目前申請人數 =p.DeputeRecords.Where(x=>x.ID== ClassUtility.MemberID).Count(),
-                        刊登時間=p.StartDate,
-                        最後更新時間=p.Modifiedate,
-                        目前狀態=p.Status.Name,
-                        提供報酬 = p.Salary,
+                        委託編號 = p.int委託編號,
+                        目前申請人數 = p.int目前申請人數,
+                        刊登時間 = p.date開始時間,
+                        最後更新時間 = p.date修改時間,
+                        目前狀態 = p.string目前狀態,
+                        提供報酬 = p.int報酬,
                     };
-            this.dataGridView2.DataSource = q.ToList();
+            this.dataGridView2.DataSource = f.ToList();
         }
 
         
@@ -208,6 +220,7 @@ namespace Groot
         private void button1_Click(object sender, EventArgs e)//ok
         {
             //狀態開啟關閉
+
             var q = (from p in this.db.Deputes.AsEnumerable()
                     where p.DeputeID == int.Parse(this.dataGridView2.CurrentRow.Cells[0].Value.ToString())
                     select p).FirstOrDefault();

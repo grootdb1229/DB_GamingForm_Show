@@ -32,6 +32,8 @@ namespace DB_GamingForm_Show.Job
                     select p;
 
             
+
+
             CMyInfoDetial.int提供者編號 = ClassUtility.MemberID;
             CMyInfoDetial.string提供者名稱 = m.Name;
             CMyInfoDetial.string提供者手機 = m.Phone;
@@ -39,6 +41,10 @@ namespace DB_GamingForm_Show.Job
 
             foreach (var p in q)
             {
+                var dr = from f in this.db.DeputeRecords
+                         where f.DeputeID ==p.DeputeID
+                         select f;
+
                 CDepute x = new CDepute();
                 x.int委託編號 = p.DeputeID;
                 x.date開始時間 = p.StartDate;
@@ -47,8 +53,12 @@ namespace DB_GamingForm_Show.Job
                 x.int狀態編號 = p.StatusID;
                 x.int報酬 = p.Salary;
                 x.int地區編號 = p.RegionID;
+                x.string目前狀態 = p.Status.Name;
+                x.int目前申請人數 = dr.Count();
                 _list.Add(x);
             }
+
+            
         }
         public List<CDepute> allMyDetpue { get { return _list; } }
 

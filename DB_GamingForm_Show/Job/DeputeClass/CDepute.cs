@@ -33,6 +33,8 @@ namespace DB_GamingForm_Show.Job.DeputeClass
         public int int報酬 { get; set; }
         public int int狀態編號 { get; set; }
         public int int地區編號 { get; set; }
+        public int int目前申請人數 { get;set; }
+        public string string目前狀態 { get; set; }
 
 
     }
