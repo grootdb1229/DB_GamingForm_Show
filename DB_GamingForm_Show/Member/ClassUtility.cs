@@ -5,24 +5,34 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Web.UI.WebControls;
+using System.Windows.Forms;
 using DB_GamingForm_Show;
 
 namespace Gaming_Forum
 {
     public class ClassUtility
-    {   //===================紀錄會員ID
+
+    {
+        //===================Reset控制項
+        public void ControllerReset(System.Windows.Forms.TextBox textBox) 
+        {
+            textBox.Text = "";
+        }
+        
+        //===================紀錄會員ID
         public static int aid { get; set; }
         public static int FirmID { get; set; }
         public static int MemberID { get; set; }
         //====================格式測試
-        public static bool FirmName { get; set; }
-        public static bool Password { get; set; }
-        public static bool Phone { get; set; }
-        public static bool Email { get; set; }
-        public static bool TaxID { get; set; }
-        public static bool FirmAddress { get; set; }
+        public  bool FirmName { get; set; }
+        public  bool Password { get; set; }
+        public  bool Phone { get; set; }
+        public  bool Email { get; set; }
+        public  bool TaxID { get; set; }
+        public  bool FirmAddress { get; set; }
 
-        public static bool FirmScale { get; set; }
+        public  bool FirmScale { get; set; }
         //=======================加密方法
         public static string HashPassword(string password)
         {
@@ -55,6 +65,9 @@ namespace Gaming_Forum
             }
             return result;
         }
+
+
+
         public string CheckEmail(string input, ref string result)
         {
             if (input == "")

@@ -18,12 +18,11 @@ namespace DBGaming
     public partial class FormHome : Form
     {
 
-        public FormHome(int memberid)
+        public FormHome(int memberid )
         {
             InitializeComponent();
             LoadBlog();
-
-
+            
         }
         
         DB_GamingFormEntities db = new DB_GamingFormEntities();
@@ -242,41 +241,52 @@ namespace DBGaming
         string selectblog;
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-
-
-
-            this.menuSubblog.Items.Clear();
-            var q = db.SubBlogs.AsEnumerable()
-                   .Where(s => s.Blog.Title == this.dataGridView1.CurrentRow.Cells["版名"].Value.ToString())
-                   .Select(s => s.Title);
-            if (q.Count() == 0)
-
-                MessageBox.Show("沒有分類");
-
-
-
-
-            foreach (var s in q)
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
-                this.menuSubblog.Items.Add(s);
+
+
+                this.menuSubblog.Items.Clear();
+                var q = db.SubBlogs.AsEnumerable()
+                       .Where(s => s.Blog.Title == this.dataGridView1.CurrentRow.Cells["版名"].Value.ToString())
+                       .Select(s => s.Title);
+
+
+
+                if (q.Count() == 0)
+                    MessageBox.Show("沒有分類");
+
+
+
+
+                foreach (var s in q)
+                {
+                    this.menuSubblog.Items.Add(s);
+                }
+
+
+                this.dataGridView2.DataSource = null;
+                this.txbBlog.Text = this.dataGridView1.CurrentRow.Cells["版名"].Value.ToString();
+                this.cbmBlogselect.Text = this.dataGridView1.CurrentRow.Cells["版名"].Value.ToString();
+
+                //----
+                string a = this.dataGridView1.CurrentRow.Cells["版名"].Value.ToString();
+
+                BlogAndArtical x = new BlogAndArtical(a);
+                
+                x.Show();
+                //----
+
+                //1102 發表文章抓取字串 辜
+                subblogname = cbmBlogselect.Text;
+
+                var q2 = db.Blogs.AsEnumerable()
+                      .Where(s => s.Title == this.dataGridView1.CurrentRow.Cells["版名"].Value.ToString())
+                      .Select(s => s.Image.Image1);
+                byte[] bytes = q2.FirstOrDefault();
+                System.IO.MemoryStream ms = new System.IO.MemoryStream(bytes);
+                this.subBlogImg.Image = System.Drawing.Image.FromStream(ms);
+                selectblog = this.dataGridView1.CurrentRow.Cells["版名"].Value.ToString();
             }
-
-
-            this.dataGridView2.DataSource = null;
-            this.txbBlog.Text = this.dataGridView1.CurrentRow.Cells["版名"].Value.ToString();
-            this.cbmBlogselect.Text = this.dataGridView1.CurrentRow.Cells["版名"].Value.ToString();
-
-            //1102 發表文章抓取字串 辜
-            subblogname = cbmBlogselect.Text;
-
-            var q2 = db.Blogs.AsEnumerable()
-                  .Where(s => s.Title == this.dataGridView1.CurrentRow.Cells["版名"].Value.ToString())
-                  .Select(s => s.Image.Image1);
-            byte[] bytes = q2.FirstOrDefault();
-            System.IO.MemoryStream ms = new System.IO.MemoryStream(bytes);
-            this.subBlogImg.Image = System.Drawing.Image.FromStream(ms);
-            selectblog = this.dataGridView1.CurrentRow.Cells["版名"].Value.ToString();
-
 
 
         }

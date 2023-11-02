@@ -1,4 +1,5 @@
-﻿using Gaming_Forum;
+﻿using DBGaming;
+using Gaming_Forum;
 using Shopping;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,8 @@ namespace DB_GamingForm_Show
             Application.Run(new HomePage());
             //Application.Run(new FrmPurchase());
             //Application.Run(new FrmMemberShop());
+            //Application.Run(new FormHome());
+
         }
     }
 }

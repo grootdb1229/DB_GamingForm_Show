@@ -113,11 +113,11 @@ namespace DB_GamingForm_Show.Job
             return _dgvList;
 
         }
-        public void dataRefresh(BindingSource data,List<CDepute> value)
+        public void dataRefresh(BindingSource binding,DataGridView dgv,List<CDepute> value)
         {
-            data.Clear();
-            data.DataSource = value;
-            data.DataSource = data;
+            binding.Clear();
+            binding.DataSource = value;
+            dgv.DataSource = binding;
            
         }
     }

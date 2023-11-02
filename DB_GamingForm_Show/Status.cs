@@ -18,11 +18,11 @@ namespace DB_GamingForm_Show
         public Status()
         {
             this.Advertises = new HashSet<Advertise>();
+            this.Deputes = new HashSet<Depute>();
             this.DeputeRecords = new HashSet<DeputeRecord>();
             this.MemberStatus = new HashSet<MemberStatu>();
             this.Orders = new HashSet<Order>();
             this.Products = new HashSet<Product>();
-            this.Deputes = new HashSet<Depute>();
         }
     
         public int StatusID { get; set; }
@@ -31,6 +31,8 @@ namespace DB_GamingForm_Show
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Advertise> Advertises { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Depute> Deputes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DeputeRecord> DeputeRecords { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MemberStatu> MemberStatus { get; set; }
@@ -38,7 +40,5 @@ namespace DB_GamingForm_Show
         public virtual ICollection<Order> Orders { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Product> Products { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Depute> Deputes { get; set; }
     }
 }
