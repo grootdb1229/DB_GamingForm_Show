@@ -18,10 +18,10 @@ namespace DB_GamingForm_Show.Job
 
         public CMyInfo() 
         {
-            loadData();
+            loadDatas();
         }
 
-        private void loadData()
+        private void loadDatas()
         {
             var m=(from p in this.db.Members
                   where p.MemberID==ClassUtility.MemberID
@@ -30,9 +30,6 @@ namespace DB_GamingForm_Show.Job
             var q = from p in this.db.Deputes
                     where p.ProviderID == ClassUtility.MemberID
                     select p;
-
-            
-
 
             CMyInfoDetial.int提供者編號 = ClassUtility.MemberID;
             CMyInfoDetial.string提供者名稱 = m.Name;
@@ -57,12 +54,18 @@ namespace DB_GamingForm_Show.Job
                 x.int目前申請人數 = dr.Count();
                 _list.Add(x);
             }
-
-            
         }
-        public List<CDepute> allMyDetpue { get { return _list; } }
+    
+        public List<CDepute> allMyDetpue
+        {
+            get
+            {
+                loadDatas();
+                return _list;
+            }
+        }
 
-        
+
     }
 
 
