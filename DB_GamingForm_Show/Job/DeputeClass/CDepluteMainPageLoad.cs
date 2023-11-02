@@ -18,13 +18,13 @@ namespace DB_GamingForm_Show.Job
 
         }
         DB_GamingFormEntities entities = new DB_GamingFormEntities();
-        private List<CDepute> _list = new List<CDepute>();
-        private List<CDepute> _dgvList = new List<CDepute>();
+        private List<DeputeClass.CDepute> _list = new List<DeputeClass.CDepute>();
+        private List<DeputeClass.CDepute> _dgvList = new List<DeputeClass.CDepute>();
 
-        public List<CDepute> List { get { return _list; } set { _list = value; } }
+        public List<DeputeClass.CDepute> List { get { return _list; } set { _list = value; } }
 
-        public List<CDepute> DgvList {get { return _dgvList; } set {  _dgvList = value; } }
-        public List<CDepute> LoadData()
+        public List<DeputeClass.CDepute> DgvList {get { return _dgvList; } set {  _dgvList = value; } }
+        public List<DeputeClass.CDepute> LoadData()
         {   
             var data = from n in this.entities.Deputes.AsEnumerable()
                        orderby n.StartDate descending
@@ -41,7 +41,7 @@ namespace DB_GamingForm_Show.Job
                        };
             foreach ( var item in data ) 
             {
-                CDepute x = new CDepute();
+                DeputeClass.CDepute x = new DeputeClass.CDepute();
                 x.id = item.DeputeID.ToString();
                 x.providername = item.Name;
                 x.startdate = item.SrartDate;
@@ -59,7 +59,7 @@ namespace DB_GamingForm_Show.Job
 
         }
 
-        public List<CDepute> Search(string input)
+        public List<DeputeClass.CDepute> Search(string input)
         {
             var data = from n in _list.AsEnumerable()
                        where n.content.ToLower().Contains(input.ToLower())
@@ -69,12 +69,12 @@ namespace DB_GamingForm_Show.Job
             
         }
 
-        public List<CDepute> DgvDataLoad(int sourcecount, DataGridView data)
+        public List<DeputeClass.CDepute> DgvDataLoad(int sourcecount, DataGridView data)
         {
             _dgvList.Clear();
             for (int i = 0; i < sourcecount; i++)
             {
-                _dgvList.Add(new CDepute
+                _dgvList.Add(new DeputeClass.CDepute
                 {
                     id = data.Rows[i].Cells[0].Value.ToString(),
                     providername = data.Rows[i].Cells[1].Value.ToString(),

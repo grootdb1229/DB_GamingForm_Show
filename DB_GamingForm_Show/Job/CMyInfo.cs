@@ -1,4 +1,5 @@
-﻿using Gaming_Forum;
+﻿using DB_GamingForm_Show.Job.DeputeClass;
+using Gaming_Forum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace DB_GamingForm_Show.Job
     {
         DB_GamingFormEntities db = new DB_GamingFormEntities();
 
-        private List<CDeputeBian> _list = new List<CDeputeBian>();
+        private List<CDepute> _list = new List<CDepute>();
 
         public static int selectedMemberid;
 
@@ -30,7 +31,7 @@ namespace DB_GamingForm_Show.Job
                     where p.ProviderID == ClassUtility.MemberID
                     select p;
 
-            CDeputeBian x = new CDeputeBian();
+            
             CMyInfoDetial.int提供者編號 = ClassUtility.MemberID;
             CMyInfoDetial.string提供者名稱 = m.Name;
             CMyInfoDetial.string提供者手機 = m.Phone;
@@ -38,6 +39,8 @@ namespace DB_GamingForm_Show.Job
 
             foreach (var p in q)
             {
+                CDepute x = new CDepute();
+                x.int委託編號 = p.DeputeID;
                 x.date開始時間 = p.StartDate;
                 x.date修改時間 = p.Modifiedate;
                 x.string懸賞內容 = p.DeputeContent;
@@ -47,7 +50,7 @@ namespace DB_GamingForm_Show.Job
                 _list.Add(x);
             }
         }
-        public List<CDeputeBian> allMyDetpue { get { return _list; } }
+        public List<CDepute> allMyDetpue { get { return _list; } }
 
         
     }

@@ -150,7 +150,6 @@
     <Compile Include="JobCertificate.cs">
       <DependentUpon>GMModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Job\CDeputeBian.cs" />
     <Compile Include="Job\CMyInfo.cs" />
     <Compile Include="Job\CMyInfoDetial.cs" />
     <Compile Include="Job\DeputeClass\CDepluteMainPageLoad.cs" />
