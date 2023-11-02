@@ -14,7 +14,7 @@ namespace DB_GamingForm_Show.Job
 
         public CDepluteMainPageLoad() 
         {
-            LoadData();
+            deputeLoad();
 
         }
         DB_GamingFormEntities entities = new DB_GamingFormEntities();
@@ -24,7 +24,7 @@ namespace DB_GamingForm_Show.Job
         public List<CDepute> List { get { return _list; } set { _list = value; } }
 
         public List<CDepute> DgvList {get { return _dgvList; } set {  _dgvList = value; } }
-        public List<CDepute> LoadData()
+        public List<CDepute> deputeLoad()
         {   
             var data = from n in this.entities.Deputes.AsEnumerable()
                        orderby n.StartDate descending
@@ -59,7 +59,7 @@ namespace DB_GamingForm_Show.Job
 
         }
 
-        public List<CDepute> Search(List<CDepute> list,string input)
+        public List<CDepute> dataSearch(List<CDepute> list,string input)
         {
             var data = from n in list.AsEnumerable()
                        where n.content.ToLower().Contains(input.ToLower())
@@ -69,10 +69,10 @@ namespace DB_GamingForm_Show.Job
             
         }
 
-        public void HotSearch(string label1, string label2, string label3)
+        public void hotKey(string label1, string label2, string label3)
         {
-           
 
+            
 
                 var value = (from n in this.entities.SerachRecords.AsEnumerable()
                              where n.IsMember == true
@@ -91,7 +91,7 @@ namespace DB_GamingForm_Show.Job
 
         }
 
-        public List<CDepute> DgvDataLoad(int sourcecount, DataGridView data)
+        public List<CDepute> dgvDataLoad(int sourcecount, DataGridView data)
         {
             _dgvList.Clear();
             for (int i = 0; i < sourcecount; i++)
@@ -113,7 +113,7 @@ namespace DB_GamingForm_Show.Job
             return _dgvList;
 
         }
-        public void DataRefresh(BindingSource data,List<CDepute> value)
+        public void dataRefresh(BindingSource data,List<CDepute> value)
         {
             data.Clear();
             data.DataSource = value;
