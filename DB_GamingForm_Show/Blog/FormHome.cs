@@ -25,10 +25,13 @@ namespace DBGaming
 
 
         }
-        //DB_GamingFormEntities1 db = new DB_GamingFormEntities1();
+        
         DB_GamingFormEntities db = new DB_GamingFormEntities();
 
-          
+        //1102發表文章抓取字串 辜
+        string subblogname = "";
+        string subblogca = "";
+
 
         private void LoadBlog()
         {
@@ -229,6 +232,9 @@ namespace DBGaming
         string selectblog;
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+
+
+
             this.menuSubblog.Items.Clear();
             var q = db.SubBlogs.AsEnumerable()
                    .Where(s => s.Blog.Title == this.dataGridView1.CurrentRow.Cells["版名"].Value.ToString())
@@ -236,8 +242,6 @@ namespace DBGaming
             if (q.Count() == 0)
             
                 MessageBox.Show("沒有分類");
-            
-            
             
 
             foreach (var s in q)
@@ -249,6 +253,10 @@ namespace DBGaming
             this.dataGridView2.DataSource = null;
             this.txbBlog.Text = this.dataGridView1.CurrentRow.Cells["版名"].Value.ToString();
             this.cbmBlogselect.Text = this.dataGridView1.CurrentRow.Cells["版名"].Value.ToString();
+
+            //1102 發表文章抓取字串 辜
+            subblogname = cbmBlogselect.Text;
+
             var q2 = db.Blogs.AsEnumerable()
                   .Where(s => s.Title == this.dataGridView1.CurrentRow.Cells["版名"].Value.ToString())
                   .Select(s => s.Image.Image1);
@@ -256,6 +264,8 @@ namespace DBGaming
             System.IO.MemoryStream ms = new System.IO.MemoryStream(bytes);
             this.subBlogImg.Image = System.Drawing.Image.FromStream(ms);
             selectblog = this.dataGridView1.CurrentRow.Cells["版名"].Value.ToString();
+
+
 
         }
         private void InsertImg()
@@ -463,6 +473,9 @@ namespace DBGaming
             this.dataGridView2.DataSource = q.ToList();
             }
             this.txbSubBlog.Text = e.ClickedItem.Text;
+
+            //1102 發表文章抓取字串 辜
+            subblogca = this.txbSubBlog.Text;
         }
 
         
@@ -580,10 +593,10 @@ namespace DBGaming
 
         private void btnArticleInsert_Click(object sender, EventArgs e)
         {
-            string subblogname = "";
-            string subblogca = "";
-            txbBlog.Text = subblogname;
-            txbSubBlog.SelectedText = subblogca;
+
+
+
+            //MessageBox.Show(subblogca + "/" + subblogname);
             NewART aRT = new NewART(subblogname,subblogca);
             aRT.ShowDialog();
             SubAllClear();

@@ -20,15 +20,14 @@ namespace WindowsFormsApp1
             InitializeComponent();
             LoadCombobox1();
             
-
-
             comboBox1.SelectedIndex = 0;
             comboBox2.SelectedIndex = 0;
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
 
-
-
+            //1102 發表文章抓取字串 辜
+            comboBox1.SelectedItem = subblogname;
+            comboBox2.SelectedItem = subblogca;
 
         }
 
