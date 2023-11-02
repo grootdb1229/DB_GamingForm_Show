@@ -15,14 +15,14 @@ namespace Gaming_Forum
         public static int FirmID { get; set; }
         public static int MemberID { get; set; }
         //====================格式測試
-        public static bool FirmName { get; set; }
-        public static bool Password { get; set; }
-        public static bool Phone { get; set; }
-        public static bool Email { get; set; }
-        public static bool TaxID { get; set; }
-        public static bool FirmAddress { get; set; }
+        public  bool FirmName { get; set; }
+        public  bool Password { get; set; }
+        public  bool Phone { get; set; }
+        public  bool Email { get; set; }
+        public  bool TaxID { get; set; }
+        public  bool FirmAddress { get; set; }
 
-        public static bool FirmScale { get; set; }
+        public  bool FirmScale { get; set; }
         //=======================加密方法
         public static string HashPassword(string password)
         {

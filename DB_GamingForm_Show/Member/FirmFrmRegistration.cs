@@ -38,20 +38,12 @@ namespace Gaming_Forum
         }
         DB_GamingFormEntities db = new DB_GamingFormEntities();
 
-        public static bool FirmName { get; set; }
-        public static bool Password { get; set; }
-        public static bool Phone { get; set; }
-        public static bool Email { get; set; }
-        public static bool TaxID { get; set; }
-        public static bool FirmAddress { get; set; }
-        public static bool FirmScale { get; set; }
-
-        
+        ClassUtility CS = new ClassUtility();
         private void button1_Click(object sender, EventArgs e)
         {
             Firm firm1 = new Firm();
             DB_GamingForm_Show.Image image = new Image();
-            if (!(FirmName&&Password&&Phone&&Email&&TaxID&&FirmAddress))
+            if (!(CS.FirmName&&CS.Password&&CS.Phone&&CS.Email&&CS.TaxID&&CS.FirmAddress))
             {
                 MessageBox.Show("請重新檢查欄位資料");
             }
@@ -106,18 +98,18 @@ namespace Gaming_Forum
             if (textBox1.Text == "")
             {
                 this.label9.Text = "請輸入您的公司名稱";
-                FirmName = false;
+                CS.FirmName = false;
             }
             else if (db.Firms.Any(Name => Name.FirmName == textBox1.Text))
             {
                 this.label9.Text = "該名稱已有人註冊";
                 this.textBox1.Text = "";
-                FirmName = false;
+                CS.FirmName = false;
             }
             else
             {
                 this.label9.Text = "該名稱可使用";
-                FirmName = true;
+                CS.FirmName = true;
             }
         }
 
@@ -126,18 +118,18 @@ namespace Gaming_Forum
             if (textBox2.Text == "")
             {
                 this.label10.Text = "請輸入您的統編";
-                TaxID = false;
+                CS.TaxID = false;
             }
             else if (textBox2.Text.Length < 8)
             {
                 this.label10.Text = "您輸入的統編格式不對";
                 this.textBox2.Text = "";
-                TaxID = false;
+                CS.TaxID = false;
             }
             else 
             {
                 this.label10.Text = "輸入正確";
-                TaxID = true;
+                CS.TaxID = true;
             }
         }
 
@@ -148,19 +140,19 @@ namespace Gaming_Forum
             if ( Regex.IsMatch(textBox3.Text, ContactPhone))
             {
                 this.label11.Text = "格式正確";
-                Phone = true;
+                CS.Phone = true;
             }
 
             else if (db.Firms.Any(c => c.Contact == textBox3.Text))
             {
                 this.label11.Text = "該電話號碼已有人註冊";
-                Phone = false;
+                CS.Phone = false;
             }
 
             else
             {
                 label11.Text = "格式錯誤";
-                Phone = false;
+                CS.Phone = false;
                 textBox3.Text = "";
             }
         }
@@ -170,13 +162,13 @@ namespace Gaming_Forum
             if (textBox4.Text == "")
             {
                 label12.Text = "請輸入資料";
-                FirmAddress = false;
+                CS.FirmAddress = false;
             }
 
             else
             {
                 label12.Text = "輸入正確";
-                FirmAddress = true;
+                CS.FirmAddress = true;
             }
         }
         private void textBox6_Leave(object sender, EventArgs e)
@@ -184,12 +176,12 @@ namespace Gaming_Forum
             if (textBox6.Text == "")
             {
                 label12.Text = "請輸入資料";
-                FirmScale = false;
+                CS.FirmScale = false;
             }
             else 
             {
                 label12.Text = "輸入正確";
-                FirmScale = true;
+                CS.FirmScale = true;
             }
         }
 
@@ -199,7 +191,7 @@ namespace Gaming_Forum
             if (textBox7.Text == "")
             {
                 label15.Text = "請輸入資料";
-                Email = false;
+                CS.Email = false;
             }
             else if (db.Firms.Any(Firm => Firm.Email == textBox7.Text)) 
             {
@@ -208,12 +200,12 @@ namespace Gaming_Forum
             else if (Regex.IsMatch(textBox7.Text, ContactEmail))
             {
                 label15.Text = "格式正確";
-                Email = true;
+                CS.Email = true;
             }
             else
             {
                 label15.Text = "格式錯誤";
-                Email = false;
+                CS.Email = false;
             }
         }
 
@@ -224,25 +216,25 @@ namespace Gaming_Forum
             if (textBox8.Text == "")
             {
                 label16.Text = "請輸入密碼";
-                Password = false;
+                CS.Password = false;
             }
 
             else if (Regex.IsMatch(textBox8.Text, Password1))
             {
                 label16.Text = "格式正確";
-                Password = true;
+                CS.Password = true;
             }
 
             else if (db.Firms.Any(firm => firm.Password == textBox8.Text))
             {
                 label16.Text = "該密碼已有人使用";
-                Password = false;
+                CS.Password = false;
             }
 
             else 
             {
                 label16.Text = "格式錯誤";
-                Password = false;
+                CS.Password = false;
             }
         }
     }
