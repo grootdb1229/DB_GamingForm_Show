@@ -29,6 +29,7 @@ namespace Gaming_Forum
 
         private void button1_Click(object sender, EventArgs e)
         {
+            ClassUtility CS = new ClassUtility();
             DB_GamingFormEntities db = new DB_GamingFormEntities();
             var FP = from firm in db.Firms
                      where firm.FirmID == ClassUtility.FirmID
@@ -37,12 +38,12 @@ namespace Gaming_Forum
             if (this.textBox1.Text == FP.ToList().First().ToString())
             {
                 label9.Text="公司名稱正確";
-                ClassUtility.FirmName = true;
+                CS.FirmName = true;
             }
             else
             {
                 label9.Text = "公司名稱錯誤";
-                ClassUtility.FirmName = false;
+                CS.FirmName = false;
             }
 
             var FP2 = from firm in db.Firms
@@ -52,12 +53,12 @@ namespace Gaming_Forum
             if (this.textBox2.Text == FP2.ToList().FirstOrDefault())
             {
                 label10.Text="信箱正確";
-                ClassUtility.Email = true;
+                CS.Email = true;
             }
             else
             {
                 this.label10.Text = "信箱錯誤";
-                ClassUtility.Email = false;
+                CS.Email = false;
             }
 
             var FP3 = from firm in db.Firms
@@ -66,12 +67,12 @@ namespace Gaming_Forum
             if (this.textBox3.Text == FP3.ToList().FirstOrDefault().ToString())
             {
                 this.label11.Text = "統編正確";
-                ClassUtility.TaxID = true;
+                CS.TaxID = true;
             }
             else 
             {
                 this.label11.Text = "統編錯誤";
-                ClassUtility.TaxID = false;
+                CS.TaxID = false;
             }
 
             var FP4 = from firm in db.Firms
@@ -80,15 +81,15 @@ namespace Gaming_Forum
             if (ClassUtility.HashPassword(this.textBox4.Text) == FP4.ToList().FirstOrDefault())
             {
               this.label12.Text = "密碼正確";
-              ClassUtility.Password = true;
+              CS.Password = true;
             }
             else
             {
                 this.label12.Text = "密碼錯誤";
-                ClassUtility.Password = false;
+                CS.Password = false;
             }
 
-            if (ClassUtility.FirmName && ClassUtility.Email && ClassUtility.TaxID && ClassUtility.Password == true)
+            if (CS.FirmName && CS.Email && CS.TaxID && CS.Password == true)
             {
                 
                 MessageBox.Show("資料驗證成功");
@@ -106,6 +107,7 @@ namespace Gaming_Forum
 
         private void button3_Click(object sender, EventArgs e)
         {
+            ClassUtility CS = new ClassUtility();
             DB_GamingFormEntities db = new DB_GamingFormEntities();
             if (textBox4.Text == textBox5.Text)
             {
@@ -116,7 +118,7 @@ namespace Gaming_Forum
                 string result = "";
                 ClassUtility Cs = new ClassUtility();
                 Cs.CheckPassword(this.textBox5.Text, ref result);
-                if (ClassUtility.Password)
+                if (CS.Password)
                 {
                     try
                     {

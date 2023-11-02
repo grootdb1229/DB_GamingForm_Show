@@ -114,6 +114,7 @@
             this.PriceTextBox.Name = "PriceTextBox";
             this.PriceTextBox.Size = new System.Drawing.Size(121, 22);
             this.PriceTextBox.TabIndex = 9;
+            this.PriceTextBox.TextChanged += new System.EventHandler(this.PriceTextBox_TextChanged);
             // 
             // label5
             // 
