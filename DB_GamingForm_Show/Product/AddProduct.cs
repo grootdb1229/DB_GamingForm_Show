@@ -100,8 +100,8 @@ namespace 其中專題
             using (TransactionScope ts = new TransactionScope())
             {
 
-                string Unit_Stock = UnitStockTextBox.Text;
-                string Price_Text = PriceTextBox.Text;
+                string Unit_Stock = UnitStockTextBox.Text;            
+                string  Price_Text=PriceTextBox.Text;
                 byte[] bytes;
                 ///當六面旗幟判定接成功時，才能開始儲存進資料庫。          
                 try
@@ -270,6 +270,11 @@ namespace 其中專題
         }
 
         private void UnitStockTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PriceTextBox_TextChanged(object sender, EventArgs e)
         {
 
         }
