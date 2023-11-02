@@ -16,20 +16,10 @@ namespace Shopping
     {
         DB_GamingFormEntities db = new DB_GamingFormEntities();
         public int ID { get; set; }
-        public bool IsFirm { get; set; }
 
         private void MemberFirm()
         {
-            if (ClassUtility.FirmID != 0)
-            {
-                ID = ClassUtility.FirmID;
-                IsFirm = true;
-            }
-            else
-            {
                 ID = ClassUtility.MemberID;
-                IsFirm = false;
-            }
         }
         public FrmCar()
         {
@@ -126,161 +116,84 @@ namespace Shopping
             }
             if (flag)
             {
-                if (IsFirm)
+
+                try
                 {
-                    try
+                    if (this.comboBox2.Text == "郵局" || this.comboBox2.Text == "黑貓宅急便")
                     {
-                        if (this.comboBox2.Text == "郵局" || this.comboBox2.Text == "黑貓宅急便")
+                        var order = new Order
                         {
-                            var order = new Order
-                            {
-                                FirmID = ID,
-                                ShipName = this.textBox1.Text,
-                                OrderDate = DateTime.Now,
-                                PaymentID = paymant.First().PaymentID,
-                                ShipID = ship.First().ShipID,
-                                Zipcode = int.Parse(this.textBox2.Text),
-                                ShipAddress = this.textBox5.Text + this.textBox3.Text,
-                                Note = "",
-                                StatusID = 13,
-                            };
-                            this.db.Orders.Add(order);
-                            db.SaveChanges();
-                        }
-                        else
-                        {
-                            var order = new Order
-                            {
-                                FirmID = ID,
-                                ShipName = this.textBox1.Text,
-                                OrderDate = DateTime.Now,
-                                PaymentID = paymant.First().PaymentID,
-                                ShipID = ship.First().ShipID,
-                                Note = "",
-                                StatusID = 13,
-                            };
-                            this.db.Orders.Add(order);
-                            db.SaveChanges();
-                        }
-                        List<COrderProduct> orderProducts = new List<COrderProduct>();
-                        for (int i = 0; i < this.dataGridView1.RowCount; i++)
-                        {
-                            orderProducts.Add(new COrderProduct
-                            {
-                                ProductID = (int)this.dataGridView1.Rows[i].Cells[0].Value,
-                                UnitPrice = (decimal)this.dataGridView1.Rows[i].Cells[2].Value,
-                                Quantinty = (int)this.dataGridView1.Rows[i].Cells[3].Value,
-                                Discount = 1
-                            });
-                        }
-
-                        int orderid = db.Orders.OrderByDescending(x => x.OrderID).Select(x => x.OrderID).FirstOrDefault();
-                        for (int i = 0; i < orderProducts.Count(); i++)
-                        {
-                            var orderproduct = new OrderProduct
-                            {
-                                OrderID = orderid,
-                                ProductID = orderProducts[i].ProductID,
-                                UnitPrice = orderProducts[i].UnitPrice,
-                                Quantinty = orderProducts[i].Quantinty,
-                                Disconut = orderProducts[i].Discount
-                            };
-                            this.db.OrderProducts.Add(orderproduct);
-
-                            var us = from x in db.Products
-                                     where x.ProductID == orderproduct.ProductID
-                                     select x;
-                            Product unitstock = db.Products.First(x => x.ProductID == orderproduct.ProductID);
-                            unitstock.UnitStock = unitstock.UnitStock - orderproduct.Quantinty;
-                            db.SaveChanges();
-                        }
-                            MessageBox.Show("訂單成功");
-                        }
-            catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
+                            MemberID = ID,
+                            ShipName = this.textBox1.Text,
+                            OrderDate = DateTime.Now,
+                            PaymentID = paymant.First().PaymentID,
+                            ShipID = ship.First().ShipID,
+                            Zipcode = int.Parse(this.textBox2.Text),
+                            ShipAddress = this.textBox5.Text + this.textBox3.Text,
+                            Note = "",
+                            StatusID = 13,
+                        };
+                        this.db.Orders.Add(order);
+                        db.SaveChanges();
                     }
+                    else
+                    {
+                        var order = new Order
+                        {
+                            MemberID = ID,
+                            ShipName = this.textBox1.Text,
+                            OrderDate = DateTime.Now,
+                            PaymentID = paymant.First().PaymentID,
+                            ShipID = ship.First().ShipID,
+                            Note = "",
+                            StatusID = 13,
+                        };
+                        this.db.Orders.Add(order);
+                        db.SaveChanges();
+                    }
+
+
+                    List<COrderProduct> orderProducts = new List<COrderProduct>();
+                    for (int i = 0; i < this.dataGridView1.RowCount; i++)
+                    {
+                        orderProducts.Add(new COrderProduct
+                        {
+                            ProductID = (int)this.dataGridView1.Rows[i].Cells[0].Value,
+                            UnitPrice = (decimal)this.dataGridView1.Rows[i].Cells[2].Value,
+                            Quantinty = (int)this.dataGridView1.Rows[i].Cells[3].Value,
+                            Discount = 1
+                        });
+                    }
+
+                    int orderid = db.Orders.OrderByDescending(x => x.OrderID).Select(x => x.OrderID).FirstOrDefault();
+                    for (int i = 0; i < orderProducts.Count(); i++)
+                    {
+                        var orderproduct = new OrderProduct
+                        {
+                            OrderID = orderid,
+                            ProductID = orderProducts[i].ProductID,
+                            UnitPrice = orderProducts[i].UnitPrice,
+                            Quantinty = orderProducts[i].Quantinty,
+                            Disconut = orderProducts[i].Discount
+                        };
+                        this.db.OrderProducts.Add(orderproduct);
+
+                        var us = from x in db.Products
+                                 where x.ProductID == orderproduct.ProductID
+                                 select x;
+                        Product unitstock = db.Products.First(x => x.ProductID == orderproduct.ProductID);
+                        unitstock.UnitStock = unitstock.UnitStock - orderproduct.Quantinty;
+                        db.SaveChanges();
+                    }
+
+                    MessageBox.Show("訂單成功");
                 }
-                else
+                catch (Exception ex)
                 {
-                    try
-                    {
-                        if (this.comboBox2.Text == "郵局" || this.comboBox2.Text == "黑貓宅急便")
-                        {
-                            var order = new Order
-                            {
-                                MemberID = ID,
-                                ShipName = this.textBox1.Text,
-                                OrderDate = DateTime.Now,
-                                PaymentID = paymant.First().PaymentID,
-                                ShipID = ship.First().ShipID,
-                                Zipcode = int.Parse(this.textBox2.Text),
-                                ShipAddress = this.textBox5.Text + this.textBox3.Text,
-                                Note = "",
-                                StatusID = 13,
-                            };
-                            this.db.Orders.Add(order);
-                            db.SaveChanges();
-                        }
-                        else
-                        {
-                            var order = new Order
-                            {
-                                MemberID = ID,
-                                ShipName = this.textBox1.Text,
-                                OrderDate = DateTime.Now,
-                                PaymentID = paymant.First().PaymentID,
-                                ShipID = ship.First().ShipID,
-                                Note = "",
-                                StatusID = 13,
-                            };
-                            this.db.Orders.Add(order);
-                            db.SaveChanges();
-                        }
-
-
-                        List<COrderProduct> orderProducts = new List<COrderProduct>();
-                        for (int i = 0; i < this.dataGridView1.RowCount; i++)
-                        {
-                            orderProducts.Add(new COrderProduct
-                            {
-                                ProductID = (int)this.dataGridView1.Rows[i].Cells[0].Value,
-                                UnitPrice = (decimal)this.dataGridView1.Rows[i].Cells[2].Value,
-                                Quantinty = (int)this.dataGridView1.Rows[i].Cells[3].Value,
-                                Discount = 1
-                            });
-                        }
-
-                        int orderid = db.Orders.OrderByDescending(x => x.OrderID).Select(x => x.OrderID).FirstOrDefault();
-                        for (int i = 0; i < orderProducts.Count(); i++)
-                        {
-                            var orderproduct = new OrderProduct
-                            {
-                                OrderID = orderid,
-                                ProductID = orderProducts[i].ProductID,
-                                UnitPrice = orderProducts[i].UnitPrice,
-                                Quantinty = orderProducts[i].Quantinty,
-                                Disconut = orderProducts[i].Discount
-                            };
-                            this.db.OrderProducts.Add(orderproduct);
-
-                            var us = from x in db.Products
-                                     where x.ProductID == orderproduct.ProductID
-                                     select x;
-                            Product unitstock = db.Products.First(x => x.ProductID == orderproduct.ProductID);
-                            unitstock.UnitStock = unitstock.UnitStock - orderproduct.Quantinty;
-                            db.SaveChanges();
-                        }
-
-                        MessageBox.Show("訂單成功");
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
+                    MessageBox.Show(ex.Message);
                 }
 
-            }
+        }
             this.Close();
         }
 

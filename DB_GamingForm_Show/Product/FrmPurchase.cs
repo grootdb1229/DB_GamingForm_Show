@@ -26,20 +26,10 @@ namespace Shopping
         List<CShoppingCar> car = new List<CShoppingCar>();
         bool flag = true;
         public int ID { get; set; }
-        public bool IsFirm { get; set; }
 
         private void MemberFirm()
         {
-            if (ClassUtility.FirmID != 0)
-            {
-                ID = ClassUtility.FirmID;
-                IsFirm = true;
-            }
-            else
-            {
                 ID = ClassUtility.MemberID;
-                IsFirm = false;
-            }
         }
         public FrmPurchase()
         {
@@ -47,13 +37,13 @@ namespace Shopping
             MemberFirm();
             //這段可能用不到
             var StringTName2 = from p in this.db.Products.AsEnumerable()
+                               where p.Status.StatusID==1
                                select new { 商品ID = p.ProductID, 商品名 = p.ProductName, Picture = p.Image.Image1, 售價 = p.Price };
             this.bindingSource1.DataSource = StringTName2.ToList();
             this.dataGridView1.DataSource = this.bindingSource1;
      
             this.pictureBox1.DataBindings.Add("Image", this.bindingSource1, "Picture", true);
-            if (IsFirm)
-            { this.button4.Visible = false; }
+            
 
 
             //帶入class
@@ -175,6 +165,7 @@ namespace Shopping
         public void LoadAllProducts()
         {
             var StringTName2 = from p in this.db.Products.AsEnumerable()
+                               where p.Status.StatusID == 1
                                select new { 商品ID = p.ProductID, 商品名 = p.ProductName, Picture = p.Image.Image1, 售價 = p.Price };
 
             this.bindingSource1.DataSource = StringTName2.ToList();
