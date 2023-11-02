@@ -65,6 +65,9 @@ namespace Gaming_Forum
             }
             return result;
         }
+
+
+
         public string CheckEmail(string input, ref string result)
         {
             if (input == "")
