@@ -133,17 +133,6 @@ namespace Groot
                         提供報酬 = p.Salary,
                     };
             this.dataGridView2.DataSource = q.ToList();
-
-            this.listBox4.Items.Clear();
-
-            //標題
-            this.listBox4.Items.Add($"{"委託編號",-24}-{"狀態",-24}");//-{"應徵內容",-24}
-
-            //以下為listbox內容
-            foreach (var i in q)
-            {
-                this.listBox4.Items.Add($"{i.委託編號,-24}-{i.目前狀態,-24}");//-{"i.應徵內容",-24}
-            }
         }
 
         
