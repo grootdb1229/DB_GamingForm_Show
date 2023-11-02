@@ -42,7 +42,7 @@ namespace DBGaming
             {
                 this.cbmBlogselect.Items.Add(s);
             }
-            
+
         }
         private void ALLClear()
         {
@@ -64,14 +64,14 @@ namespace DBGaming
             this.menuSubblog.Items.Clear();
             this.dataGridView2.DataSource = null;
         }
-        string selectblogLast="";
+        string selectblogLast = "";
         private void menuBlog_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             ALLClear();
             SubAllClear();
             LoadBlog();
 
-            selectblogLast =e.ClickedItem.Text;
+            selectblogLast = e.ClickedItem.Text;
             this.cbmBlog.Text = e.ClickedItem.Text;
             var q = db.Blogs.AsEnumerable()
                 .Where(b => b.SubTag.Name == e.ClickedItem.Text)
@@ -88,11 +88,11 @@ namespace DBGaming
             }
             else
             {
-            this.dataGridView1.DataSource = q.ToList();
+                this.dataGridView1.DataSource = q.ToList();
             }
-                
-            
-            
+
+
+
         }
         private void btnTagInsert_Click(object sender, EventArgs e)
         {
@@ -227,18 +227,18 @@ namespace DBGaming
                    .Where(s => s.Blog.Title == this.dataGridView1.CurrentRow.Cells["版名"].Value.ToString())
                    .Select(s => s.Title);
             if (q.Count() == 0)
-            
+
                 MessageBox.Show("沒有分類");
-            
-            
-            
+
+
+
 
             foreach (var s in q)
             {
                 this.menuSubblog.Items.Add(s);
             }
 
-            
+
             this.dataGridView2.DataSource = null;
             this.txbBlog.Text = this.dataGridView1.CurrentRow.Cells["版名"].Value.ToString();
             this.cbmBlogselect.Text = this.dataGridView1.CurrentRow.Cells["版名"].Value.ToString();
@@ -389,18 +389,16 @@ namespace DBGaming
 
         private void btnBlogDelete_Click(object sender, EventArgs e)
         {
-
+            
             var delBlog = db.Blogs.AsEnumerable()
                 .Where(b => b.Title == this.txbBlog.Text)
                 .Select(b => b);
 
             foreach (var item in delBlog)
             {
-                
-            item.SubTagID = 14;
-           
-
-            } db.SaveChanges();
+                item.SubTagID = 14;
+            }
+            db.SaveChanges();
             //var delRe = db.Replies
             //    .Where(r => r.Article.SubBlog.Blog.Title == this.txbBlog.Text && r.Article.SubBlog.Blog.SubTag.Name == this.cbmBlog.Text)
             //    .Select(r => r);
@@ -436,11 +434,11 @@ namespace DBGaming
             LoadBlog();
         }
 
-      
+
         private void menuSubblog_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             var q = db.Articles.AsEnumerable()
-                .Where(a => a.SubBlog.Title ==e.ClickedItem.Text&&a.SubBlog.Blog.Title==selectblog && a.SubBlog.Blog.SubTag.Name == selectblogLast)
+                .Where(a => a.SubBlog.Title == e.ClickedItem.Text && a.SubBlog.Blog.Title == selectblog && a.SubBlog.Blog.SubTag.Name == selectblogLast)
                 .Select(s => new
                 {
                     文章編號 = s.ArticleID,
@@ -452,13 +450,13 @@ namespace DBGaming
                 MessageBox.Show("還未有文章");
             }
             else
-            {                
-            this.dataGridView2.DataSource = q.ToList();
+            {
+                this.dataGridView2.DataSource = q.ToList();
             }
             this.txbSubBlog.Text = e.ClickedItem.Text;
         }
 
-        
+
         private void btnSubBlogInsert_Click(object sender, EventArgs e)
         {
             var q = db.Blogs.AsEnumerable()
