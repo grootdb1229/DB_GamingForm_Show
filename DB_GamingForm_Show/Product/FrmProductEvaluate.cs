@@ -21,20 +21,10 @@ namespace WindowsFormsApp1
     {
         DB_GamingFormEntities db = new DB_GamingFormEntities();
         public int ID { get; set; }
-        public bool IsFirm { get; set; }
 
         private void MemberFirm()
         {
-            if (ClassUtility.FirmID != 0)
-            {
-                ID = ClassUtility.FirmID;
-                IsFirm = true;
-            }
-            else
-            {
-                ID = ClassUtility.MemberID;
-                IsFirm = false;
-            }
+                ID = ClassUtility.MemberID; 
         }
         public FrmProductEvaluate(int SelectProID,int MemberID)
         {
