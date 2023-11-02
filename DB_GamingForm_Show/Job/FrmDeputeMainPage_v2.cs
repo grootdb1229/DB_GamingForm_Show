@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -49,15 +50,8 @@ namespace DB_GamingForm_Show
             try {
 
 
-
-                var value = (from n in this.entities.SerachRecords.AsEnumerable()
-                             where n.IsMember == true
-                             group n by n.Name into q
-                             orderby q.Count() descending
-                             select q.Key).ToList();
-                this.linkLabel1.Text = value[0].ToString();
-                this.linkLabel2.Text = value[1].ToString();
-                this.linkLabel3.Text = value[2].ToString();
+                x.HotSearch(this.linkLabel1.Text, this.linkLabel2.Text, this.linkLabel3.Text);
+                
             } 
             
             
@@ -127,7 +121,7 @@ namespace DB_GamingForm_Show
         {
             
             this.button1.Enabled = true;
-            DataRefresh(x.List);
+            x.DataRefresh(this.bindingSource1,x.List);
             if ( x.DgvList.Count== 0 && count != 1)
             {
                 MessageBox.Show("No Match");
@@ -166,10 +160,8 @@ namespace DB_GamingForm_Show
         {
             if (flag)
             {
-                this.bindingSource1.Clear();
-                this.bindingSource1.DataSource = x.Search(this.checkedListBox1.Text); ;
-                this.dataGridView1.DataSource = this.bindingSource1;
-                this.label12.Text = $"{page * pagecount}/{x.Search(this.checkedListBox1.Text).Count()}筆";
+                x.DataRefresh(this.bindingSource1,x.Search(x.List,this.checkedListBox1.Text));
+                this.label12.Text = $"{page * pagecount}/{x.Search(x.List,this.checkedListBox1.Text).Count()}筆";
                 flag = !flag;
             }
             else
@@ -187,42 +179,24 @@ namespace DB_GamingForm_Show
             {
                 LoadData();
             }
-            Search(this.textBox1.Text);
+            x.DataRefresh(this.bindingSource1, x.Search(x.List,this.textBox1.Text));
         }
 
-        private void Search(string source)
-        {
-            if (source == "")
-            {
-                ComboBoxReset();
-                LoadData();
-            }
-            else
-            {
-                this.entities.SerachRecords.Add
-                                (new SerachRecord { Name = source, CreateDays = (DateTime.Now.Date), IsMember = true });
-                
-                DataRefresh(x.Search(textBox1.Text));
-                this.label12.Text = $"{page* pagecount}/{this.dataGridView1.RowCount}筆";
-                sourcecount = x.Search(textBox1.Text).Count;
-                
-
-            }
-        }
-
+        
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            x.Search(this.linkLabel1.Text);
+            x.DataRefresh(this.bindingSource1, x.Search(x.List, this.linkLabel1.Text));
+            
         }
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            x.Search(this.linkLabel2.Text);
+            x.DataRefresh(this.bindingSource1, x.Search(x.List, this.linkLabel2.Text));
         }
 
         private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            x.Search(this.linkLabel3.Text);
+            x.DataRefresh(this.bindingSource1, x.Search(x.List, this.linkLabel3.Text));
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -263,11 +237,9 @@ namespace DB_GamingForm_Show
             }
             else
             {
-                var value = from n in _dgvList.AsEnumerable()
-                            where n.content.ToLower().Contains(this.comboBox2.Text.ToLower())
-                            orderby n.startdate
-                            select n;
-                DataRefresh(value.ToList());
+                x.DataRefresh(this.bindingSource1, x.Search(x.DgvList, this.comboBox2.Text));
+                sourcecount = x.Search(x.DgvList,this.comboBox2.Text).Count();
+                x.DgvDataLoad(sourcecount, this.dataGridView1);
 
             }
 
@@ -290,11 +262,9 @@ namespace DB_GamingForm_Show
 
         private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var value = from n in _dgvList.AsEnumerable()
-                        where n.content.ToLower().Contains(this.comboBox4.Text.ToLower())
-                        orderby n.startdate descending
-                        select n;
-            DataRefresh(value.ToList());
+            x.DataRefresh(this.bindingSource1, x.Search(x.DgvList,this.comboBox4.Text));
+            sourcecount = x.Search(x.DgvList,this.comboBox4.Text).Count();
+            x.DgvDataLoad(sourcecount, this.dataGridView1);
         }
 
         private void comboBox5_SelectedIndexChanged(object sender, EventArgs e)
@@ -306,12 +276,9 @@ namespace DB_GamingForm_Show
             }
             else
             {
-                var value = from n in _dgvList.AsEnumerable()
-                            where n.region == this.comboBox5.Text
-                            orderby n.modifieddate descending
-                            select n;
-
-                DataRefresh(value.ToList());
+                x.DataRefresh(this.bindingSource1, x.Search(x.DgvList,this.comboBox5.Text));
+                sourcecount = x.Search(x.DgvList,this.comboBox5.Text).Count();
+                x.DgvDataLoad(sourcecount, this.dataGridView1);
             }
             this.label12.Text = $"10/{this.dataGridView1.RowCount}筆";
         }
@@ -329,7 +296,9 @@ namespace DB_GamingForm_Show
                             .Where(n => Convert.ToInt32(n.salary) >= int.Parse(this.comboBox6.Text))
                             .Select(n => n).OrderByDescending(n => n.modifieddate);
 
-                DataRefresh(value.ToList());
+                x.DataRefresh(this.bindingSource1, value.ToList());
+                sourcecount = value.Count();
+                x.DgvDataLoad(sourcecount, this.dataGridView1);
             }
         }
 
@@ -342,23 +311,13 @@ namespace DB_GamingForm_Show
             }
             else
             {
-                var value = from n in _dgvList.AsEnumerable()
-                            where n.status == this.comboBox7.Text
-                            orderby n.modifieddate descending
-                            select n;
-                DataRefresh(value.ToList());
+                x.DataRefresh(this.bindingSource1, x.Search(x.DgvList, this.comboBox7.Text));
+                sourcecount = x.Search(x.DgvList, this.comboBox7.Text).Count();
+                x.DgvDataLoad(sourcecount, this.dataGridView1);
             }
         }
 
-        private void DataRefresh(List<CDepute> value)
-        {
-            this.bindingSource1.Clear();
-            this.bindingSource1.DataSource = value;
-            this.dataGridView1.DataSource = this.bindingSource1;
-            sourcecount = value.Count();
-            x.DgvDataLoad(sourcecount, this.dataGridView1);
-        }
-
+      
         private void button4_Click_2(object sender, EventArgs e)
         {
             ComboBoxReset();
@@ -369,45 +328,6 @@ namespace DB_GamingForm_Show
         {
             Remove();
         }
-
-
-
-        private void DgvDataLoad(int sourcecount)
-        {
-            
-            count += 1;
-            page = 0;
-            this.bindingSource1.Clear();
-            this.bindingSource1.DataSource = x.DgvDataLoad(sourcecount, this.dataGridView1);
-            this.dataGridView1.DataSource = this.bindingSource1;
-            if (_dgvList.Count == 0 && count != 1)
-            {
-                MessageBox.Show("No Match");
-                ComboBoxReset();
-                LoadData();
-
-            }
-            else if (_dgvList.Count <= pagecount)
-            {
-                this.label12.Text = $"{_dgvList.Count} /{_dgvList.Count}筆";
-                this.button1.Enabled = false;
-                this.button3.Enabled = false;
-            }
-            else
-            {
-                this.label12.Text = $"{_dgvList.Count} /{_dgvList.Count}筆";
-                this.button3.Enabled = false;
-            }
-
-
-        }
-
-        
-
-
-
-        
-
 
         private void linkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -442,6 +362,7 @@ namespace DB_GamingForm_Show
             if (page < 0)
             {
                 page = 0;
+                
                 this.bindingSource1.Clear();
                 this.bindingSource1.DataSource = _dgvList.ToList().Skip(page  * pagecount).Take(pagecount);
                 this.dataGridView1.DataSource = this.bindingSource1;

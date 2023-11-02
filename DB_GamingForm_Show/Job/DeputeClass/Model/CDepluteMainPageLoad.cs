@@ -59,14 +59,36 @@ namespace DB_GamingForm_Show.Job
 
         }
 
-        public List<CDepute> Search(string input)
+        public List<CDepute> Search(List<CDepute> list,string input)
         {
-            var data = from n in _list.AsEnumerable()
+            var data = from n in list.AsEnumerable()
                        where n.content.ToLower().Contains(input.ToLower())
-                       orderby n.startdate descending
+                       orderby n.modifieddate descending
                        select n;
                 return data.ToList();
             
+        }
+
+        public void HotSearch(string label1, string label2, string label3)
+        {
+           
+
+
+                var value = (from n in this.entities.SerachRecords.AsEnumerable()
+                             where n.IsMember == true
+                             group n by n.Name into q
+                             orderby q.Count() descending
+                             select q.Key).ToList();
+                label1 = value[0].ToString();
+                label2 = value[1].ToString();
+                label3= value[2].ToString();
+            
+
+
+           
+
+
+
         }
 
         public List<CDepute> DgvDataLoad(int sourcecount, DataGridView data)
@@ -91,6 +113,12 @@ namespace DB_GamingForm_Show.Job
             return _dgvList;
 
         }
-
+        public void DataRefresh(BindingSource data,List<CDepute> value)
+        {
+            data.Clear();
+            data.DataSource = value;
+            data.DataSource = data;
+           
+        }
     }
 }

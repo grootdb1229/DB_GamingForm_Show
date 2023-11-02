@@ -153,9 +153,9 @@
     <Compile Include="Job\CDeputeBian.cs" />
     <Compile Include="Job\CMyInfo.cs" />
     <Compile Include="Job\CMyInfoDetial.cs" />
-    <Compile Include="Job\DeputeClass\CDepluteMainPageLoad.cs" />
-    <Compile Include="Job\DeputeClass\CDepute.cs" />
-    <Compile Include="Job\DeputeClass\DeputeMove.cs" />
+    <Compile Include="Job\DeputeClass\Model\CDepluteMainPageLoad.cs" />
+    <Compile Include="Job\DeputeClass\View\CDepute.cs" />
+    <Compile Include="Job\DeputeClass\Control\DeputeMove.cs" />
     <Compile Include="Job\FrmDeputeB.cs">
       <SubType>Form</SubType>
     </Compile>

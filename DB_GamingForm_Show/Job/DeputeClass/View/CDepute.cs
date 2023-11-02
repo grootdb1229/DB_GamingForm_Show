@@ -25,7 +25,8 @@ namespace DB_GamingForm_Show.Job.DeputeClass
             public string status { get; set; }
 
             public string region { get; set; }
+            
+            public string gt{ get; set; }
 
-        
     }
 }
