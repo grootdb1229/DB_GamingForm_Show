@@ -14,17 +14,17 @@ namespace DB_GamingForm_Show.Job
 
         public CDepluteMainPageLoad() 
         {
-            LoadData();
+            deputeLoad();
 
         }
         DB_GamingFormEntities entities = new DB_GamingFormEntities();
-        private List<DeputeClass.CDepute> _list = new List<DeputeClass.CDepute>();
-        private List<DeputeClass.CDepute> _dgvList = new List<DeputeClass.CDepute>();
+        private List<CDepute> _list = new List<CDepute>();
+        private List<CDepute> _dgvList = new List<CDepute>();
 
-        public List<DeputeClass.CDepute> List { get { return _list; } set { _list = value; } }
+        public List<CDepute> List { get { return _list; } set { _list = value; } }
 
-        public List<DeputeClass.CDepute> DgvList {get { return _dgvList; } set {  _dgvList = value; } }
-        public List<DeputeClass.CDepute> LoadData()
+        public List<CDepute> DgvList {get { return _dgvList; } set {  _dgvList = value; } }
+        public List<CDepute> deputeLoad()
         {   
             var data = from n in this.entities.Deputes.AsEnumerable()
                        orderby n.StartDate descending
@@ -41,7 +41,7 @@ namespace DB_GamingForm_Show.Job
                        };
             foreach ( var item in data ) 
             {
-                DeputeClass.CDepute x = new DeputeClass.CDepute();
+                CDepute x = new CDepute();
                 x.id = item.DeputeID.ToString();
                 x.providername = item.Name;
                 x.startdate = item.SrartDate;
@@ -59,22 +59,44 @@ namespace DB_GamingForm_Show.Job
 
         }
 
-        public List<DeputeClass.CDepute> Search(string input)
+        public List<CDepute> dataSearch(List<CDepute> list,string input)
         {
-            var data = from n in _list.AsEnumerable()
+            var data = from n in list.AsEnumerable()
                        where n.content.ToLower().Contains(input.ToLower())
-                       orderby n.startdate descending
+                       orderby n.modifieddate descending
                        select n;
                 return data.ToList();
             
         }
 
-        public List<DeputeClass.CDepute> DgvDataLoad(int sourcecount, DataGridView data)
+        public void hotKey(string label1, string label2, string label3)
+        {
+
+            
+
+                var value = (from n in this.entities.SerachRecords.AsEnumerable()
+                             where n.IsMember == true
+                             group n by n.Name into q
+                             orderby q.Count() descending
+                             select q.Key).ToList();
+                label1 = value[0].ToString();
+                label2 = value[1].ToString();
+                label3= value[2].ToString();
+            
+
+
+           
+
+
+
+        }
+
+        public List<CDepute> dgvDataLoad(int sourcecount, DataGridView data)
         {
             _dgvList.Clear();
             for (int i = 0; i < sourcecount; i++)
             {
-                _dgvList.Add(new DeputeClass.CDepute
+                _dgvList.Add(new CDepute
                 {
                     id = data.Rows[i].Cells[0].Value.ToString(),
                     providername = data.Rows[i].Cells[1].Value.ToString(),
@@ -91,6 +113,12 @@ namespace DB_GamingForm_Show.Job
             return _dgvList;
 
         }
-
+        public void dataRefresh(BindingSource data,List<CDepute> value)
+        {
+            data.Clear();
+            data.DataSource = value;
+            data.DataSource = data;
+           
+        }
     }
 }
