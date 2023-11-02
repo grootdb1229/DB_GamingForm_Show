@@ -183,44 +183,54 @@ namespace DBGaming
         private void btnTagDelete_Click(object sender, EventArgs e)
         {
             ALLClear();
-            var delRe = db.Replies.AsEnumerable()
-                .Where(r => r.Article.SubBlog.Blog.SubTag.Name == this.txbTag.Text && r.Article.SubBlog.Blog.SubTag.TagID == 4)
-                .Select(r => r);
-            if (delRe == null) return;
-            foreach (var item in delRe)
-            {
-                db.Replies.Remove(item);
-            };
-            var delArt = db.Articles.AsEnumerable()
-                .Where(a => a.SubBlog.Blog.SubTag.Name == this.txbTag.Text && a.SubBlog.Blog.SubTag.TagID == 4)
-                .Select(a => a);
-            if (delArt == null) return;
-            foreach (var item in delArt)
-            {
-                db.Articles.Remove(item);
-            }
-            var delSubBlog = db.SubBlogs.AsEnumerable()
-                .Where(s => s.Blog.SubTag.Name == this.txbTag.Text && s.Blog.SubTag.TagID == 4)
+
+            var delSubTag = db.SubTags.AsEnumerable()
+                .Where(s => s.Name == this.txbTag.Text)
                 .Select(s => s);
-            if (delSubBlog == null) return;
-            foreach (var item in delSubBlog)
+
+            foreach (var item in delSubTag)
             {
-                db.SubBlogs.Remove(item);
+                item.TagID = 5;
             }
-            var delBlog = db.Blogs.AsEnumerable()
-                .Where(b => b.SubTag.Name == this.txbTag.Text && b.SubTag.TagID == 4)
-                .Select(b => b);
-            if (delBlog == null) return;
-            foreach (var item in delBlog)
-            {
-                db.Blogs.Remove(item);
-            }
-            var sub = db.SubTags
-                .Where(s => s.Name == this.txbTag.Text && s.TagID == 4)
-                .Select(s => s).FirstOrDefault();
-            if (sub == null) return;
-            db.SubTags.Remove(sub);
             db.SaveChanges();
+            //var delRe = db.Replies.AsEnumerable()
+            //    .Where(r => r.Article.SubBlog.Blog.SubTag.Name == this.txbTag.Text && r.Article.SubBlog.Blog.SubTag.TagID == 4)
+            //    .Select(r => r);
+            //if (delRe == null) return;
+            //foreach (var item in delRe)
+            //{
+            //    db.Replies.Remove(item);
+            //};
+            //var delArt = db.Articles.AsEnumerable()
+            //    .Where(a => a.SubBlog.Blog.SubTag.Name == this.txbTag.Text && a.SubBlog.Blog.SubTag.TagID == 4)
+            //    .Select(a => a);
+            //if (delArt == null) return;
+            //foreach (var item in delArt)
+            //{
+            //    db.Articles.Remove(item);
+            //}
+            //var delSubBlog = db.SubBlogs.AsEnumerable()
+            //    .Where(s => s.Blog.SubTag.Name == this.txbTag.Text && s.Blog.SubTag.TagID == 4)
+            //    .Select(s => s);
+            //if (delSubBlog == null) return;
+            //foreach (var item in delSubBlog)
+            //{
+            //    db.SubBlogs.Remove(item);
+            //}
+            //var delBlog = db.Blogs.AsEnumerable()
+            //    .Where(b => b.SubTag.Name == this.txbTag.Text && b.SubTag.TagID == 4)
+            //    .Select(b => b);
+            //if (delBlog == null) return;
+            //foreach (var item in delBlog)
+            //{
+            //    db.Blogs.Remove(item);
+            //}
+            //var sub = db.SubTags
+            //    .Where(s => s.Name == this.txbTag.Text && s.TagID == 4)
+            //    .Select(s => s).FirstOrDefault();
+            //if (sub == null) return;
+            //db.SubTags.Remove(sub);
+            //db.SaveChanges();
             ALLClear();
             LoadBlog();
             this.cbmBlog.Text = null;
