@@ -19,23 +19,6 @@ namespace DB_GamingForm_Show
 {
     public partial class FrmDeputeMainPage_v2 : Form
     {
-        public FrmDeputeMainPage_v2()
-        {
-
-            
-            InitializeComponent();
-            this.button3.Enabled = false;
-            ComboLoad();
-            LoadData();
-            HotSearch();
-
-
-            
-
-
-
-        }
-        #region OfficalCode
         public int getmemberID { get; set; }
         public int count = 1;
         public int sourcecount = 0;
@@ -45,6 +28,25 @@ namespace DB_GamingForm_Show
         DB_GamingFormEntities entities = new DB_GamingFormEntities();
         List<CDepute> _dgvList = new List<CDepute>();
         CDepluteMainPageLoad x = new CDepluteMainPageLoad();
+        public FrmDeputeMainPage_v2()
+        {
+
+            
+            InitializeComponent();
+            this.button3.Enabled = false;
+            ComboLoad();
+            x.dataRefresh(this.bindingSource1,this.dataGridView1,x.List);
+            x.dgvDataLoad(x.List.Count,this.dataGridView1);
+            HotSearch();
+
+
+            
+
+
+
+        }
+        #region OfficalCode
+        
         private void HotSearch()
         {
             try {
@@ -121,12 +123,11 @@ namespace DB_GamingForm_Show
         {
             
             this.button1.Enabled = true;
-            x.dataRefresh(this.bindingSource1,this.dataGridView1,x.List);
             if ( x.DgvList.Count== 0 && count != 1)
             {
                 MessageBox.Show("No Match");
                 ComboBoxReset();
-                LoadData();
+                x.dataRefresh(this.bindingSource1, this.dataGridView1, x.List);
 
             }
             else if (x.DgvList.Count <= pagecount)
@@ -166,7 +167,7 @@ namespace DB_GamingForm_Show
             }
             else
             {
-                LoadData();
+                x.dataRefresh(this.bindingSource1, this.dataGridView1, x.List);
                 flag = !flag;
             }
 
@@ -177,7 +178,7 @@ namespace DB_GamingForm_Show
         {
             if (this.textBox1.Text == "")
             {
-                LoadData();
+                x.dataRefresh(this.bindingSource1, this.dataGridView1, x.List);
             }
             x.dataRefresh(this.bindingSource1, this.dataGridView1, x.dataSearch(x.List,this.textBox1.Text));
         }
@@ -233,7 +234,7 @@ namespace DB_GamingForm_Show
             if (this.comboBox2.SelectedIndex == 0)
             {
                 ComboBoxReset();
-                LoadData();
+                x.dataRefresh(this.bindingSource1, this.dataGridView1, x.List);
             }
             else
             {
@@ -254,7 +255,7 @@ namespace DB_GamingForm_Show
             {
                 this.comboBox4.Text = "";
                 ComboBoxReset();
-                LoadData();
+                x.dataRefresh(this.bindingSource1, this.dataGridView1, x.List);
             }
         }
 
@@ -272,7 +273,7 @@ namespace DB_GamingForm_Show
             if (this.comboBox5.SelectedIndex == 0)
             {
                 ComboBoxReset();
-                LoadData();
+                x.dataRefresh(this.bindingSource1, this.dataGridView1, x.List);
             }
             else
             {
@@ -288,11 +289,11 @@ namespace DB_GamingForm_Show
             if (this.comboBox6.SelectedIndex == 0)
             {
                 ComboBoxReset();
-                LoadData();
+                x.dataRefresh(this.bindingSource1, this.dataGridView1, x.List);
             }
             else
             {
-                var value = this._dgvList.AsEnumerable()
+                var value = x.DgvList.AsEnumerable()
                             .Where(n => Convert.ToInt32(n.salary) >= int.Parse(this.comboBox6.Text))
                             .Select(n => n).OrderByDescending(n => n.modifieddate);
 
@@ -307,7 +308,7 @@ namespace DB_GamingForm_Show
             if (this.comboBox7.SelectedIndex == 0)
             {
                 ComboBoxReset();
-                LoadData();
+                x.dataRefresh(this.bindingSource1, this.dataGridView1, x.List);
             }
             else
             {
@@ -321,7 +322,7 @@ namespace DB_GamingForm_Show
         private void button4_Click_2(object sender, EventArgs e)
         {
             ComboBoxReset();
-            LoadData();
+            x.dataRefresh(this.bindingSource1, this.dataGridView1, x.List);
         }
 
         private void button5_Click(object sender, EventArgs e)

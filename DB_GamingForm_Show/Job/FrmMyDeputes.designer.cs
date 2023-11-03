@@ -39,6 +39,8 @@
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.button11 = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
@@ -216,6 +218,8 @@
             // 
             // tabPage7
             // 
+            this.tabPage7.Controls.Add(this.button11);
+            this.tabPage7.Controls.Add(this.button9);
             this.tabPage7.Controls.Add(this.comboBox1);
             this.tabPage7.Controls.Add(this.label2);
             this.tabPage7.Controls.Add(this.checkBox1);
@@ -245,6 +249,26 @@
             this.tabPage7.TabIndex = 1;
             this.tabPage7.Text = "發佈委託";
             this.tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // button11
+            // 
+            this.button11.Location = new System.Drawing.Point(537, 230);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(52, 35);
+            this.button11.TabIndex = 27;
+            this.button11.Text = "↓";
+            this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
+            // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(595, 230);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(52, 35);
+            this.button9.TabIndex = 27;
+            this.button9.Text = "↑";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // comboBox1
             // 
@@ -731,5 +755,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.SplitContainer splitContainer4;
         private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button button11;
     }
 }
