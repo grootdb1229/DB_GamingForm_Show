@@ -12,19 +12,19 @@ namespace DB_GamingForm_Show.Job
     public class CDepluteMainPageLoad
     {
 
-        public CDepluteMainPageLoad() 
+        public CDepluteMainPageLoad()
         {
             deputeLoad();
 
         }
         DB_GamingFormEntities entities = new DB_GamingFormEntities();
-        private List<CDepute> _list = new List<CDepute>();
-        private List<CDepute> _dgvList = new List<CDepute>();
+        private List<CDepute.CDeputeA> _list = new List<CDepute.CDeputeA>() { };
+        private List<CDepute.CDeputeA> _dgvList = new List<CDepute.CDeputeA>();
 
-        public List<CDepute> List { get { return _list; } set { _list = value; } }
+        public List<CDepute.CDeputeA    > List { get { return _list; } set { value = _list; } }
 
-        public List<CDepute> DgvList {get { return _dgvList; } set {  _dgvList = value; } }
-        public List<CDepute> deputeLoad()
+        public List<CDepute.CDeputeA> DgvList {get { return _dgvList; } set { value = _dgvList; } }
+        public List<CDepute.CDeputeA> deputeLoad()
         {   
             var data = from n in this.entities.Deputes.AsEnumerable()
                        orderby n.StartDate descending
@@ -41,15 +41,18 @@ namespace DB_GamingForm_Show.Job
                        };
             foreach ( var item in data ) 
             {
-                CDepute x = new CDepute();
-                x.id = item.DeputeID.ToString();
-                x.providername = item.Name;
-                x.startdate = item.SrartDate;
-                x.modifieddate = item.Modifiedate;
-                x.content = item.DeputeContent;
-                x.salary = item.Salary.ToString();
-                x.status = item.Status;
-                x.region = item.City;
+                CDepute.CDeputeA x = new CDepute.CDeputeA() 
+                { 
+                id = item.DeputeID.ToString(),
+                providername = item.Name,
+                startdate = item.SrartDate,
+                modifieddate = item.Modifiedate,
+                content = item.DeputeContent,
+                salary = item.Salary.ToString(),
+                status = item.Status,
+                region = item.City
+                                                  };
+                
                 _list.Add( x );
 
             }
@@ -59,7 +62,7 @@ namespace DB_GamingForm_Show.Job
 
         }
 
-        public List<CDepute> dataSearch(List<CDepute> list,string input)
+        public List<CDepute.CDeputeA> dataSearch(List<CDepute.CDeputeA> list,string input)
         {
             var data = from n in list.AsEnumerable()
                        where n.content.ToLower().Contains(input.ToLower())
@@ -91,12 +94,12 @@ namespace DB_GamingForm_Show.Job
 
         }
 
-        public List<CDepute> dgvDataLoad(int sourcecount, DataGridView data)
+        public List<CDepute.CDeputeA> dgvDataLoad(int sourcecount, DataGridView data)
         {
             _dgvList.Clear();
             for (int i = 0; i < sourcecount; i++)
             {
-                _dgvList.Add(new CDepute
+                _dgvList.Add(new CDepute.CDeputeA
                 {
                     id = data.Rows[i].Cells[0].Value.ToString(),
                     providername = data.Rows[i].Cells[1].Value.ToString(),
@@ -113,10 +116,10 @@ namespace DB_GamingForm_Show.Job
             return _dgvList;
 
         }
-        public void dataRefresh(BindingSource binding,DataGridView dgv,List<CDepute> value)
+        public void dataRefresh(BindingSource binding,DataGridView dgv,List<CDepute.CDeputeA> value)
         {
             binding.Clear();
-            binding.DataSource = value;
+            binding.DataSource = value.ToList();
             dgv.DataSource = binding;
            
         }

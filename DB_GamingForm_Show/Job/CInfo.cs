@@ -12,13 +12,13 @@ namespace DB_GamingForm_Show.Job
     {
         DB_GamingFormEntities db = new DB_GamingFormEntities();
 
-        private List<CDepute> _deputeList = new List<CDepute>();
+        private List<CDepute.CDeputeB> _deputeList = new List<CDepute.CDeputeB>();
 
         private List<CDeputeRecord> _recordList = new List<CDeputeRecord>();
 
         private int _position = 0;
 
-        public CDepute current { get { return _deputeList[_position]; } }
+        public CDepute.CDeputeB current { get { return _deputeList[_position]; } }
         
         public static int selectedMemberid {  get; set; }
         
@@ -46,7 +46,7 @@ namespace DB_GamingForm_Show.Job
                          where f.DeputeID ==p.DeputeID
                          select f;
 
-                CDepute x = new CDepute();
+                CDepute.CDeputeB x = new CDepute.CDeputeB();
                 x.int委託編號 = p.DeputeID;
                 x.date開始時間 = p.StartDate;
                 x.date修改時間 = p.Modifiedate;
@@ -90,7 +90,7 @@ namespace DB_GamingForm_Show.Job
             }
         }
 
-        public List<CDepute> allMyDetpue
+        public List<CDepute.CDeputeB> allMyDetpue
         {
             get
             {
