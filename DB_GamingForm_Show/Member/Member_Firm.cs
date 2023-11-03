@@ -15,7 +15,7 @@ namespace Gaming_Forum
     {
         public static class ClassUtility
         {
-            public static string HashPassword(string password)
+            public static string hashPassword(string password)
             {
                 using (var sha256 = new SHA256Managed())
                 {
@@ -36,7 +36,7 @@ namespace Gaming_Forum
         public bool Password { get; set; }
 
 
-        public string CheckName(string input,ref string result)
+        public string checkName(string input,ref string result)
         {
             if (input == "")
             {
@@ -55,7 +55,7 @@ namespace Gaming_Forum
             }
             return result;
         }
-        public string CheckEmail(string input,ref string result)
+        public string checkEmail(string input,ref string result)
         {
             if (input == "")
             {
@@ -79,7 +79,7 @@ namespace Gaming_Forum
             }
             return result;
         }
-        public string CheckPassword(string input,ref string result)
+        public string checkPassword(string input,ref string result)
         {
             if (input == "")
             {
@@ -98,7 +98,7 @@ namespace Gaming_Forum
             }
             return result;
         }
-        public string CheckPhone(string input,ref string result)
+        public string checkPhone(string input,ref string result)
         {
             if (input == "")
             {

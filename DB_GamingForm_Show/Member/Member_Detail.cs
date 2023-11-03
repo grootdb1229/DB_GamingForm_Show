@@ -68,7 +68,7 @@ namespace Gaming_Forum
         {
             string input = this.textBox1.Text;
             string result = "";
-            mf.CheckName(input, ref result);
+            mf.checkName(input, ref result);
             if (mf.ResgistedName)
             {
                 try
@@ -119,7 +119,7 @@ namespace Gaming_Forum
         {
             string input = this.textBox4.Text;
             string result = "";
-            mf.CheckPhone(input, ref result);
+            mf.checkPhone(input, ref result);
             if (mf.Phone)
             {
                 try

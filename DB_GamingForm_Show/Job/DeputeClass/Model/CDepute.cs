@@ -9,7 +9,9 @@ namespace DB_GamingForm_Show.Job.DeputeClass
 {
     public class CDepute
     {
-
+        public string s1 { get; set; }
+        public string s2 { get; set; }
+        public string s3 { get; set; }
         public class CDeputeA { 
         
             public string id { get; set; }
