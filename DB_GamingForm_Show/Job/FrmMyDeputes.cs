@@ -33,7 +33,7 @@ namespace Groot
             showMyDepute();
 
             ConfirmResumes();
-
+            loadSkillsBox();
         }
         private int selectIndex = -1;
         private void showMyInfo()//ok
@@ -248,131 +248,139 @@ namespace Groot
             showMyDepute();
         }
 
-
-
-
-
-
-
-
-
-
         //=========================================================================================
-        public int skillclassIndex = -1;
-        public string skillClassname = "";
-        public int skillIndex = -1;
+        public int skillClassID = -1;
+        public string skillClassName = "";
+        public int skillID = -1;
         public string skillName = "";
-        
-        
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            skillclassIndex = this.listBox1.SelectedIndex;
-            skillClassname = this.listBox1.SelectedItem.ToString();
-
-            if (skillclassIndex >= 0)
-            {
-                this.listBox2.Items.Clear();
-                //===========================
-                var id = from p in this.db.SkillClasses
-                         select p;
-
-                var q = from p in db.Skills.AsEnumerable()
-                        where p.SkillClassID == id.ToList()[skillclassIndex].SkillClassID
-                        select p;
-
-                foreach(var item in q)
-                {
-                    this.listBox2.Items.Add(item.Name);
-                }
-            }
-        }
 
         List<CSkill> skillList = new List<CSkill>();
-        private void loadSkills()
+        List<CSkill> chosedSkillList = new List<CSkill>();
+
+        private void loadSkillsBox()
         {
             var q = from p in this.db.Skills.AsEnumerable()
                     select p;
-            foreach(var item in q)
+            foreach (var item in q)
             {
                 CSkill skill = new CSkill();
                 skill.int技能編號 = item.SkillID;
                 skill.string技能名稱 = item.Name;
                 skill.int技能類別編號 = item.SkillClassID;
                 skill.string技能類別名稱 = item.SkillClass.Name;
-                
+                skillList.Add(skill);
             }
         }
 
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.listBox1.SelectedIndex < 0)
+                return;
+            skillClassID = this.listBox1.SelectedIndex + 1;
+            skillClassName = this.listBox1.SelectedItem.ToString();
 
-        ListBox lb = new ListBox();
+            this.listBox2.Items.Clear();
+            //===========================
+            var s = from p in skillList.AsEnumerable()
+                    where p.int技能類別編號 == skillClassID
+                    select p;
+
+            foreach (var item in s)
+            {
+                this.listBox2.Items.Add(item.string技能名稱);
+            }
+        }
+
         private void listBox2_DoubleClick(object sender, EventArgs e)
         {
-            //---
-            //skillName = this.listBox2.SelectedItem.ToString();
+            if (this.listBox2.SelectedIndex < 0) return;
+            skillName = this.listBox2.SelectedItem.ToString();
+            var u = (from p in skillList
+                    where p.int技能類別編號 == skillClassID && p.string技能名稱 == skillName
+                    select p).FirstOrDefault();
+            skillID = u.int技能編號;
 
+            CSkill c = new CSkill();
+            c.int技能類別編號 = skillClassID;
+            c.string技能類別名稱 = skillClassName;
+            c.int技能編號 = skillID;
+            c.string技能名稱 = skillName;
+            chosedSkillList.Add(c);
 
-            //var k = (from p in this.db.Skills.AsEnumerable()
-            //        where p.SkillClassID == skillclassIndex && p.Name == skillName
-            //        select p).FirstOrDefault();
-            //CSkill s = new CSkill();
-            //s.int技能類別編號 = skillclassIndex;
-            //s.string技能類別名稱 = skillClassname;
-            //s.int技能編號 = k.SkillID;
-            //s.string技能名稱 = skillName;
-            //skillList.Add(s);
-            //---
-            //===============================
-            //技能選項listbox
-            //---
-            //this.listBox3.Items.Clear();
-            //var l = from p in this.db.Skills
-            //        select p;
-            //var n = (from p in this.db.Skills.AsEnumerable()
-            //         where p.SkillClassID == skillclassIndex && p.Name == this.listBox3.SelectedItem.ToString()
-            //         select p).FirstOrDefault();
+            var i = (from p in skillList.AsEnumerable()
+                     where p.int技能編號 == skillID
+                     select p).FirstOrDefault();
+            skillList.Remove(i);
 
-
-            //foreach (var p in skillList)
-            //{
-            //    this.listBox3.Items.Add($"{p.})
-            //}
-
-            //---
-            var x = from p in this.db.Skills
-                    where p.Name == this.listBox2.Text
+            this.listBox3.Items.Clear();
+            
+            foreach (var choseSkills in chosedSkillList)
+            {
+                this.listBox3.Items.Add($"{choseSkills.string技能類別名稱}-{choseSkills.string技能名稱}");
+                this.richTextBox3.Text = "具備以下技能為佳:\r";
+                for (int o = 0; o < this.listBox3.Items.Count; o++)
+                {
+                    this.richTextBox3.Text += $"{o + 1}.{this.listBox3.Items[o]}\r";
+                }
+            }
+            
+            var s = from p in skillList.AsEnumerable()
+                    where p.int技能類別編號 == skillClassID
                     select p;
-
-            foreach (var g in x)
+            this.listBox2.Items.Clear();
+            foreach (var skills in s)
             {
-                this.lb.Items.Add($"{g.SkillClass.Name}-{g.Name}");
+                this.listBox2.Items.Add(skills.string技能名稱);
+            }
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            if (this.listBox2.SelectedIndex < 0) return;
+            skillName = this.listBox2.SelectedItem.ToString();
+            var u = (from p in skillList
+                     where p.int技能類別編號 == skillClassID && p.string技能名稱 == skillName
+                     select p).FirstOrDefault();
+            skillID = u.int技能編號;
+
+            CSkill c = new CSkill();
+            c.int技能類別編號 = skillClassID;
+            c.string技能類別名稱 = skillClassName;
+            c.int技能編號 = skillID;
+            c.string技能名稱 = skillName;
+            chosedSkillList.Add(c);
+
+            var i = (from p in skillList.AsEnumerable()
+                     where p.int技能編號 == skillID
+                     select p).FirstOrDefault();
+            skillList.Remove(i);
+
+            this.listBox3.Items.Clear();
+
+            foreach (var choseSkills in chosedSkillList)
+            {
+                this.listBox3.Items.Add($"{choseSkills.string技能類別名稱}-{choseSkills.string技能名稱}");
+                this.richTextBox3.Text = "具備以下技能為佳:\r";
+                for (int o = 0; o < this.listBox3.Items.Count; o++)
+                {
+                    this.richTextBox3.Text += $"{o + 1}.{this.listBox3.Items[o]}\r";
+                }
             }
 
-            foreach (var j in lb.Items)
-            {
-                this.listBox3.Items.Add(j);
-            }
-
-            List<string> skics = new List<string>();
-
-            var a = from p in this.db.SkillClasses
+            var s = from p in skillList.AsEnumerable()
+                    where p.int技能類別編號 == skillClassID
                     select p;
-            foreach (var g in a)
+            this.listBox2.Items.Clear();
+            foreach (var skills in s)
             {
-                skics.Add(g.Name);
+                this.listBox2.Items.Add(skills.string技能名稱);
             }
-            var b = from p in this.db.Skills
-                    select p;
+            this.listBox2.SelectedIndex = 0;
+        }
 
-            //=================================
-            this.listBox2.Items.Remove(this.listBox2.SelectedItem);
-
-            //=====================================
-            this.richTextBox3.Text = "具備以下技能為佳:\r";
-            for (int i = 0; i < this.listBox3.Items.Count; i++)
-            {
-                this.richTextBox3.Text += $"{i + 1}.{this.listBox3.Items[i]}\r";
-            }
-
+        private void button9_Click(object sender, EventArgs e)
+        {
+            
         }
         //=========================================================================================
 
@@ -486,5 +494,7 @@ namespace Groot
             cInfo.moveTo(e.RowIndex);
             this.richTextBox1.Text = cInfo.current.string懸賞內容;
         }
+
+        
     }
 }
