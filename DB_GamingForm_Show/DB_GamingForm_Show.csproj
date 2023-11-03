@@ -155,13 +155,14 @@
     <Compile Include="JobCertificate.cs">
       <DependentUpon>GMModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Job\CInfo.cs" />
-    <Compile Include="Job\CMyInfo.cs" />
-    <Compile Include="Job\DeputeClass\View\CDeputeRecord.cs" />
+    <Compile Include="Job\DeputeClass\Model\CInfo.cs" />
+    <Compile Include="Job\DeputeClass\Model\CMyInfo.cs" />
+    <Compile Include="Job\DeputeClass\Model\CDeputeBian.cs" />
+    <Compile Include="Job\DeputeClass\Model\CDeputeRecord.cs" />
     <Compile Include="Job\DeputeClass\Model\CDepluteMainPageLoad.cs" />
     <Compile Include="Job\DeputeClass\Model\CDepute.cs" />
     <Compile Include="Job\DeputeClass\Control\DeputeMove.cs" />
-    <Compile Include="Job\DeputeClass\View\CSkill.cs" />
+    <Compile Include="Job\DeputeClass\Model\CSkill.cs" />
     <Compile Include="Job\FrmDeputeB.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -505,6 +506,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Job\DeputeClass\View\" />
     <Folder Include="Member\MemberClass\Control\" />
     <Folder Include="Member\MemberClass\Model\" />
     <Folder Include="Member\MemberClass\View\" />

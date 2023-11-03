@@ -1,4 +1,5 @@
 ﻿using DB_GamingForm_Show.Job.DeputeClass;
+using DB_GamingForm_Show.Job.DeputeClass.Model;
 using Gaming_Forum;
 using System;
 using System.Collections.Generic;
@@ -12,13 +13,13 @@ namespace DB_GamingForm_Show.Job
     {
         DB_GamingFormEntities db = new DB_GamingFormEntities();
 
-        private List<CDepute.CDeputeB> _deputeList = new List<CDepute.CDeputeB>();
+        private List<CDeputeBian> _deputeList = new List<CDeputeBian>();
 
         private List<CDeputeRecord> _recordList = new List<CDeputeRecord>();
 
         private int _position = 0;
 
-        public CDepute.CDeputeB current { get { return _deputeList[_position]; } }
+        public CDeputeBian current { get { return _deputeList[_position]; } }
         
         public static int selectedMemberid {  get; set; }
         
@@ -46,7 +47,7 @@ namespace DB_GamingForm_Show.Job
                          where f.DeputeID ==p.DeputeID
                          select f;
 
-                CDepute.CDeputeB x = new CDepute.CDeputeB();
+                CDeputeBian x = new CDeputeBian();
                 x.int委託編號 = p.DeputeID;
                 x.date開始時間 = p.StartDate;
                 x.date修改時間 = p.Modifiedate;
@@ -90,7 +91,7 @@ namespace DB_GamingForm_Show.Job
             }
         }
 
-        public List<CDepute.CDeputeB> allMyDetpue
+        public List<CDeputeBian> allMyDetpue
         {
             get
             {
