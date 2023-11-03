@@ -504,5 +504,10 @@
       <LastGenOutput>GMModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Member\MemberClass\Control\" />
+    <Folder Include="Member\MemberClass\Model\" />
+    <Folder Include="Member\MemberClass\View\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

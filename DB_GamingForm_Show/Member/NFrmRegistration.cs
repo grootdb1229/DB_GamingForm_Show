@@ -39,7 +39,7 @@ namespace Gaming_Forum
                     this.db.Images.Add(image);
                     this.db.SaveChanges();
 
-                    string password = Member_Firm.ClassUtility.HashPassword(this.textBox3.Text);                    
+                    string password = Member_Firm.ClassUtility.hashPassword(this.textBox3.Text);                    
                     Member member = new Member { Name = this.textBox1.Text, Email = this.textBox2.Text, Password = password, Phone = this.textBox4.Text, Birth = this.dateTimePicker1.Value, ImageID = image.ImageID };
                     this.db.Members.Add(member);
                     this.db.SaveChanges();
@@ -78,7 +78,7 @@ namespace Gaming_Forum
         {
             string input = this.textBox1.Text;
             string result = "";
-            mf.CheckName(input, ref result);
+            mf.checkName(input, ref result);
             this.label6.Text = result;
         }
 
@@ -86,7 +86,7 @@ namespace Gaming_Forum
         {
             string input = this.textBox2.Text;
             string result = "";
-            mf.CheckEmail(input, ref result);
+            mf.checkEmail(input, ref result);
             this.label7.Text = result;
         }
 
@@ -94,7 +94,7 @@ namespace Gaming_Forum
         {
             string input = this.textBox3.Text;
             string result = "";
-            mf.CheckPassword(input, ref result);
+            mf.checkPassword(input, ref result);
             this.label10.Text = result;
         }
 
@@ -102,7 +102,7 @@ namespace Gaming_Forum
         {
             string input = this.textBox4.Text;
             string result = "";
-            mf.CheckPhone(input, ref result);
+            mf.checkPhone(input, ref result);
             this.label9.Text = result;
         }
     }

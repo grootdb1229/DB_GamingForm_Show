@@ -64,7 +64,7 @@ namespace Gaming_Forum
                          where p.Email == this.textBox1.Text
                          select p.Name;
                 string MemberName = q1.ToList().FirstOrDefault().ToString();
-                if (Member_Firm.ClassUtility.HashPassword(this.textBox2.Text) == c)
+                if (Member_Firm.ClassUtility.hashPassword(this.textBox2.Text) == c)
                 {
                     MessageBox.Show("登入成功");
                     button9.Visible = true;

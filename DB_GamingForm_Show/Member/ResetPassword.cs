@@ -65,7 +65,7 @@ namespace Gaming_Forum
                       where pa.MemberID == Member_Firm.ClassUtility.MemberID
                       select pa.Password;
 
-            if (Member_Firm.ClassUtility.HashPassword(this.textBox5.Text) == upa.ToList().FirstOrDefault())
+            if (Member_Firm.ClassUtility.hashPassword(this.textBox5.Text) == upa.ToList().FirstOrDefault())
             {
                 this.label14.Text = "密碼正確";
                 Upassword = true;
@@ -127,7 +127,7 @@ namespace Gaming_Forum
             else
             {
                 string result = "";
-                mb.CheckPassword(this.textBox3.Text, ref result);
+                mb.checkPassword(this.textBox3.Text, ref result);
                 if (mb.Password)
                 {
                     try
@@ -136,7 +136,7 @@ namespace Gaming_Forum
                         member = (Member)(from m in this.db.Members
                                           where m.MemberID == Member_Firm.ClassUtility.MemberID
                                           select m).FirstOrDefault();
-                        member.Password = Member_Firm.ClassUtility.HashPassword(this.textBox3.Text);
+                        member.Password = Member_Firm.ClassUtility.hashPassword(this.textBox3.Text);
                         this.db.Members.AddOrUpdate(member);
                         this.db.SaveChanges();
                         MessageBox.Show("密碼修改成功");
