@@ -159,7 +159,7 @@
     <Compile Include="Job\CMyInfo.cs" />
     <Compile Include="Job\DeputeClass\View\CDeputeRecord.cs" />
     <Compile Include="Job\DeputeClass\Model\CDepluteMainPageLoad.cs" />
-    <Compile Include="Job\DeputeClass\View\CDepute.cs" />
+    <Compile Include="Job\DeputeClass\Model\CDepute.cs" />
     <Compile Include="Job\DeputeClass\Control\DeputeMove.cs" />
     <Compile Include="Job\DeputeClass\View\CSkill.cs" />
     <Compile Include="Job\FrmDeputeB.cs">

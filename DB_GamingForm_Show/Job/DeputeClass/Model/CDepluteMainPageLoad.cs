@@ -72,28 +72,20 @@ namespace DB_GamingForm_Show.Job
             
         }
 
-        public void hotKey(string label1, string label2, string label3)
+        public void Hotkey(string a, string b, string c)
         {
 
-            
-
-                var value = (from n in this.entities.SerachRecords.AsEnumerable()
-                             where n.IsMember == true
-                             group n by n.Name into q
-                             orderby q.Count() descending
-                             select q.Key).ToList();
-                label1 = value[0].ToString();
-                label2 = value[1].ToString();
-                label3= value[2].ToString();
-            
-
-
-           
-
-
-
+            var value = (from n in this.entities.SerachRecords.AsEnumerable()
+                         where n.IsMember == true
+                         group n by n.Name into q
+                         orderby q.Count() descending
+                         select q.Key).ToList();
+            a = value[0].ToString();
+            b = value[1].ToString();
+            c = value[2].ToString();
         }
 
+        
         public List<CDepute.CDeputeA> dgvDataLoad(int sourcecount, DataGridView data)
         {
             _dgvList.Clear();

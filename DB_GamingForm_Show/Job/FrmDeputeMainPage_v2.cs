@@ -34,13 +34,15 @@ namespace DB_GamingForm_Show
             
             InitializeComponent();
             this.button3.Enabled = false;
+            HotSearch();
             ComboLoad();
             x.dataRefresh(this.bindingSource1,this.dataGridView1,x.List);
             x.dgvDataLoad(x.List.Count,this.dataGridView1);
-            HotSearch();
-
-
             
+            
+
+
+
 
 
 
@@ -51,9 +53,15 @@ namespace DB_GamingForm_Show
         {
             try {
 
+                var value = (from n in this.entities.SerachRecords.AsEnumerable()
+                             where n.IsMember == true
+                             group n by n.Name into q
+                             orderby q.Count() descending
+                             select q.Key).ToList();
+                this.linkLabel1.Text = value[0].ToString();
+                this.linkLabel2.Text = value[1].ToString();
+                this.linkLabel3.Text = value[2].ToString();
 
-                x.hotKey(this.linkLabel1.Text, this.linkLabel2.Text, this.linkLabel3.Text);
-                
             } 
             
             
@@ -109,7 +117,7 @@ namespace DB_GamingForm_Show
                 this.comboBox5.Items.Add(region);
             }
             var q7 = from n in this.entities.Status
-                     where n.StatusID == 3 || n.StatusID == 4
+                     where n.StatusID == 18 || n.StatusID == 19
                      select n.Name;
             foreach (var status in q7)
             {
@@ -263,7 +271,7 @@ namespace DB_GamingForm_Show
 
         private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
         {
-            x.dataRefresh(this.bindingSource1, this.dataGridView1, x.dataSearch(x.DgvList,this.comboBox4.Text));
+            x.dataRefresh(this.bindingSource1, this.dataGridView1, x.dataSearch(x.List,this.comboBox4.Text));
             sourcecount = x.dataSearch(x.DgvList,this.comboBox4.Text).Count();
             x.dgvDataLoad(sourcecount, this.dataGridView1);
         }
@@ -277,8 +285,11 @@ namespace DB_GamingForm_Show
             }
             else
             {
-                x.dataRefresh(this.bindingSource1, this.dataGridView1, x.dataSearch(x.DgvList,this.comboBox5.Text));
-                sourcecount = x.dataSearch(x.DgvList,this.comboBox5.Text).Count();
+                var value = x.DgvList.AsEnumerable()
+                            .Where(n => n.region == this.comboBox5.Text)
+                            .Select(n => n).OrderByDescending(n => n.modifieddate);
+                x.dataRefresh(this.bindingSource1, this.dataGridView1, value.ToList());
+                sourcecount = value.Count();
                 x.dgvDataLoad(sourcecount, this.dataGridView1);
             }
             this.label12.Text = $"10/{this.dataGridView1.RowCount}筆";
@@ -312,8 +323,11 @@ namespace DB_GamingForm_Show
             }
             else
             {
-                x.dataRefresh(this.bindingSource1, this.dataGridView1, x.dataSearch(x.DgvList, this.comboBox7.Text));
-                sourcecount = x.dataSearch(x.DgvList, this.comboBox7.Text).Count();
+                var value = x.DgvList.AsEnumerable()
+                            .Where(n => n.status == this.comboBox7.Text)
+                            .Select(n => n).OrderByDescending(n => n.modifieddate);
+                x.dataRefresh(this.bindingSource1, this.dataGridView1, value.ToList());
+                sourcecount = value.Count();
                 x.dgvDataLoad(sourcecount, this.dataGridView1);
             }
         }
