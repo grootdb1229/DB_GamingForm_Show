@@ -248,7 +248,11 @@ namespace Groot
             showMyDepute();
         }
 
+
+
+
         //=========================================================================================
+        //待整理-技能選取/取消選取
         public int skillClassID = -1;
         public string skillClassName = "";
         public int skillID = -1;
@@ -256,6 +260,7 @@ namespace Groot
 
         List<CSkill> skillList = new List<CSkill>();
         List<CSkill> chosedSkillList = new List<CSkill>();
+        int tempid = 0;
 
         private void loadSkillsBox()
         {
@@ -276,19 +281,21 @@ namespace Groot
         {
             if (this.listBox1.SelectedIndex < 0)
                 return;
+            
             skillClassID = this.listBox1.SelectedIndex + 1;
             skillClassName = this.listBox1.SelectedItem.ToString();
-
-            this.listBox2.Items.Clear();
             //===========================
             var s = from p in skillList.AsEnumerable()
                     where p.int技能類別編號 == skillClassID
                     select p;
-
+            this.listBox2.Items.Clear();
             foreach (var item in s)
             {
                 this.listBox2.Items.Add(item.string技能名稱);
             }
+            if (this.listBox2.Items.Count == 0)
+                return;
+            this.listBox2.SelectedIndex = 0;
         }
 
         private void listBox2_DoubleClick(object sender, EventArgs e)
@@ -301,11 +308,14 @@ namespace Groot
             skillID = u.int技能編號;
 
             CSkill c = new CSkill();
+            c.int流水號 = tempid;
             c.int技能類別編號 = skillClassID;
             c.string技能類別名稱 = skillClassName;
             c.int技能編號 = skillID;
             c.string技能名稱 = skillName;
             chosedSkillList.Add(c);
+
+            tempid++;
 
             var i = (from p in skillList.AsEnumerable()
                      where p.int技能編號 == skillID
@@ -316,7 +326,7 @@ namespace Groot
             
             foreach (var choseSkills in chosedSkillList)
             {
-                this.listBox3.Items.Add($"{choseSkills.string技能類別名稱}-{choseSkills.string技能名稱}");
+                this.listBox3.Items.Add(choseSkills);
                 this.richTextBox3.Text = "具備以下技能為佳:\r";
                 for (int o = 0; o < this.listBox3.Items.Count; o++)
                 {
@@ -344,11 +354,14 @@ namespace Groot
             skillID = u.int技能編號;
 
             CSkill c = new CSkill();
+            c.int流水號 = tempid;
             c.int技能類別編號 = skillClassID;
             c.string技能類別名稱 = skillClassName;
             c.int技能編號 = skillID;
             c.string技能名稱 = skillName;
             chosedSkillList.Add(c);
+
+            tempid++;
 
             var i = (from p in skillList.AsEnumerable()
                      where p.int技能編號 == skillID
@@ -359,7 +372,7 @@ namespace Groot
 
             foreach (var choseSkills in chosedSkillList)
             {
-                this.listBox3.Items.Add($"{choseSkills.string技能類別名稱}-{choseSkills.string技能名稱}");
+                this.listBox3.Items.Add(choseSkills);
                 this.richTextBox3.Text = "具備以下技能為佳:\r";
                 for (int o = 0; o < this.listBox3.Items.Count; o++)
                 {
@@ -375,26 +388,23 @@ namespace Groot
             {
                 this.listBox2.Items.Add(skills.string技能名稱);
             }
+            if (this.listBox2.Items.Count==0)
+                return;
             this.listBox2.SelectedIndex = 0;
         }
 
         private void button9_Click(object sender, EventArgs e)
         {
-            
+            CSkill temp=new CSkill();
+            int tempid;
+            //var q = from p in chosedSkillList.AsEnumerable()
+            //        where p.string技能名稱 ==;
+
+            //temp = chosedSkillList[this.listBox3.items];
+            chosedSkillList.RemoveAt(this.listBox3.SelectedIndex);
+            skillList.Add(temp);
         }
         //=========================================================================================
-
-
-
-
-
-
-
-
-
-
-
-
 
         private void button2_Click(object sender, EventArgs e)
         {

@@ -20,10 +20,10 @@ namespace DB_GamingForm_Show
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmDeputeMainPage_v2());
+            //Application.Run(new FrmDeputeMainPage_v2());
             //Application.Run(new FrmResumeMainPage());
             //Application.Run(new AddProduct());
-            //Application.Run(new HomePage());
+            Application.Run(new HomePage());
             //Application.Run(new FrmPurchase());
             //Application.Run(new FrmMemberShop());
             //Application.Run(new FormHome());
