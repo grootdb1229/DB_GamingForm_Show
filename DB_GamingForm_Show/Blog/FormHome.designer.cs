@@ -509,7 +509,7 @@
             this.menuSubblog.Size = new System.Drawing.Size(668, 24);
             this.menuSubblog.TabIndex = 0;
             this.menuSubblog.Text = "menuStrip2";
-            this.menuSubblog.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuSubblog_ItemClicked);
+            //this.menuSubblog.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuSubblog_ItemClicked);
             // 
             // openFileDialog1
             // 

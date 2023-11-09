@@ -407,6 +407,9 @@
     <EmbeddedResource Include="Job\FrmMyDeputes.resx">
       <DependentUpon>FrmMyDeputes.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Memberhome.resx">
+      <DependentUpon>Memberhome.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Member\FirmFrmRegistration.resx">
       <DependentUpon>FirmFrmRegistration.cs</DependentUpon>
     </EmbeddedResource>

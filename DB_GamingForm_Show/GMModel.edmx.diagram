@@ -5,35 +5,35 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="ceedf714e13449f0a7cb028b230c34b1" Name="Diagram1" ZoomLevel="97">
-        <EntityTypeShape EntityType="DB_GamingFormModel.Action" Width="1.5" PointX="10.5" PointY="12.875" />
+        <EntityTypeShape EntityType="DB_GamingFormModel.Action" Width="1.5" PointX="13.5" PointY="16.875" />
         <EntityTypeShape EntityType="DB_GamingFormModel.Admin" Width="1.5" PointX="3" PointY="1.125" />
         <EntityTypeShape EntityType="DB_GamingFormModel.AdminRank" Width="1.5" PointX="0.75" PointY="1" />
-        <EntityTypeShape EntityType="DB_GamingFormModel.Advertise" Width="1.5" PointX="8.25" PointY="11" />
+        <EntityTypeShape EntityType="DB_GamingFormModel.Advertise" Width="1.5" PointX="8.25" PointY="33" />
         <EntityTypeShape EntityType="DB_GamingFormModel.Article" Width="1.5" PointX="10.5" PointY="18.625" />
-        <EntityTypeShape EntityType="DB_GamingFormModel.ArticleAction" Width="1.5" PointX="12.75" PointY="19.5" />
+        <EntityTypeShape EntityType="DB_GamingFormModel.ArticleAction" Width="1.5" PointX="15.75" PointY="20.5" />
         <EntityTypeShape EntityType="DB_GamingFormModel.Blog" Width="1.5" PointX="3" PointY="16" />
         <EntityTypeShape EntityType="DB_GamingFormModel.Certificate" Width="1.5" PointX="0.75" PointY="4.75" />
-        <EntityTypeShape EntityType="DB_GamingFormModel.Depute" Width="1.5" PointX="5.25" PointY="24.5" />
+        <EntityTypeShape EntityType="DB_GamingFormModel.Depute" Width="1.5" PointX="8.25" PointY="24.5" />
         <EntityTypeShape EntityType="DB_GamingFormModel.DeputeRecord" Width="1.5" PointX="13.5" PointY="22.625" />
-        <EntityTypeShape EntityType="DB_GamingFormModel.DeputeSkill" Width="1.5" PointX="10.5" PointY="30.25" />
+        <EntityTypeShape EntityType="DB_GamingFormModel.DeputeSkill" Width="1.5" PointX="13.5" PointY="26.25" />
         <EntityTypeShape EntityType="DB_GamingFormModel.Education" Width="1.5" PointX="2.75" PointY="4.75" />
         <EntityTypeShape EntityType="DB_GamingFormModel.Firm" Width="1.5" PointX="4.75" PointY="4.75" />
         <EntityTypeShape EntityType="DB_GamingFormModel.Image" Width="1.5" PointX="0.75" PointY="18" />
-        <EntityTypeShape EntityType="DB_GamingFormModel.JobAdvertise" Width="1.5" PointX="10.5" PointY="9.5" />
+        <EntityTypeShape EntityType="DB_GamingFormModel.JobAdvertise" Width="1.5" PointX="10.5" PointY="33.5" />
         <EntityTypeShape EntityType="DB_GamingFormModel.JobCertificate" Width="1.5" PointX="5.75" PointY="0.75" />
         <EntityTypeShape EntityType="DB_GamingFormModel.Member" Width="1.5" PointX="3" PointY="19.625" />
-        <EntityTypeShape EntityType="DB_GamingFormModel.MemberStatu" Width="1.5" PointX="8.25" PointY="21.25" />
-        <EntityTypeShape EntityType="DB_GamingFormModel.MemberTag" Width="1.5" PointX="8.25" PointY="18" />
-        <EntityTypeShape EntityType="DB_GamingFormModel.Order" Width="1.5" PointX="8.25" PointY="24.75" />
-        <EntityTypeShape EntityType="DB_GamingFormModel.OrderProduct" Width="1.5" PointX="13.5" PointY="26.125" />
-        <EntityTypeShape EntityType="DB_GamingFormModel.Payment" Width="1.5" PointX="6" PointY="28.875" />
+        <EntityTypeShape EntityType="DB_GamingFormModel.MemberStatu" Width="1.5" PointX="8.25" PointY="18.25" />
+        <EntityTypeShape EntityType="DB_GamingFormModel.MemberTag" Width="1.5" PointX="8.25" PointY="21" />
+        <EntityTypeShape EntityType="DB_GamingFormModel.Order" Width="1.5" PointX="5.25" PointY="24.75" />
+        <EntityTypeShape EntityType="DB_GamingFormModel.OrderProduct" Width="1.5" PointX="7.5" PointY="29.125" />
+        <EntityTypeShape EntityType="DB_GamingFormModel.Payment" Width="1.5" PointX="3" PointY="25.875" />
         <EntityTypeShape EntityType="DB_GamingFormModel.Product" Width="1.5" PointX="5.25" PointY="19.25" />
-        <EntityTypeShape EntityType="DB_GamingFormModel.ProductAdvertise" Width="1.5" PointX="10.5" PointY="15.375" />
+        <EntityTypeShape EntityType="DB_GamingFormModel.ProductAdvertise" Width="1.5" PointX="10.5" PointY="23.375" />
         <EntityTypeShape EntityType="DB_GamingFormModel.ProductEvaluate" Width="1.5" PointX="10.5" PointY="26.75" />
-        <EntityTypeShape EntityType="DB_GamingFormModel.ProductTag" Width="1.5" PointX="10.5" PointY="23.375" />
-        <EntityTypeShape EntityType="DB_GamingFormModel.Region" Width="1.5" PointX="3" PointY="30.25" />
-        <EntityTypeShape EntityType="DB_GamingFormModel.RegionDistrict" Width="1.5" PointX="6" PointY="34.25" />
-        <EntityTypeShape EntityType="DB_GamingFormModel.Reply" Width="1.5" PointX="15.75" PointY="20.5" />
+        <EntityTypeShape EntityType="DB_GamingFormModel.ProductTag" Width="1.5" PointX="7.5" PointY="15.375" />
+        <EntityTypeShape EntityType="DB_GamingFormModel.Region" Width="1.5" PointX="6" PointY="33.25" />
+        <EntityTypeShape EntityType="DB_GamingFormModel.RegionDistrict" Width="1.5" PointX="3" PointY="30.5" />
+        <EntityTypeShape EntityType="DB_GamingFormModel.Reply" Width="1.5" PointX="12.75" PointY="19.5" />
         <EntityTypeShape EntityType="DB_GamingFormModel.ReplyAction" Width="1.5" PointX="6.75" PointY="3.75" />
         <EntityTypeShape EntityType="DB_GamingFormModel.ReplyImage" Width="1.5" PointX="6.75" PointY="6.75" />
         <EntityTypeShape EntityType="DB_GamingFormModel.Resume" Width="1.5" PointX="0.75" PointY="7.75" />
@@ -41,16 +41,16 @@
         <EntityTypeShape EntityType="DB_GamingFormModel.ResumeSkill" Width="1.5" PointX="2.75" PointY="8.75" />
         <EntityTypeShape EntityType="DB_GamingFormModel.ResumeStyle" Width="1.5" PointX="8.75" PointY="3.75" />
         <EntityTypeShape EntityType="DB_GamingFormModel.SerachRecord" Width="1.5" PointX="8.75" PointY="6.75" />
-        <EntityTypeShape EntityType="DB_GamingFormModel.ShipMethod" Width="1.5" PointX="6" PointY="36.875" />
-        <EntityTypeShape EntityType="DB_GamingFormModel.Skill" Width="1.5" PointX="8.25" PointY="31.25" />
-        <EntityTypeShape EntityType="DB_GamingFormModel.SkillClass" Width="1.5" PointX="6" PointY="31.375" />
-        <EntityTypeShape EntityType="DB_GamingFormModel.Status" Width="1.5" PointX="3" PointY="26.125" />
+        <EntityTypeShape EntityType="DB_GamingFormModel.ShipMethod" Width="1.5" PointX="3" PointY="28.25" />
+        <EntityTypeShape EntityType="DB_GamingFormModel.Skill" Width="1.5" PointX="11.25" PointY="37.25" />
+        <EntityTypeShape EntityType="DB_GamingFormModel.SkillClass" Width="1.5" PointX="9" PointY="37.375" />
+        <EntityTypeShape EntityType="DB_GamingFormModel.Status" Width="1.5" PointX="6" PointY="11.875" />
         <EntityTypeShape EntityType="DB_GamingFormModel.SubBlog" Width="1.5" PointX="5.25" PointY="16" />
         <EntityTypeShape EntityType="DB_GamingFormModel.SubBolgCategory" Width="1.5" PointX="9.75" PointY="0.75" />
         <EntityTypeShape EntityType="DB_GamingFormModel.SubTag" Width="1.5" PointX="0.75" PointY="15" />
-        <EntityTypeShape EntityType="DB_GamingFormModel.sysdiagram" Width="1.5" PointX="4.75" PointY="9.75" />
+        <EntityTypeShape EntityType="DB_GamingFormModel.sysdiagram" Width="1.5" PointX="8.75" PointY="9.75" />
         <EntityTypeShape EntityType="DB_GamingFormModel.Tag" Width="1.5" PointX="1.5" PointY="12.25" />
-        <EntityTypeShape EntityType="DB_GamingFormModel.WishList" Width="1.5" PointX="7.5" PointY="15" />
+        <EntityTypeShape EntityType="DB_GamingFormModel.WishList" Width="1.5" PointX="10.5" PointY="16" />
         <AssociationConnector Association="DB_GamingFormModel.FK_ArticleAction_Action" />
         <AssociationConnector Association="DB_GamingFormModel.FK_Admin_AdminRank" />
         <AssociationConnector Association="DB_GamingFormModel.FK_AD_Status" />

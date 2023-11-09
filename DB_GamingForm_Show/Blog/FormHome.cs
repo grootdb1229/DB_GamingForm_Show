@@ -55,7 +55,7 @@ namespace DBGaming
         }
         private void ALLClear()
         {
-            this.menuSubblog.Items.Clear();
+            //this.menuSubblog.Items.Clear();
             this.txbNew.Text = null;
             this.dataGridView1.DataSource = null;
             this.dataGridView2.DataSource = null;
@@ -70,7 +70,7 @@ namespace DBGaming
         }
         private void SubAllClear()
         {
-            this.menuSubblog.Items.Clear();
+            //this.menuSubblog.Items.Clear();
             this.dataGridView2.DataSource = null;
         }
         string selectblogLast = "";
@@ -245,7 +245,7 @@ namespace DBGaming
             {
 
 
-                this.menuSubblog.Items.Clear();
+                //this.menuSubblog.Items.Clear();
                 var q = db.SubBlogs.AsEnumerable()
                        .Where(s => s.Blog.Title == this.dataGridView1.CurrentRow.Cells["版名"].Value.ToString())
                        .Select(s => s.Title);
@@ -260,7 +260,7 @@ namespace DBGaming
 
                 foreach (var s in q)
                 {
-                    this.menuSubblog.Items.Add(s);
+                    //this.menuSubblog.Items.Add(s);
                 }
 
 
@@ -474,29 +474,29 @@ namespace DBGaming
         }
 
 
-        private void menuSubblog_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-            var q = db.Articles.AsEnumerable()
-                .Where(a => a.SubBlog.Title == e.ClickedItem.Text && a.SubBlog.Blog.Title == selectblog && a.SubBlog.Blog.SubTag.Name == selectblogLast)
-                .Select(s => new
-                {
-                    文章編號 = s.ArticleID,
-                    標題 = s.Title,
-                    內文預覽 = s.ArticleContent
-                });
-            if (q.Count() == 0)
-            {
-                MessageBox.Show("還未有文章");
-            }
-            else
-            {
-                this.dataGridView2.DataSource = q.ToList();
-            }
-            this.txbSubBlog.Text = e.ClickedItem.Text;
+        //private void menuSubblog_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        //{
+        //    var q = db.Articles.AsEnumerable()
+        //        .Where(a => a.SubBlog.Title == e.ClickedItem.Text && a.SubBlog.Blog.Title == selectblog && a.SubBlog.Blog.SubTag.Name == selectblogLast)
+        //        .Select(s => new
+        //        {
+        //            文章編號 = s.ArticleID,
+        //            標題 = s.Title,
+        //            內文預覽 = s.ArticleContent
+        //        });
+        //    if (q.Count() == 0)
+        //    {
+        //        MessageBox.Show("還未有文章");
+        //    }
+        //    else
+        //    {
+        //        this.dataGridView2.DataSource = q.ToList();
+        //    }
+        //    this.txbSubBlog.Text = e.ClickedItem.Text;
 
-            //1102 發表文章抓取字串 辜
-            subblogca = this.txbSubBlog.Text;
-        }
+        //    //1102 發表文章抓取字串 辜
+        //    subblogca = this.txbSubBlog.Text;
+        //}
 
 
         private void btnSubBlogInsert_Click(object sender, EventArgs e)
@@ -539,7 +539,7 @@ namespace DBGaming
 
         private void btnSubUpdate_Click(object sender, EventArgs e)
         {
-            this.menuSubblog.Items.Clear();
+            //this.menuSubblog.Items.Clear();
             var updateSubBlog = db.SubBlogs.AsEnumerable()
                 .Where(s => s.Title == this.txbSubBlog.Text)
                 .Select(s => s).FirstOrDefault();
